@@ -2,24 +2,79 @@
 
 Architecture diagram templates. Mermaid is the primary format — GitHub renders it natively. SVG is the fallback for complex architectures.
 
+**All projects must include at least one architecture diagram.** The diagram type is selected based on project architecture and domain.
+
 ---
 
-## When to Generate a Diagram
+## Diagram Type Selection
 
-- **Library / CLI tool:** Skip. These rarely need architecture diagrams.
-- **Application (full-stack):** Generate if the project has 3+ distinct components.
-- **Microservice:** Generate if the project has 2+ services.
-- **Monolithic:** Generate only if the architecture is non-obvious (layered, plugin-based, etc.).
+| Project Type | Primary Diagram | Secondary (if complex) |
+|---|---|---|
+| **Microservice** | Architecture Graph | Sequence Diagram |
+| **Frontend-Backend** | Architecture Graph | ER Diagram (if DB-heavy) |
+| **Monolithic Layered** | Architecture Graph | Class Diagram (if OOP-heavy) |
+| **Event-Driven** | Architecture Graph | Sequence Diagram |
+| **CLI Tool** | Flowchart | — |
+| **Library / Package** | Class Diagram | Flowchart |
+| **API Service** | Sequence Diagram | ER Diagram |
+| **Data Pipeline** | Flowchart | ER Diagram |
+| **Stateful App** | State Diagram | Sequence Diagram |
+| **Default / Unknown** | Architecture Graph | — |
+
+---
+
+## Color System
+
+All diagrams use a consistent color palette. Apply colors via `classDef` and `style` directives.
+
+### Color Palette
+
+| Role | Color | Hex | Usage |
+|---|---|---|---|
+| **Client / Frontend** | Blue | `#3B82F6` | UI, mobile, SPA |
+| **Gateway / Load Balancer** | Amber | `#F59E0B` | API gateways, proxies |
+| **Service / Logic** | Emerald | `#10B981` | Business logic, workers |
+| **Data / Storage** | Violet | `#8B5CF6` | Databases, caches, queues |
+| **External / Third-party** | Rose | `#F43F5E` | External APIs, webhooks |
+| **Auth / Security** | Orange | `#F97316` | Auth modules, JWT |
+| **Message / Queue** | Cyan | `#06B6D4` | Kafka, RabbitMQ, pub/sub |
+
+### Applying Colors in Mermaid
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {
+  'primaryColor': '#3B82F6',
+  'primaryTextColor': '#fff',
+  'lineColor': '#64748B',
+  'fontSize': '14px'
+}}}%%
+
+classDef client fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
+classDef service fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
+classDef data fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
+classDef gateway fill:#F59E0B,stroke:#D97706,color:#fff,stroke-width:2px
+classDef external fill:#F43F5E,stroke:#E11D48,color:#fff,stroke-width:2px
+classDef auth fill:#F97316,stroke:#EA580C,color:#fff,stroke-width:2px
+classDef queue fill:#06B6D4,stroke:#0891B2,color:#fff,stroke-width:2px
+```
+
+**Rules:**
+- Always include `classDef` declarations at the top of the mermaid block
+- Apply colors with `class` statement at the end: `class A,B client`
+- Use `%%{init}%%` for theme customization (optional, for enhanced visual)
+- Text color: white (`#fff`) on all colored backgrounds
+- Stroke: 2px, darker shade of the fill color
 
 ---
 
 ## Mermaid Templates
 
-### Microservice Architecture
+### 1. Architecture Graph (Microservice)
 
 For projects with multiple independent services communicating via RPC/HTTP.
 
-```mermaid
+````mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '14px'}}}%%
 graph LR
     A[Client<br/>React] --> B[API Gateway<br/>Express]
     B --> C[User Service<br/>Go]
@@ -28,50 +83,87 @@ graph LR
     C --> F[(PostgreSQL)]
     D --> F
     E --> G[(Redis)]
-```
+
+    classDef client fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
+    classDef gateway fill:#F59E0B,stroke:#D97706,color:#fff,stroke-width:2px
+    classDef service fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
+    classDef data fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
+
+    class A client
+    class B gateway
+    class C,D,E service
+    class F,G data
+````
 
 **Rules:**
 - `graph LR` for left-to-right flow
 - Node labels: `Name<br/>Technology` (two lines)
 - Database nodes: `[(Name)]` for cylinder shape
-- Max 8 nodes. If more services exist, group related ones (e.g., "Auth Services" instead of listing each)
-- No `style` or `classDef` directives — keep it GitHub-compatible
+- Max 8 nodes. If more services exist, group related ones
+- Apply color classes to all nodes
 
-### Frontend-Backend Separation
+---
+
+### 2. Architecture Graph (Frontend-Backend)
 
 For SPA + API + database projects.
 
-```mermaid
+````mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '14px'}}}%%
 graph LR
     A[Frontend<br/>Vue.js] --> B[API Server<br/>Express]
     B --> C[Auth Module<br/>JWT]
     B --> D[Business Logic<br/>TypeScript]
     D --> E[(PostgreSQL)]
     D --> F[(Redis)]
-```
 
-### Monolithic Layered
+    classDef client fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
+    classDef service fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
+    classDef auth fill:#F97316,stroke:#EA580C,color:#fff,stroke-width:2px
+    classDef data fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
+
+    class A client
+    class B,D service
+    class C auth
+    class E,F data
+````
+
+---
+
+### 3. Architecture Graph (Monolithic Layered)
 
 For traditional MVC or layered architecture.
 
-```mermaid
+````mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '14px'}}}%%
 graph TD
     A[UI Layer<br/>React] --> B[Controller Layer<br/>Express]
     B --> C[Service Layer<br/>TypeScript]
     C --> D[Data Layer<br/>Prisma]
     D --> E[(PostgreSQL)]
-```
+
+    classDef client fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
+    classDef service fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
+    classDef data fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
+
+    class A client
+    class B,C service
+    class D,E data
+````
 
 **Rules:**
 - `graph TD` for top-down flow
 - Each layer is one node
 - Max 5 layers
 
-### Event-Driven
+---
+
+### 4. Architecture Graph (Event-Driven)
 
 For projects using message queues or event buses.
 
-```mermaid
+````mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '14px'}}}%%
 graph LR
     A[Producer<br/>Express] --> B[Message Queue<br/>Kafka]
     B --> C[Consumer A<br/>Go]
@@ -80,7 +172,274 @@ graph LR
     C --> F[(PostgreSQL)]
     D --> G[(MongoDB)]
     E --> H[(Redis)]
-```
+
+    classDef service fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
+    classDef queue fill:#06B6D4,stroke:#0891B2,color:#fff,stroke-width:2px
+    classDef data fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
+
+    class A,C,D,E service
+    class B queue
+    class F,G,H data
+````
+
+---
+
+### 5. Class Diagram
+
+For OOP-heavy projects with clear class hierarchies, inheritance, or composition.
+
+````mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '14px'}}}%%
+classDiagram
+    class UserService {
+        +findUser(id: string): User
+        +createUser(data: CreateUserDto): User
+        +updateUser(id: string, data: UpdateUserDto): User
+        +deleteUser(id: string): void
+    }
+    class UserRepository {
+        +findById(id: string): User
+        +save(user: User): User
+        +delete(id: string): void
+    }
+    class User {
+        +id: string
+        +name: string
+        +email: string
+        +createdAt: Date
+    }
+    class AuthService {
+        +login(email: string, password: string): Token
+        +verify(token: string): Payload
+        +hashPassword(password: string): string
+    }
+    class CacheService {
+        +get(key: string): any
+        +set(key: string, value: any, ttl: number): void
+        +delete(key: string): void
+    }
+
+    UserService --> UserRepository : uses
+    UserService --> AuthService : uses
+    UserService --> CacheService : uses
+    UserRepository --> User : manages
+    AuthService --> User : authenticates
+
+    classDef service fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
+    classDef auth fill:#F97316,stroke:#EA580C,color:#fff,stroke-width:2px
+    classDef data fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
+    classDef model fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
+
+    class UserService,UserRepository,CacheService service
+    class AuthService auth
+    class User model
+````
+
+**Rules:**
+- Extract real class names and methods from source code
+- Show key public methods only (max 5 per class)
+- Include member variables for model/entity classes
+- Use relationships: `-->` (uses), `--*` (composition), `--o` (aggregation), `<|--` (inheritance)
+- Apply colors: services=green, auth=orange, models=blue, data=violet
+
+---
+
+### 6. ER Diagram (Entity Relationship)
+
+For database-heavy projects. Shows tables, columns, and relationships.
+
+````mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '14px'}}}%%
+erDiagram
+    USERS {
+        uuid id PK
+        string name
+        string email UK
+        string password_hash
+        timestamp created_at
+    }
+    POSTS {
+        uuid id PK
+        uuid author_id FK
+        string title
+        text content
+        timestamp published_at
+    }
+    COMMENTS {
+        uuid id PK
+        uuid post_id FK
+        uuid author_id FK
+        text content
+        timestamp created_at
+    }
+    TAGS {
+        uuid id PK
+        string name UK
+    }
+    POST_TAGS {
+        uuid post_id FK
+        uuid tag_id FK
+    }
+
+    USERS ||--o{ POSTS : "writes"
+    USERS ||--o{ COMMENTS : "writes"
+    POSTS ||--o{ COMMENTS : "has"
+    POSTS ||--o{ POST_TAGS : "tagged"
+    TAGS ||--o{ POST_TAGS : "tagged"
+
+    classDef entity fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
+    classDef junction fill:#F59E0B,stroke:#D97706,color:#fff,stroke-width:2px
+
+    class USERS,POSTS,COMMENTS,TAGS entity
+    class POST_TAGS junction
+````
+
+**Rules:**
+- Extract real table/column names from ORM models or migration files
+- Show column types and constraints (PK, FK, UK)
+- Use `||--o{` for one-to-many, `||--||` for one-to-one, `}o--o{` for many-to-many
+- Junction tables: yellow/amber color
+- Entity tables: blue color
+
+---
+
+### 7. Flowchart
+
+For CLI tools, scripts, data pipelines, or process-heavy projects.
+
+````mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '14px'}}}%%
+flowchart TD
+    A[Parse CLI Arguments] --> B{Config File Exists?}
+    B -->|Yes| C[Load Config]
+    B -->|No| D[Use Defaults]
+    C --> E[Initialize Services]
+    D --> E
+    E --> F[Read Input]
+    F --> G{Input Valid?}
+    G -->|Yes| H[Process Data]
+    G -->|No| I[Show Error & Exit]
+    H --> J[Write Output]
+    J --> K[Cleanup & Exit]
+
+    classDef start fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
+    classDef process fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
+    classDef decision fill:#F59E0B,stroke:#D97706,color:#fff,stroke-width:2px
+    classDef error fill:#F43F5E,stroke:#E11D48,color:#fff,stroke-width:2px
+    classDef end fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
+
+    class A start
+    class C,D,E,F,H,J process
+    class B,G decision
+    class I error
+    class K end
+````
+
+**Rules:**
+- `flowchart TD` for top-down, `flowchart LR` for left-to-right
+- Decision nodes use `{}` diamond shape
+- Apply colors: start=blue, process=green, decision=amber, error=rose, end=violet
+- Max 10 nodes
+
+---
+
+### 8. Sequence Diagram
+
+For API-heavy projects showing request/response flow between components.
+
+````mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '14px'}}}%%
+sequenceDiagram
+    participant Client as Client (React)
+    participant API as API Gateway
+    participant Auth as Auth Service
+    participant User as User Service
+    participant DB as PostgreSQL
+    participant Cache as Redis
+
+    Client->>API: POST /api/login
+    API->>Auth: validateCredentials()
+    Auth->>DB: SELECT user WHERE email = ?
+    DB-->>Auth: User record
+    Auth->>Auth: bcrypt.compare()
+    Auth-->>API: JWT token
+    API-->>Client: 200 OK + token
+
+    Client->>API: GET /api/users/me (Bearer token)
+    API->>Auth: verifyToken()
+    Auth-->>API: decoded payload
+    API->>Cache: GET user:{id}
+    alt Cache hit
+        Cache-->>API: cached user
+    else Cache miss
+        API->>User: findById(id)
+        User->>DB: SELECT * FROM users WHERE id = ?
+        DB-->>User: User record
+        User-->>API: User object
+        API->>Cache: SET user:{id} (TTL 300s)
+    end
+    API-->>Client: 200 OK + user data
+
+    classDef client fill:#3B82F6,stroke:#2563EB,color:#fff
+    classDef gateway fill:#F59E0B,stroke:#D97706,color:#fff
+    classDef auth fill:#F97316,stroke:#EA580C,color:#fff
+    classDef service fill:#10B981,stroke:#059669,color:#fff
+    classDef data fill:#8B5CF6,stroke:#7C3AED,color:#fff
+
+    class Client client
+    class API gateway
+    class Auth auth
+    class User service
+    class DB,Cache data
+````
+
+**Rules:**
+- Show real API endpoints and method calls from the project
+- Use `alt`/`else` for conditional flows (cache hit/miss, error handling)
+- Use `loop` for repeated operations
+- Participants represent actual components/services
+- Apply colors to participant boxes
+
+---
+
+### 9. State Diagram
+
+For stateful applications (order processing, workflows, game states, etc.).
+
+````mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '14px'}}}%%
+stateDiagram-v2
+    [*] --> Pending
+    Pending --> Processing : payment_received
+    Processing --> Shipped : order_packed
+    Processing --> Failed : stock_unavailable
+    Shipped --> Delivered : delivery_confirmed
+    Shipped --> Returned : customer_return
+    Delivered --> [*]
+    Failed --> Pending : retry
+    Returned --> Refunded : return_approved
+    Refunded --> [*]
+
+    classDef initial fill:#64748B,stroke:#475569,color:#fff,stroke-width:2px
+    classDef active fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
+    classDef success fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
+    classDef error fill:#F43F5E,stroke:#E11D48,color:#fff,stroke-width:2px
+    classDef terminal fill:#64748B,stroke:#475569,color:#fff,stroke-width:2px
+
+    class Pending active
+    class Processing active
+    class Shipped active
+    class Delivered success
+    class Failed error
+    class Returned error
+    class Refunded success
+````
+
+**Rules:**
+- Extract real states from state machines, workflow engines, or order/status logic
+- Show transition triggers (event names on arrows)
+- Use `[*]` for start and end states
+- Apply colors: active=blue, success=green, error=rose, terminal=gray
 
 ---
 
@@ -118,31 +477,27 @@ SVG nodes are positioned dynamically, not hardcoded.
 <text x="{X+60}" y="{Y+45}" text-anchor="middle" fill="white" font-size="11">{TECH}</text>
 ```
 
-**Color scheme (light):**
-- Client/Frontend: `#4A90D9` (blue)
-- Gateway: `#E6A23C` (orange)
-- Services: `#67C23A` (green)
-- Data/DB: `#909399` (gray)
-- Arrows: `#606266` (dark gray)
-
-**Color scheme (dark):**
+**Color scheme (same as Mermaid palette):**
 - Client/Frontend: `#3B82F6` (blue)
 - Gateway: `#F59E0B` (amber)
 - Services: `#10B981` (emerald)
-- Data/DB: `#6B7280` (gray)
-- Arrows: `#9CA3AF` (light gray)
+- Auth: `#F97316` (orange)
+- Data/DB: `#8B5CF6` (violet)
+- Queue: `#06B6D4` (cyan)
+- External: `#F43F5E` (rose)
+- Arrows: `#64748B` (slate)
 
 ---
 
 ## Decision Logic
 
 ```
-if project_type is library or CLI:
-    skip diagram
-elif node_count <= 8:
-    use Mermaid
-elif developer requested SVG:
-    use SVG with dynamic layout
-else:
-    use Mermaid with grouped nodes (combine related services into single nodes)
+1. Detect project architecture from scan results
+2. Select PRIMARY diagram type from the selection table
+3. If project has complex data models → add SECONDARY diagram
+4. Extract real component names, class names, table names from source code
+5. Apply color classes to all nodes
+6. If node_count <= 10 → use Mermaid
+7. If node_count > 10 → use Mermaid with grouped nodes
+8. If developer requested SVG → use SVG with dynamic layout
 ```

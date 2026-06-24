@@ -190,21 +190,36 @@ try {
 
 ## Architecture Diagram
 
+**All projects must include at least one architecture diagram.** The diagram type is selected based on project architecture (see diagram-templates.md).
+
 **Structure:**
 ```markdown
 ## Architecture
 
 \`\`\`mermaid
-graph LR
-    A[Client] --> B[API] --> C[DB]
+%% color classes and diagram here %%
 \`\`\`
 ```
+
+**Diagram Type Selection:**
+
+| Project Type | Diagram Type |
+|---|---|
+| Microservice / Frontend-Backend / Monolithic / Event-Driven | Architecture Graph |
+| CLI Tool / Data Pipeline | Flowchart |
+| Library / Package (OOP-heavy) | Class Diagram |
+| API Service | Sequence Diagram |
+| Database-heavy project | ER Diagram |
+| Stateful Application | State Diagram |
 
 **Rules:**
 - One-liner intro before the diagram (optional, skip for Minimal tone).
 - Mermaid block per diagram-templates.md.
+- **Always apply color classes** — never generate a colorless diagram.
+- Extract real component names, class names, table names from source code.
 - No "The following diagram illustrates..." — just put the diagram.
 - No `<details>` wrapper — diagrams should be immediately visible.
+- If the project has complex data models, add a secondary diagram (e.g., Architecture Graph + ER Diagram).
 
 ---
 

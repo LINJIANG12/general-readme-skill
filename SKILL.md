@@ -159,7 +159,7 @@ Fixed-order application and manual content preservation:
 2. **Features / Why** — Max 6 core differentiating features
 3. **Quick Start** — Max 4 copy-paste command steps
 4. **Usage** — Real code examples, max 4 items
-5. **Architecture Diagram** — Mermaid/SVG. **Skip for Library / CLI**
+5. **Architecture Diagram** — Mermaid/SVG with color classes. **Required for all project types.** Select diagram type based on architecture (see diagram-templates.md)
 6. **Configuration** — Table view, only if config files exist
 7. **API** — Endpoint table, only if API routes exist
 8. **Directory Structure** — Annotated tree, max depth = 3

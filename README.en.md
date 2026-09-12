@@ -39,16 +39,18 @@
 
 </div>
 
+General README Skill turns README authoring into a verifiable pipeline: it scans the repository to build a `claim → source` evidence map, assembles the content in the fixed 20-section order, and runs seven quality gates. Any feature, command or version that cannot be traced to a real file is deleted rather than softened. The skill ships as pure Markdown and HTML, installs into CodeBuddy, Claude Code, GitHub Copilot and Cursor, and adds no runtime.
+
 ## Features
 
 | Feature | Description |
 |---|---|
-| Evidence binding | Every feature, command, version and default must trace to a scanned file; unbound claims are deleted rather than softened |
-| Fixed structure | Twenty sections in one fixed order for every project; sections with no data are skipped entirely |
-| One voice | A single house writing style, no tone selection; the banned-phrase list lives in [`writing-style.md`](references/writing-style.md) |
-| Seven gates | Evidence, Structure, Voice, Visual, Links, Accessibility and i18n, verified before delivery |
-| Multi-language and localization | A bidirectional switcher, region-mapped links, and an anti-stale notice when a translation lags |
-| Zero dependencies | No external CLI, runtime or network service; the output is pure Markdown and HTML |
+| No invented content | Claims the scan cannot support are deleted, so the README keeps only what is verifiable |
+| Consistent structure | Every project uses the same section order, so readers do not re-learn the layout |
+| Self-check before delivery | Seven gates verify the document before output; failures are repaired or reported |
+| Multi-language and localization | Primary and secondary languages run in parallel, with a bidirectional switcher and region-mapped links |
+| Reproducible | The same repository scan produces the same structure, so output is stable and reviewable |
+| Zero dependencies | Pure Markdown and HTML — no CLI, runtime or network service |
 
 <div align="right">
 
@@ -149,27 +151,86 @@ AI:   Defaults: Chinese (Simplified), entry mode auto-detected.
       README.md written.
 ```
 
+> [!NOTE]
+> The default output is Chinese (Simplified); additional languages are appended as `README.<code>.md`. Section order, badge style and writing style are fixed by the house rules and are not exposed as options.
+
 <div align="right">
 
 [![Back to top][badge-top]](#readme-top)
 
 </div>
 
-## Configuration
+## What's Inside
 
-Phase 0 resolves only two options. Everything else is part of the house style and is not configurable.
+The skill is a `SKILL.md` router plus 15 reference files. References load on demand — only when the current task needs them.
 
-| Option | Values | Default |
-|---|---|---|
-| Primary language | Any ISO 639-1 / BCP 47 code | Chinese (Simplified) |
-| Secondary languages | Zero or more | none |
+### Principles
 
-The entry mode (Create / Upgrade) is auto-detected. Badge style is fixed at `flat` and diagram colours are fixed by the palette in [`diagram-templates.md`](references/diagram-templates.md).
+| Principle | Description |
+|---|---|
+| Evidence binding | A claim must resolve to a real file; unbound claims are deleted, not softened |
+| One structure | 20 sections in one fixed order; sections with no data are skipped entirely |
+| One voice | A single house writing style, with no tone selection |
+| Compose once | Hero and other HTML regions are authored as HTML directly, with no conversion pass |
+| Load on demand | `SKILL.md` only routes; the detail lives in the reference files |
+| Accessible | Alt text, table headers and reversible HTML, enforced by gate G6 |
 
-> [!NOTE]
-> The primary language always occupies `README.md`, whatever the language is. A Chinese project therefore has a Chinese `README.md` and an English `README.en.md`. When a language is added, the switcher must stay bidirectional in every file.
+### Process layer
 
-If the user supplies no answers, the skill proceeds with the defaults and says so. It never blocks on questions.
+| File | Purpose |
+|---|---|
+| [`workflow.md`](references/workflow.md) | Phase procedures, Upgrade-mode diffing |
+| [`project-scan.md`](references/project-scan.md) | Detection rules, evidence-map format |
+| [`quality-gates.md`](references/quality-gates.md) | Seven delivery gates |
+
+### Content layer
+
+| File | Purpose |
+|---|---|
+| [`sections-core.md`](references/sections-core.md) | Hero, Features, Demo, Quick Start, Usage, Configuration, Deployment, Limitations |
+| [`sections-reference.md`](references/sections-reference.md) | Architecture, API, Commands, Structure, Stack, Compatibility, SDKs, Packages |
+| [`sections-growth.md`](references/sections-growth.md) | Contributing, Community, Roadmap, FAQ, Security, Sponsors, Citation, License |
+| [`onboarding.md`](references/onboarding.md) | Quick Start ladder, PaaS matrix, multi-package-manager blocks |
+| [`social-proof.md`](references/social-proof.md) | Sponsors, adopters, contributors, citations, star history |
+
+### Visual layer
+
+| File | Purpose |
+|---|---|
+| [`hero-and-html.md`](references/hero-and-html.md) | Single source of truth for all HTML templates |
+| [`badges.md`](references/badges.md) | Technology → shields.io mapping, brand-palette rule, regional badges |
+| [`badge-styles.md`](references/badge-styles.md) | Badge grouping and caps |
+| [`diagram-templates.md`](references/diagram-templates.md) | Mermaid and SVG templates with a colour system |
+| [`accessibility.md`](references/accessibility.md) | Alt text, tables, links, colour, RTL |
+
+### Language layer
+
+| File | Purpose |
+|---|---|
+| [`language-guide.md`](references/language-guide.md) | Naming, switcher, localization policy, anti-stale banners |
+| [`writing-style.md`](references/writing-style.md) | The house style and banned phrases |
+
+### Directory layout
+
+```
+general-readme-skill/
+├── SKILL.md                    # Router: principles, workflow, routing table
+├── README.md                   # Primary documentation (Chinese)
+├── README.en.md                # This file
+├── LICENSE                     # MIT
+├── benchmark_analysis.md       # Deconstruction of ten benchmark projects, and the basis for the rewrite
+├── assets/                     # Banner image
+├── examples/                   # Worked example outputs
+│   ├── app-readme.md           # Full-stack application
+│   ├── library-readme.md       # Library / package
+│   └── oxyteamtasks-readme.md  # Real-world application
+├── install/                    # Per-platform setup guides
+│   ├── codebuddy.md
+│   ├── claude-code.md
+│   ├── copilot.md
+│   └── cursor.md
+└── references/                 # 15 reference files, loaded on demand
+```
 
 <div align="right">
 
@@ -200,9 +261,12 @@ flowchart LR
     class A1,B1,C1,D1 artifact
 ```
 
+> [!NOTE]
+> Mermaid diagrams require renderer support. GitHub renders them natively; some terminal Markdown viewers show them as code blocks, which does not affect the rest of the content.
+
 ### The fixed structure
 
-This is the only README structure the skill produces. Sections appear in exactly this order; a section is skipped entirely when the scan produced no data for it — never `N/A`, never `Coming soon`, never a placeholder.
+Phase 2 assembles sections in the order below. A section is skipped entirely when the scan produced no data for it — never `N/A`, never `Coming soon`, never a placeholder.
 
 | # | Section | Include when |
 |---|---|---|
@@ -232,7 +296,7 @@ This is the only README structure the skill produces. Sections appear in exactly
 
 ### The seven quality gates
 
-Run in Phase 3. A README ships only after every applicable gate passes or its failure is reported explicitly.
+Phase 3 runs each gate in turn. A README ships only after every applicable gate passes or its failure is reported explicitly.
 
 | Gate | Checks |
 |---|---|
@@ -243,114 +307,6 @@ Run in Phase 3. A README ships only after every applicable gate passes or its fa
 | **G5 Links** | No placeholder URLs, relative paths resolve, anchors exist |
 | **G6 Accessibility** | Every image has alt text, every table has a header row |
 | **G7 i18n** | Switcher is bidirectional, localized links mapped |
-
-### Design decisions
-
-- **Structure follows the scan, not the project type.** There are therefore no archetypes, maturity tiers or tone profiles — only one structure and one voice.
-- **Anti-fabrication is an artifact, not just a rule.** Phase 1 emits a `claim → source` evidence map, and G1 walks it row by row.
-- **Templates have a single source of truth.** Every HTML region is defined in [`hero-and-html.md`](references/hero-and-html.md), so no template is duplicated.
-- **References load on demand.** [`SKILL.md`](SKILL.md) routes; the detail lives in 15 reference files.
-
-<div align="right">
-
-[![Back to top][badge-top]](#readme-top)
-
-</div>
-
-## Project Structure
-
-```
-general-readme-skill/
-├── SKILL.md                    # Router: principles, workflow, routing table
-├── README.md                   # Primary documentation (Chinese)
-├── README.en.md                # This file
-├── LICENSE                     # MIT
-├── benchmark_analysis.md       # Deconstruction of ten benchmark projects, and the basis for the rewrite
-├── assets/                     # Banner image
-├── examples/                   # Worked example outputs
-│   ├── app-readme.md           # Full-stack application
-│   ├── library-readme.md       # Library / package
-│   └── oxyteamtasks-readme.md  # Real-world application
-├── install/                    # Per-platform setup guides
-│   ├── codebuddy.md
-│   ├── claude-code.md
-│   ├── copilot.md
-│   └── cursor.md
-└── references/                 # 15 reference files, loaded on demand
-```
-
-`SKILL.md` routes; these fifteen files carry the detail. Each is loaded only when needed.
-
-### Process
-
-| File | Purpose |
-|---|---|
-| [`workflow.md`](references/workflow.md) | Phase procedures, Upgrade-mode diffing |
-| [`project-scan.md`](references/project-scan.md) | Detection rules, evidence-map format |
-| [`quality-gates.md`](references/quality-gates.md) | Seven delivery gates |
-
-### Content
-
-| File | Purpose |
-|---|---|
-| [`sections-core.md`](references/sections-core.md) | Hero, Features, Demo, Quick Start, Usage, Configuration, Deployment, Limitations |
-| [`sections-reference.md`](references/sections-reference.md) | Architecture, API, Commands, Structure, Stack, Compatibility, SDKs, Packages |
-| [`sections-growth.md`](references/sections-growth.md) | Contributing, Community, Roadmap, FAQ, Security, Sponsors, Citation, License |
-| [`onboarding.md`](references/onboarding.md) | Quick Start ladder, PaaS matrix, multi-package-manager blocks |
-| [`social-proof.md`](references/social-proof.md) | Sponsors, adopters, contributors, citations, star history |
-
-### Visual
-
-| File | Purpose |
-|---|---|
-| [`hero-and-html.md`](references/hero-and-html.md) | Single source of truth for all HTML templates |
-| [`badges.md`](references/badges.md) | Technology → shields.io mapping, brand-palette rule, regional badges |
-| [`badge-styles.md`](references/badge-styles.md) | Badge grouping and caps |
-| [`diagram-templates.md`](references/diagram-templates.md) | Mermaid and SVG templates with a colour system |
-| [`accessibility.md`](references/accessibility.md) | Alt text, tables, links, colour, RTL |
-
-### Language
-
-| File | Purpose |
-|---|---|
-| [`language-guide.md`](references/language-guide.md) | Naming, switcher, localization policy, anti-stale banners |
-| [`writing-style.md`](references/writing-style.md) | The house style and banned phrases |
-
-<div align="right">
-
-[![Back to top][badge-top]](#readme-top)
-
-</div>
-
-## Tech Stack
-
-| Technology | Purpose |
-|---|---|
-| Markdown | Carries the skill definition, reference files and examples |
-| YAML front matter | `SKILL.md` metadata: `name`, `description`, `version` |
-| Mermaid | Architecture and workflow diagrams |
-| HTML / GFM | Hero, language switcher, collapsible blocks and GFM alerts |
-| shields.io | Hero and body badges |
-
-<div align="right">
-
-[![Back to top][badge-top]](#readme-top)
-
-</div>
-
-## Compatibility
-
-The skill produces pure Markdown and HTML and depends on no runtime.
-
-| Item | Support |
-|---|---|
-| Host platforms | CodeBuddy, Claude Code, GitHub Copilot, Cursor |
-| Render targets | GitHub, GitLab, any GFM-capable editor |
-| Runtime dependencies | None (file-copy commands are needed only for installation) |
-| Skill format | `SKILL.md` + `references/`, following the common skill-directory convention |
-
-> [!NOTE]
-> Mermaid diagrams require renderer support. GitHub renders them natively; some terminal Markdown viewers show them as code blocks, which does not affect the rest of the content.
 
 <div align="right">
 

@@ -4,6 +4,9 @@ docs
 # Not part of the distributed skill.
 benchmark_readmes/
 
+# Transient commit-message scratch file
+.commitmsg.tmp
+
 # OS / editor noise
 .DS_Store
 Thumbs.db

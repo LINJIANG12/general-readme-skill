@@ -145,10 +145,12 @@ Two forms. Pick by tier.
 
 ### Form A — Text links (T1, T2)
 
+Chinese primary, English secondary — the default shape.
+
 ```html
 <p>
-  <a href="README.md">English</a> ·
-  <a href="README.zh-CN.md">简体中文</a> ·
+  <strong>简体中文</strong> ·
+  <a href="README.en.md">English</a> ·
   <a href="README.ja.md">日本語</a>
 </p>
 ```
@@ -157,15 +159,16 @@ Two forms. Pick by tier.
 
 ```html
 <p>
-  <a href="README.md"><img alt="English" src="https://img.shields.io/badge/English-d9d9d9"></a>
-  <a href="README.zh-CN.md"><img alt="简体中文" src="https://img.shields.io/badge/简体中文-d9d9d9"></a>
+  <a href="README.md"><img alt="简体中文" src="https://img.shields.io/badge/简体中文-d9d9d9"></a>
+  <a href="README.en.md"><img alt="English" src="https://img.shields.io/badge/English-d9d9d9"></a>
   <a href="README.ja.md"><img alt="日本語" src="https://img.shields.io/badge/日本語-d9d9d9"></a>
 </p>
 ```
 
 ### Rules
 
-1. **The current language is plain text, not a link.** In `README.md`, `English` is not
+1. **The current language is plain text, not a link.** In `README.md` the primary language
+   (`简体中文`) is not hyperlinked; in a secondary file, that secondary language is not
    hyperlinked.
 2. **Label in the native language** — `简体中文`, not "Chinese". Endonyms are readable to
    the people who need them.

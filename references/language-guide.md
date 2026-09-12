@@ -20,42 +20,48 @@ localization policy that distinguishes a translated README from an adapted one.
 
 ## File Naming
 
-GitHub convention in the wider ecosystem is BCP 47 with a dot separator for the primary
-extra language and underscores only where a project already established them. This skill
-standardises on **dot-separated BCP 47**:
+**The primary language always occupies `README.md`, whatever that language is.** Every
+additional language takes `README.<code>.md`, dot-separated BCP 47.
 
-| Language | File | Code |
-|---|---|---|
-| English (primary) | `README.md` | — |
-| Chinese (Simplified) | `README.zh-CN.md` | zh-CN |
-| Chinese (Traditional) | `README.zh-TW.md` | zh-TW |
-| Japanese | `README.ja.md` | ja |
-| Korean | `README.ko.md` | ko |
-| French | `README.fr.md` | fr |
-| German | `README.de.md` | de |
-| Spanish | `README.es.md` | es |
-| Portuguese (Brazil) | `README.pt-BR.md` | pt-BR |
-| Portuguese (Portugal) | `README.pt-PT.md` | pt-PT |
-| Russian | `README.ru.md` | ru |
-| Arabic | `README.ar.md` | ar |
-| Hindi | `README.hi.md` | hi |
-| Italian | `README.it.md` | it |
-| Dutch | `README.nl.md` | nl |
-| Polish | `README.pl.md` | pl |
-| Turkish | `README.tr.md` | tr |
-| Vietnamese | `README.vi.md` | vi |
-| Ukrainian | `README.uk.md` | uk |
+**Default primary language: Chinese (Simplified).** A project that supplies no
+configuration therefore gets `README.md` in Chinese. English becomes `README.en.md` when
+requested as a secondary.
+
+| Language | Code | As primary | As secondary |
+|---|---|---|---|
+| Chinese (Simplified) | `zh-CN` | `README.md` | `README.zh-CN.md` |
+| English | `en` | `README.md` | `README.en.md` |
+| Chinese (Traditional) | `zh-TW` | `README.md` | `README.zh-TW.md` |
+| Japanese | `ja` | `README.md` | `README.ja.md` |
+| Korean | `ko` | `README.md` | `README.ko.md` |
+| French | `fr` | `README.md` | `README.fr.md` |
+| German | `de` | `README.md` | `README.de.md` |
+| Spanish | `es` | `README.md` | `README.es.md` |
+| Portuguese (Brazil) | `pt-BR` | `README.md` | `README.pt-BR.md` |
+| Portuguese (Portugal) | `pt-PT` | `README.md` | `README.pt-PT.md` |
+| Russian | `ru` | `README.md` | `README.ru.md` |
+| Arabic | `ar` | `README.md` | `README.ar.md` |
+| Hindi | `hi` | `README.md` | `README.hi.md` |
+| Italian | `it` | `README.md` | `README.it.md` |
+| Dutch | `nl` | `README.md` | `README.nl.md` |
+| Polish | `pl` | `README.md` | `README.pl.md` |
+| Turkish | `tr` | `README.md` | `README.tr.md` |
+| Vietnamese | `vi` | `README.md` | `README.vi.md` |
+| Ukrainian | `uk` | `README.md` | `README.uk.md` |
 
 ### Rules
 
-1. **BCP 47, correct casing.** `zh-CN`, not `zh-cn` or `zh_CN`. Region subtags are
+1. **The primary language never carries a code.** It is `README.md`. Never write
+   `README.zh-CN.md` for the primary Chinese file — that name is reserved for Chinese as a
+   secondary.
+2. **BCP 47, correct casing.** `zh-CN`, not `zh-cn` or `zh_CN`. Region subtags are
    capitalised.
-2. **Region subtag required for Chinese.** `zh-CN` and `zh-TW` are distinct — never a bare
+3. **Region subtag required for Chinese.** `zh-CN` and `zh-TW` are distinct — never a bare
    `zh`.
-3. **Match an existing convention.** If the repository already uses `README_CN.md` or
+4. **Match an existing convention.** If the repository already uses `README_CN.md` or
    `docs/zh-CN/README.md`, follow it rather than introducing a second scheme. Report the
    deviation.
-4. **Do not create a locale file for machine-translated content without marking it** —
+5. **Do not create a locale file for machine-translated content without marking it** —
    see [Anti-Stale Banner](#anti-stale-banner).
 
 ---
@@ -66,10 +72,12 @@ Three patterns, chosen by language count.
 
 ### A — Root-level siblings (2–4 languages)
 
+Chinese primary, English and Japanese secondary — the default shape.
+
 ```
-README.md
-README.zh-CN.md
-README.ja.md
+README.md          # 简体中文
+README.en.md       # English
+README.ja.md       # 日本語
 ```
 
 Simplest to discover: GitHub lists all files in the root. Use for most projects.
@@ -78,15 +86,15 @@ Simplest to discover: GitHub lists all files in the root. Use for most projects.
 
 ```
 README.md
-docs/zh-CN/README.md
-docs/ja-JP/README.md
-docs/ko-KR/README.md
+docs/en/README.md
+docs/ja/README.md
+docs/ko/README.md
 ```
 
 Keeps the root clean and lets a translation pipeline own the `docs/<locale>/` tree.
 
-Relative paths change: from `docs/zh-CN/README.md`, the root README is `../../README.md`
-and a sibling locale is `../ja-JP/README.md`. Image paths that are root-relative must be
+Relative paths change: from `docs/en/README.md`, the root README is `../../README.md`
+and a sibling locale is `../ja/README.md`. Image paths that are root-relative must be
 rewritten with the correct `../../` prefix, or the images break on GitHub.
 
 ### C — Spec-style mirroring (Infrastructure, standards-heavy projects)
@@ -94,9 +102,9 @@ rewritten with the correct `../../` prefix, or the images break on GitHub.
 ```
 README.md
 docs/en/README.md
-docs/zh-CN/README.md
-docs/zh-CN/spec/auth.md
 docs/en/spec/auth.md
+docs/ja/README.md
+docs/ja/spec/auth.md
 ```
 
 Every document, not just the README, exists in each locale. Appropriate when the project
@@ -131,9 +139,9 @@ publishes protocol or API contracts that must be readable in each language.
 
 ```html
 <p>
-  <a href="../../README.md">English</a> ·
-  <strong>简体中文</strong> ·
-  <a href="../ja-JP/README.md">日本語</a>
+  <a href="../../README.md">简体中文</a> ·
+  <a href="../ja/README.md">日本語</a> ·
+  <strong>English</strong>
 </p>
 ```
 
@@ -303,7 +311,8 @@ follow the project.
 
 ## Generation Flow
 
-1. Phase 0 resolves the primary language (default English) and the secondary set.
+1. Phase 0 resolves the primary language (default Chinese, Simplified) and the secondary
+   set.
 2. Choose the organisation strategy from the language count.
 3. Generate the primary file first, fully, gates included.
 4. For each secondary locale:
@@ -317,17 +326,20 @@ follow the project.
 
 ### Language sets
 
+Default rows are marked; the rest are opt-in.
+
 | Use case | Primary | Secondaries |
 |---|---|---|
+| **Default — Chinese first** | **Chinese (Simplified)** | **none** |
+| Chinese project, international reach | Chinese (Simplified) | English |
 | Global open source | English | — |
-| Chinese community | English | Chinese (Simplified) |
-| Japanese community | English | Japanese |
-| East Asian | English | Chinese, Japanese, Korean |
-| Broad international | English | Chinese, Japanese, Korean, Spanish, French, German |
-| Region-first project | Chinese | English |
+| Japanese community | Japanese | English |
+| Korean community | Korean | English |
+| East Asian | Chinese (Simplified) | Japanese, Korean |
+| Broad international | Chinese (Simplified) | English, Japanese, Korean, Spanish, French, German |
 
-For a region-first project the **primary** file is the region language and English is the
-secondary. The switcher logic is unchanged — the primary file is simply not English.
+The primary language occupies `README.md` in every case. The switcher logic does not change
+with the choice of primary — the primary file simply is not English by default.
 
 ---
 

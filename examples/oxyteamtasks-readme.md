@@ -9,7 +9,7 @@
 
 <div align="right">
 
-English · [中文](README-zh.md)
+**English** · [简体中文](README.md)
 
 </div>
 
@@ -191,6 +191,16 @@ graph LR
     P1 --> R
     P2 --> R
     M --> R
+
+    classDef client fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
+    classDef gateway fill:#F59E0B,stroke:#D97706,color:#fff,stroke-width:2px
+    classDef service fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
+    classDef data fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
+
+    class C client
+    class G gateway
+    class U,T,S,M,P1,P2 service
+    class DB,R data
 ```
 
 **Startup order**: StatusServer → UMSServer → TaskServer → PushServer1 → PushServer2 → GateServer

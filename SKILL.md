@@ -107,12 +107,17 @@ as if a missing reference had been loaded.
 |---|---|---|
 | Tone | Energetic / Minimal / Professional / Playful / Academic / Enterprise | archetype default |
 | Badge style | flat / flat-square / for-the-badge | flat |
-| Primary language | any ISO 639-1 | English |
+| Primary language | any ISO 639-1 / BCP 47 code | Chinese (Simplified) |
 | Secondary languages | zero or more | none |
 | Growth sections | on / off | tier default |
 
 3. If the user supplies no answers, proceed with the archetype defaults and say so.
    Do not block on questions.
+
+> **Default language.** Output is Chinese (Simplified) unless the user asks otherwise. The
+> primary language always occupies `README.md`; every additional language takes
+> `README.<code>.md`. Adding English as a secondary is the usual choice for projects with
+> an international audience.
 
 ## Phase 1 — Scan
 

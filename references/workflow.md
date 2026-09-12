@@ -83,7 +83,7 @@ and state the assumption in the final report. Never block on configuration.
 Default resolution order:
 1. Explicit user instruction
 2. Archetype default from `profiles.md`
-3. Global default: Professional tone, flat badges, English primary, no secondaries
+3. Global default: Professional tone, flat badges, Chinese (Simplified) primary, no secondaries
 
 ---
 

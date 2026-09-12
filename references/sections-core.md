@@ -76,10 +76,28 @@ not `logo` or `banner`.
 2. Never pad. Two real features beats six padded ones.
 3. Each entry leads with the outcome, not the mechanism.
    - Good: `Streams 10k events/sec` — Bad: `Uses a lock-free ring buffer`
-4. No feature that the scan did not evidence.
-5. Do not restate the description from the Hero.
-6. Group only when there are 6+ and natural clusters exist (e.g. Security / Performance /
+4. **A feature must be user-visible and high-impact.** Internal machinery — a build
+   pipeline, a quality gate, a layer count, a repository layout, a test total — is not a
+   feature. State the outcome it produces for the user instead.
+5. No feature that the scan did not evidence.
+6. Do not restate the description from the Hero.
+7. Group only when there are 6+ and natural clusters exist (e.g. Security / Performance /
    Developer experience), otherwise a flat list.
+
+### What counts as a feature
+
+A feature answers "what does this do for me". An implementation detail answers "how is it
+built" and belongs in Architecture or Contributing.
+
+| Verdict | Feature | Why |
+|---|---|---|
+| Good | `Resumes interrupted uploads` | A visible outcome |
+| Good | `A wrong command never reaches the README` | States what the user gets |
+| Good | `Zero install dependencies` | Removes friction the user would feel |
+| Bad | `Seven quality gates` | Internal mechanism — state what it prevents |
+| Bad | `A fixed 20-section order` | A design detail — state the reader benefit |
+| Bad | `Supports 8 languages` | A count, not a benefit, unless the reader uses those languages |
+| Bad | `Monorepo with 6 packages` | Repository layout, not a user outcome |
 
 ### Do not
 
@@ -87,6 +105,12 @@ not `logo` or `banner`.
 - Write "and much more"
 - Include a feature the project plans but has not implemented
 - Use a phrase from the banned list in `writing-style.md`
+- Describe a mechanism when the outcome is what the reader cares about
+
+### Sourcing
+
+Every row must trace to a scan row. If a capability is real but no file evidences it,
+delete the row rather than softening it — gate G1.
 
 ---
 

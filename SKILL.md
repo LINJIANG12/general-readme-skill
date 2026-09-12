@@ -72,10 +72,14 @@ This is the only README structure the skill produces. Sections appear in exactly
 order. **A section is skipped entirely when the scan produced no data for it** — never
 `N/A`, never `Coming soon`, never a placeholder.
 
+A jumpable table of contents may sit between the Hero and the first section when the
+document has more than about five sections (`references/hero-and-html.md` → *Table of
+Contents*). It is a navigation aid, not one of the sections.
+
 | # | Section | Include when |
 |---|---|---|
 | 1 | **Hero** | Always |
-| 2 | **Features** | At least one evidenced differentiator |
+| 2 | **Features** | At least one user-visible, high-impact differentiator |
 | 3 | **Demo / Preview** | Image or video assets exist in the repo |
 | 4 | **Quick Start** | A runnable entry point exists |
 | 5 | **Usage** | A public API, interface or exported surface exists |
@@ -162,7 +166,11 @@ Badge style is fixed at `flat`. Diagram colours are fixed by the palette in
 Build an **evidence map**: an explicit `claim → source` list. Without it, Phase 2 has
 nothing to bind to and the anti-fabrication principle is unenforceable.
 
-Rules, detector precedence, and the evidence-map format live in
+Start with the three-pass discovery model: map the file tree with its hierarchy, read the
+core files in full, then sample the rest on demand. Documenting a project does not require
+reading all of it — stop once the sections have enough evidence behind them.
+
+Rules, detector precedence, the discovery-pass model, and the evidence-map format live in
 `references/project-scan.md`. The scan also reports which of the 20 sections have data.
 
 ## Phase 2 — Compose
@@ -173,9 +181,11 @@ Rules, detector precedence, and the evidence-map format live in
 3. Author the surviving sections in the fixed order. Never reorder them.
 4. Author Hero and other HTML regions directly as HTML per `references/hero-and-html.md`.
    Do not write Markdown first and convert later.
-5. Write in the house style from `references/writing-style.md`.
-6. Prefer the reference-style link pool for all URLs (see `hero-and-html.md`).
-7. Mask secrets, keys, tokens and private hostnames as you write.
+5. Place a jumpable table of contents between the Hero and the first section when the
+   document has more than about five sections (`hero-and-html.md` → *Table of Contents*).
+6. Write in the house style from `references/writing-style.md`.
+7. Prefer the reference-style link pool for all URLs (see `hero-and-html.md`).
+8. Mask secrets, keys, tokens and private hostnames as you write.
 
 Precedence when constraints conflict:
 

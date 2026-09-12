@@ -9,10 +9,48 @@ Detection rules and evidence-map format for Phase 1.
 
 ## Table of Contents
 
+- [Discovery Pass](#discovery-pass)
 - [Evidence Map](#evidence-map)
 - [Detector Precedence](#detector-precedence)
 - [Detectors](#detectors)
 - [Manifest Reference](#manifest-reference)
+
+---
+
+## Discovery Pass
+
+Documenting a project does not require reading it. Run three passes, and spend depth only
+where it changes the document.
+
+| Pass | Action | Budget |
+|---|---|---|
+| **1 — Map** | List every file path with its directory hierarchy. Read no content yet. | The whole tree, minus the ignored directories |
+| **2 — Core** | Read the files that define behaviour and contracts in full: manifests, entry points, `README`, `LICENSE`, primary config, and the top-level source files. | ~10–20 files |
+| **3 — Sample** | Open only what a section needs: skim a directory, read one representative file, or skip it. | On demand |
+
+### Rules
+
+1. **Map first.** The hierarchical file list is the cheapest complete view of the project.
+   It tells you what exists and where the boundaries are before you open anything.
+2. **Depth over breadth where it counts.** Manifests, entry points and public interfaces
+   repay a full read; leaf modules usually do not.
+3. **Partial reading is expected.** Read the first screen of a file, the exported names, or
+   the section headers. Stop as soon as the document's needs are met.
+4. **Match read depth to the section that consumes it:**
+
+   | Section | Typical depth |
+   |---|---|
+   | Hero, Features | Full read of the entry point and README |
+   | Quick Start, Requirements | Full read of manifests and config |
+   | Usage, API, Commands | Exported names and signatures; one or two real call sites |
+   | Architecture | Top-level directory shapes; skim for real component names |
+   | Project Structure, Tech Stack | The file tree and the manifest |
+
+5. **Stop condition.** You can state what the project is, who it is for, how it is run, and
+   what its public surface is. Implementation detail beyond that is out of scope — the
+   README describes the system, not its internals.
+6. **Never invent what a skipped read would have shown.** If a section is dropped because
+   the reading did not evidence it, say so in the report rather than guessing.
 
 ---
 

@@ -10,6 +10,7 @@ point here. Never restate a template elsewhere; never invent a variant.
 - [When to Use HTML](#when-to-use-html)
 - [Hero Template](#hero-template)
 - [Language Switcher](#language-switcher)
+- [Table of Contents](#table-of-contents)
 - [Link Pool](#link-pool)
 - [Collapsible Block](#collapsible-block)
 - [GFM Alerts](#gfm-alerts)
@@ -171,6 +172,45 @@ Chinese primary, English secondary — the default shape.
 5. **Bidirectional.** Every file reaches every other file. Naming and localization rules:
    `language-guide.md`.
 6. **Omit the block entirely** for a single-language project.
+
+---
+
+## Table of Contents
+
+A jumpable index placed directly under the Hero. It tells the reader what the document
+covers before they scroll, and gives every section a one-click target.
+
+### Template
+
+```markdown
+## Table of Contents
+
+- [<Section 1>](#<anchor-1>)
+- [<Section 2>](#<anchor-2>)
+```
+
+### Rules
+
+1. **List the major (`##`) sections only.** Subsections already appear in the reader's
+   outline; repeating them makes the index long without adding a target.
+2. **Link with real anchors.** An anchor is the heading lowercased with spaces replaced by
+   hyphens; non-Latin headings keep their characters (`## 快速开始` → `#快速开始`). Every
+   entry must resolve — gate G5.
+3. **Place it immediately after the Hero**, before the first content section.
+4. **Omit it below about five sections.** A short document's headings are already visible,
+   so the index only adds noise.
+5. **Collapse it** with the *Collapsible Block* template once it exceeds roughly fifteen
+   entries, so the Hero area stays clean.
+6. **Do not number the entries** unless the document is procedural.
+
+### Anti-patterns
+
+| Anti-pattern | Fix |
+|---|---|
+| An index of every `##` and `###` heading | Keep `##` only |
+| A hand-typed, unlinked list of headings | Make every entry an anchor link |
+| An index on a three-section README | Omit it |
+| An entry whose anchor does not resolve | Re-derive the anchor from the actual heading |
 
 ---
 

@@ -91,14 +91,20 @@ Read `references/project-scan.md` for detector rules and the exact evidence-map 
 
 ### 1.1 Sequence
 
-1. List the package root (respecting ignore rules below).
-2. Parse manifests in precedence order.
-3. Parse dependency declarations.
-4. Count file extensions (fallback only).
-5. Apply filename heuristics (last resort).
-6. Detect: language, framework, build/CI, database/ORM, architecture, API style,
+Start with the three-pass discovery model in `references/project-scan.md` → *Discovery
+Pass*. Documenting a project does not require reading all of it: map first, read the core
+in full, sample the rest on demand.
+
+1. Build the file tree with its hierarchy (respecting the ignore rules below).
+2. Read the core files in full: manifests, entry points, `README`, `LICENSE`, primary config.
+3. Sample the remaining files on demand, for the sections that consume them.
+4. Parse manifests in precedence order.
+5. Parse dependency declarations.
+6. Count file extensions (fallback only).
+7. Apply filename heuristics (last resort).
+8. Detect: language, framework, build/CI, database/ORM, architecture, API style,
    license, project type, config files, git/contributor signals.
-7. Emit the evidence map.
+9. Emit the evidence map.
 
 ### 1.2 Ignore Rules
 
@@ -154,7 +160,11 @@ Compose in the order the sections will appear, and author the Hero last among th
 identity sections — the Hero's badge matrix and one-liner depend on what the rest of the
 document turned out to contain.
 
-Practical order: scan-derived body sections → Hero → language switcher → link pool.
+Practical order: scan-derived body sections → Hero → table of contents → language
+switcher → link pool.
+
+Insert a jumpable table of contents between the Hero and the first section when the
+document has more than about five sections (`hero-and-html.md` → *Table of Contents*).
 
 ### 2.3 HTML Regions
 

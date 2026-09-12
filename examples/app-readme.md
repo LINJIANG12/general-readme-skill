@@ -1,6 +1,5 @@
 <!--
   Example: Application README
-  Tone: Professional
   Badge style: Flat
   Project type: Full-stack application (taskboard)
   Sections: Hero, Features, Quick Start, Architecture, Configuration, API, Directory Structure, Tech Stack, Deployment, Contributing, License

@@ -40,50 +40,46 @@ everything", or "start fresh" — that is Create Mode even with an existing file
 
 ---
 
-## Phase 0 — Classify
+## Phase 0 — Configure
 
-**Output:** archetype, maturity tier, resolved configuration.
+**Output:** resolved language set, detected entry mode.
 
-### 0.1 Archetype
+There is no structure to choose and no voice to choose. The section order is fixed in
+`SKILL.md`; the writing style is fixed in `references/writing-style.md`.
 
-Read `references/profiles.md` and pick exactly one primary archetype. If the project
-spans two (a monorepo containing both a library and an app), pick the primary and record
-the secondary; the primary drives structure, the secondary only influences emphasis.
+### 0.1 Language
 
-Signals that resolve ambiguity:
+| Option | Values | Default |
+|---|---|---|
+| Primary language | any ISO 639-1 / BCP 47 code | Chinese (Simplified) |
+| Secondary languages | zero or more | none |
 
-| Signal | Points to |
+Offer the defaults as pre-selected answers. If the user does not answer, adopt them and
+state the assumption in the final report. Never block on configuration.
+
+The primary language occupies `README.md`; each secondary takes `README.<code>.md`. See
+`references/language-guide.md`.
+
+### 0.2 Entry Mode
+
+| Mode | Condition | Behaviour |
+|---|---|---|
+| **Create** | No `README.md`, or the user asked for a full regeneration | Author every section from scratch |
+| **Upgrade** | `README.md` exists and the user wants improvement | Preserve manual content, regenerate auto regions, emit a change summary |
+
+Create also applies when the user explicitly says "rewrite", "regenerate everything" or
+"start fresh", even if a README exists. See [Upgrade Mode in Detail](#upgrade-mode-in-detail).
+
+### 0.3 Not Configurable
+
+These are part of the house style and are never offered as options:
+
+| Fixed | Value |
 |---|---|
-| `bin` field, `cmd/` directory, single entrypoint | CLI Tool |
-| Publish config + no runtime script | Library |
-| Dev/start scripts + Dockerfile | Application |
-| Component exports + Storybook + theme tokens | UI Library |
-| Model/agent/RAG dependencies + prompt files | AI App |
-| Large Markdown corpus + no build system | Knowledge Base |
-| Helm/K8s manifests + protocol buffers + SDK folders | Infrastructure |
-| Workspaces field + multiple package roots | Monorepo |
-
-### 0.2 Maturity Tier
-
-Read the tier table in `references/profiles.md`. Tier controls the section budget, so
-resolve it before composing. When star data is unavailable (no network, no `git`
-metadata), infer from static signals:
-
-| Static signal | Suggests |
-|---|---|
-| CI workflow + CONTRIBUTING.md + issue templates | ≥ T2 |
-| Sponsors file, docs site, release automation, multiple maintainers file | T3 |
-| Only source + LICENSE | T1 |
-
-### 0.3 Configuration
-
-Offer defaults pre-selected. If the user does not answer, adopt the archetype defaults
-and state the assumption in the final report. Never block on configuration.
-
-Default resolution order:
-1. Explicit user instruction
-2. Archetype default from `profiles.md`
-3. Global default: Professional tone, flat badges, Chinese (Simplified) primary, no secondaries
+| Section order | The 20-section order in `SKILL.md` |
+| Writing style | The house style in `references/writing-style.md` |
+| Badge style | `flat` |
+| Diagram palette | The colour system in `references/diagram-templates.md` |
 
 ---
 
@@ -138,14 +134,15 @@ Only `declared` evidence may be used for versions, defaults, ports and commands.
 
 ### 2.1 Loading Order
 
-1. `references/profiles.md` → section set and order
-2. `references/sections-core.md` → identity and onboarding recipes
-3. `references/sections-reference.md` → technical recipes (only if the archetype includes them)
-4. `references/sections-growth.md` → community recipes (only if the tier enables them)
-5. `references/hero-and-html.md` → HTML-only regions
-6. `references/onboarding.md` → Quick Start ladder
-7. `references/social-proof.md` → sponsor/adopter/citation regions
-8. `references/tone-profiles.md` → voice rules
+1. `SKILL.md` → the fixed 20-section order and the include-when conditions
+2. `references/project-scan.md` → which sections have data
+3. `references/sections-core.md` → identity and onboarding recipes
+4. `references/sections-reference.md` → technical recipes
+5. `references/sections-growth.md` → community recipes
+6. `references/hero-and-html.md` → HTML-only regions
+7. `references/onboarding.md` → Quick Start ladder
+8. `references/social-proof.md` → sponsor/adopter/citation regions
+9. `references/writing-style.md` → voice rules
 9. `references/badges.md` + `badge-styles.md` → badge matrix
 10. `references/diagram-templates.md` → diagram(s)
 11. `references/accessibility.md` → alt text and table headers
@@ -265,13 +262,11 @@ Split the existing README into regions:
 
 ### Step 2 — Merge
 
-Build the new file as: `new hero` + `ordered sections`, where each ordered section is
-either the regenerated auto region or the preserved manual region, placed at its
-archetype position.
+Build the new file as: `new hero` + the surviving sections in the fixed order, where each
+slot is either the regenerated auto region or the preserved manual region.
 
-If a preserved manual section would violate the archetype order, leave it where it is and
-insert the auto sections around it. Never move or delete manual content to satisfy an
-ordering rule.
+If a preserved manual section sits outside the fixed order, leave it where it is and insert
+the auto sections around it. Never move or delete manual content to satisfy an ordering rule.
 
 ### Step 3 — Diff summary
 

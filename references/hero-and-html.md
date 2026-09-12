@@ -94,10 +94,10 @@ Copy verbatim. Replace only the `{PLACEHOLDER}` tokens and the outlined optional
 | `{LOGO_HEIGHT}` | — | `80`–`180`; use `180` only when the image is square |
 | `{ONE_LINE_DESCRIPTION}` | Derived from manifest description + scan | 10–25 words |
 | `{KEYWORD}` | Stack, property, platform | 3–6 keywords |
-| `{COLOR}` | Brand color or archetype default | Hex without `#` |
+| `{COLOR}` | Brand colour, or the house accent `3178C6` | Hex without `#` |
 | `{LICENSE}` | SPDX identifier read from the license file | URL-encoded |
-| `{IDENTITY_BADGES}` | `badge-styles.md` identity group | Max 4 |
-| `{TECH_BADGES}` | `badge-styles.md` tech group | Max 6 |
+| `{IDENTITY_BADGES}` | `badge-styles.md` identity group | Max 5 |
+| `{TECH_BADGES}` | `badge-styles.md` stack group | Max 6 |
 | `{LANGUAGE_SWITCHER}` | Section below | Omit the whole `<p>` when single-language |
 
 ### Rules
@@ -117,33 +117,26 @@ Copy verbatim. Replace only the `{PLACEHOLDER}` tokens and the outlined optional
 
 | Situation | Approach |
 |---|---|
-| Project has a brand color | Derive 3–4 badge colors from the brand palette |
-| No brand color | Use the archetype default |
-| Neither | Use a single consistent accent, not the shields.io defaults for every badge |
+| Project has a brand colour | Derive 3–4 badge colours from the brand palette |
+| No brand colour | Use the house accent `3178C6` |
+| Never | The shields.io per-badge defaults, which make the Hero look accidental |
 
 Brand-palette badges make the Hero read as one designed artifact instead of a random
 assortment. See `badges.md` → *Brand Palette Rule*.
 
-### Archetype defaults
+### House accent
 
-| Archetype | Accent | CTA color |
-|---|---|---|
-| Library | `3178C6` | `4CAF50` |
-| Application | `3B82F6` | `4CAF50` |
-| CLI Tool | `24292F` | `4CAF50` |
-| UI Library | `409EFF` | `4CAF50` |
-| AI App | `7C3AED` | `4CAF50` |
-| Knowledge Base | `0F766E` | `4CAF50` |
-| Infrastructure | `326CE5` | `4CAF50` |
-| Monorepo | `F59E0B` | `4CAF50` |
+The default accent is **`3178C6`**, with CTA buttons at **`4CAF50`**. Use it whenever the
+project has no discoverable brand colour. There is one accent for every project — the
+structure and palette do not vary by project type.
 
 ---
 
 ## Language Switcher
 
-Two forms. Pick by tier.
+Two forms. Use Form A unless the project ships five or more languages.
 
-### Form A — Text links (T1, T2)
+### Form A — Text links
 
 Chinese primary, English secondary — the default shape.
 
@@ -155,7 +148,7 @@ Chinese primary, English secondary — the default shape.
 </p>
 ```
 
-### Form B — Capsule badges (T3, or 5+ languages)
+### Form B — Capsule badges (5+ languages only)
 
 ```html
 <p>

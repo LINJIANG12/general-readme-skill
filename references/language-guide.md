@@ -97,7 +97,7 @@ Relative paths change: from `docs/en/README.md`, the root README is `../../READM
 and a sibling locale is `../ja/README.md`. Image paths that are root-relative must be
 rewritten with the correct `../../` prefix, or the images break on GitHub.
 
-### C — Spec-style mirroring (Infrastructure, standards-heavy projects)
+### C — Spec-style mirroring (standards-heavy projects)
 
 ```
 README.md
@@ -131,7 +131,7 @@ publishes protocol or API contracts that must be readable in each language.
 2. **Bidirectional** — every file reaches every other file.
 3. **Current language is plain text**, not a link.
 4. **Endonyms** — `简体中文`, not `Chinese`.
-5. Uniform grey capsule badges at T3 or 5+ languages; text links otherwise.
+5. Uniform grey capsule badges at 5+ languages; text links otherwise.
 6. Separator is ` · `.
 7. In strategy B, all switcher links are relative to the current locale directory.
 

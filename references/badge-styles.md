@@ -1,6 +1,6 @@
 # Badge Styles
 
-Badge appearance, grouping, and the per-tier budget. Technology → URL mapping lives in
+Badge appearance, grouping, and the fixed per-group caps. Technology → URL mapping lives in
 `badges.md`; this file decides where each badge goes and how many are allowed.
 
 ---
@@ -9,7 +9,7 @@ Badge appearance, grouping, and the per-tier budget. Technology → URL mapping 
 
 - [Style Parameter](#style-parameter)
 - [Grouping Model](#grouping-model)
-- [Budget by Tier](#budget-by-tier)
+- [Group Caps](#group-caps)
 - [Group Definitions](#group-definitions)
 - [Layout Rules](#layout-rules)
 
@@ -49,7 +49,7 @@ signal rather than by technology keeps the Hero scannable.
 |---|---|---|
 | **Identity** | What is this and is it healthy? | Hero, first badge row |
 | **Stack** | What is it built with? | Hero, second badge row |
-| **Traction** | Is anyone using it? | Hero, third row (T3 only) |
+| **Traction** | Is anyone using it? | Hero, third row |
 | **Community** | Where do I talk to people? | Hero, final row, or the Community section |
 | **Governance** | Who stands behind it? | Hero identity row, or the License section |
 
@@ -63,20 +63,24 @@ signal rather than by technology keeps the Hero scannable.
 
 ---
 
-## Budget by Tier
+## Group Caps
 
-The tier from `profiles.md` caps the total. Exceeding the budget fails gate G2.
+Fixed caps per group. Exceeding a cap fails gate G4.
 
-| Tier | Identity | Stack | Traction | Community | Governance | Total |
-|---|---|---|---|---|---|---|
-| **T1** | 3 | 3 | 0 | 0 | 0 | ≤ 5 |
-| **T2** | 4 | 5 | 2 | 1 | 1 | ≤ 12 |
-| **T3** | 5 | 6 | 3 | 3 | 2 | ≤ 18 |
+| Group | Cap | Placement |
+|---|---|---|
+| Identity | 5 | First badge row |
+| Stack | 6 | Second row |
+| Traction | 3 | Third row |
+| Community | 3 | Fourth row |
+| Governance | 2 | Folded into the identity row |
+| **Total** | **≤ 16** | — |
 
 ### Rules
 
-1. **The budget is a ceiling.** A T3 project with nothing to show in Traction omits that row.
-2. **Identity row max 5** even at T3 — beyond that the Hero becomes a wall.
+1. **The caps are ceilings, not targets.** A project with nothing to show in Traction omits
+   that row entirely — there is no fixed badge count to hit.
+2. **Identity row max 5** — beyond that the Hero becomes a wall.
 3. **Stack row max 6.** Pick the six that characterise the project; the rest live in the
    Tech Stack section.
 4. **Traction badges require real numbers.** A stars badge on a repository with 40 stars is
@@ -217,7 +221,7 @@ Before Phase 4:
 - [ ] `for-the-badge` only on CTAs, unless it is the resolved style
 - [ ] Groups rendered on separate lines, in the fixed order
 - [ ] No group exceeds its maximum
-- [ ] Total within the tier budget
+- [ ] Total within the group caps (≤ 16)
 - [ ] No badge without its underlying data
 - [ ] Every dynamic badge references a real package or repository
 - [ ] Every badge URL uses a valid shields.io pattern

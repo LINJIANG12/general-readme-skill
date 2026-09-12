@@ -139,16 +139,19 @@ alt text should be short.
 
 ## Emoji and Icons
 
-1. **Never the sole label.** An emoji may decorate a labelled feature but must not replace
-   the words.
-   - Good: `- 🔒 **Scoped tokens** — Each token is limited to one workspace`
-   - Bad: `- 🔒 Scoped tokens` in a table whose header is also an emoji
-2. **Avoid emoji as table headers.** A column headed `🔒` is unusable by a screen reader.
-3. **Avoid emoji chains as separators.** `✅✅❌✅` carries meaning only visually.
-4. **Use emoji in Energetic and Playful tones only.** Professional, Minimal and Enterprise
-   tones omit emoji from prose (badge logos are unaffected).
-5. **A screen reader reads emoji names aloud** — an emoji at the start of every list item
-   makes the list tedious. Use them on the first item or on the key items, not uniformly.
+1. **No emoji in prose.** The house style in `writing-style.md` bans emoji in headings, lists,
+   tables and section intros. Do not introduce one to "lighten" a passage.
+2. **Badge logos are images, not emoji.** Shields.io badges and brand logos are unaffected by
+   the emoji rule, but each still needs a text alt or a readable label.
+3. **Never let a symbol carry meaning alone.** Any surviving icon must sit beside words that
+   say the same thing.
+   - Good: `![Scoped tokens](…)` next to `**Scoped tokens**` — the badge decorates, the words
+     carry the meaning
+   - Bad: a table whose header is `🔒`
+4. **Avoid symbol chains as separators.** A run of glyphs like `✅✅❌✅` carries meaning only
+   visually.
+5. **A screen reader reads emoji names aloud.** An emoji on every list item makes the list
+   tedious — one more reason to keep them out of prose entirely.
 
 ---
 

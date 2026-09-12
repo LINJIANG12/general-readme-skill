@@ -1,6 +1,5 @@
 <!--
   Example: OxyTeamTasks README (https://github.com/KieranGao/OxyTeamTasks)
-  Tone: Professional
   Badge style: Flat
   Project type: Full-stack application
 -->

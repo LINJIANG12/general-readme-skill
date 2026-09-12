@@ -53,16 +53,16 @@ Automated, zero-maintenance attribution.
 1. **Use the automation.** A hardcoded contributor list goes stale within a week.
 2. **Alt text names the project** — `Contributors to <project>`.
 3. **Place near the end**, after the technical sections and near Contributing.
-4. **Do not enumerate contributor names in prose.** T1 projects may state a count read
-   from a `CONTRIBUTORS` / `AUTHORS` file: `Contributors: 3 (Alice, Bob, and 1 other)` —
-   names only, never emails.
+4. **Do not enumerate contributor names in prose.** A count read from a `CONTRIBUTORS` /
+   `AUTHORS` file may be stated: `Contributors: 3 (Alice, Bob, and 1 other)` — names only,
+   never emails.
 5. **When git metadata is unavailable**, omit rather than fabricate.
 
 ---
 
 ## Sponsor Grid
 
-For a small, flat set of sponsors (T3, or a funded project with fewer than ~8 sponsors).
+For a small, flat set of sponsors — a funded project with fewer than ~8 sponsors.
 
 ```html
 <!-- sponsors -->
@@ -280,7 +280,7 @@ Credit upstream work honestly.
 
 ## Placement Guide
 
-Recommended order at the end of a T3 document:
+Recommended order at the end of the document:
 
 ```
 ... technical sections ...
@@ -296,5 +296,5 @@ Recommended order at the end of a T3 document:
 ## License
 ```
 
-Adjust per archetype, but keep the principle: **technical content first, social proof
+The exact set depends on which sections have data, but keep the principle: **technical content first, social proof
 after, license last.**

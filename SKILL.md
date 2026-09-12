@@ -1,34 +1,34 @@
 ---
 name: general-readme-skill
-description: Use when generating, rewriting, upgrading or reviewing a README.md for any project. Triggers on /readme, "generate readme", "write readme", "update readme", "帮我写 README", "更新README", "生成项目文档". Produces evidence-bound, archetype-aware, accessible README files with modern visual layout and optional multi-language output.
-version: 2.0
+description: Use when generating, rewriting, upgrading or reviewing a README.md for any project. Triggers on /readme, "generate readme", "write readme", "update readme", "帮我写 README", "更新README", "生成项目文档". Produces evidence-bound, accessible README files in one consistent house style, with optional multi-language output.
+version: 3.0
 tags: documentation, readme, auto-generate, project-docs, i18n, accessibility
 ---
 
 # General README Skill
 
-Generate README files that read like they were written by a maintainer who knows the
-codebase — because every claim is bound to a real source file.
+Generate README files that read like a maintainer who knows the codebase wrote them,
+because every claim is bound to a real source file.
 
-> **Derivative work.** Version 2.0 is a substantial rewrite of
-> [KieranGao/general-readme-skill](https://github.com/KieranGao/general-readme-skill)
-> by OxyTheCrack (MIT). The original copyright notice is retained in `LICENSE`. See
-> `README.md` → *Origin and Attribution* for the full change list and the research basis.
+**One structure. One voice. Every project.** There is a single fixed section order and a
+single writing style. A CLI tool and a vector database get the same skeleton — they simply
+differ in which sections have data behind them.
 
 ## Design Principles
 
-1. **Evidence-bound.** Every feature, command, version, path and default must resolve to
-   a scanned file. An unbound claim is deleted, never softened.
-2. **Archetype-aware.** Structure follows what the project *is*. A CLI tool and a vector
-   database do not share a skeleton.
-3. **Compose once.** Hero and other HTML regions are authored as HTML directly. There is
-   no separate beautification pass.
-4. **Single source of truth.** Every template lives in exactly one reference file. Never
+1. **Evidence-bound.** Every feature, command, version, path and default must resolve to a
+   scanned file. An unbound claim is deleted, never softened.
+2. **One structure.** A single fixed section order applies to every project. No profiles, no
+   variants, no per-type templates. Sections with no data are skipped; the rest never move.
+3. **One voice.** A single house writing style. No tone selection.
+4. **Compose once.** Hero and other HTML regions are authored as HTML directly. There is no
+   separate beautification pass.
+5. **Single source of truth.** Every template lives in exactly one reference file. Never
    restate a template that already exists elsewhere.
-5. **Progressive disclosure.** This file routes; references carry detail. Load only the
-   files the current project needs.
-6. **Progressive onboarding.** A reader must reach a running system in four lines or fewer.
-7. **Accessible and maintainable.** Alt text, table headers, and reversible HTML only.
+6. **Progressive disclosure.** This file routes; references carry detail. Load only the
+   files the current task needs.
+7. **Progressive onboarding.** A reader reaches a running system in four lines or fewer.
+8. **Accessible and maintainable.** Alt text, table headers, and reversible HTML only.
 
 ## Trigger Rules
 
@@ -45,9 +45,9 @@ Trigger when user input matches any of:
 ## Workflow
 
 ```
-Phase 0  Classify  → archetype + maturity tier + configuration
+Phase 0  Configure → language, entry mode
 Phase 1  Scan      → build an evidence map from static files only
-Phase 2  Compose   → assemble sections from the library, archetype-driven
+Phase 2  Compose   → fill the fixed section order, skipping sections with no data
 Phase 3  Verify    → run the seven quality gates, repair or drop failures
 Phase 4  Output    → write primary file, then localized files
 ```
@@ -66,6 +66,47 @@ Detailed phase instructions: `references/workflow.md` — read it before Phase 1
 
 ---
 
+## The Structure
+
+This is the only README structure the skill produces. Sections appear in exactly this
+order. **A section is skipped entirely when the scan produced no data for it** — never
+`N/A`, never `Coming soon`, never a placeholder.
+
+| # | Section | Include when |
+|---|---|---|
+| 1 | **Hero** | Always |
+| 2 | **Features** | At least one evidenced differentiator |
+| 3 | **Demo / Preview** | Image or video assets exist in the repo |
+| 4 | **Quick Start** | A runnable entry point exists |
+| 5 | **Usage** | A public API, interface or exported surface exists |
+| 6 | **Configuration** | Config files detected (`.env.example`, `*.config.*`, `*.yaml`, `*.toml`) |
+| 7 | **Architecture** | A diagram can be derived from the source |
+| 8 | **API** | Routes, schemas or exported service definitions detected |
+| 9 | **Commands** | A CLI entrypoint exists (`bin`, `cmd/`, `[[bin]]`, `[project.scripts]`) |
+| 10 | **Project Structure** | More than one top-level source directory |
+| 11 | **Tech Stack** | Dependencies declared in a manifest |
+| 12 | **Compatibility** | Runtime, browser or OS requirements are declared |
+| 13 | **Deployment** | Dockerfile, compose file, CI config or platform manifests detected |
+| 14 | **Roadmap** | A roadmap file, milestone config or documented plan exists |
+| 15 | **FAQ** | An FAQ document exists, or recurring questions are documented |
+| 16 | **Contributing & Community** | `CONTRIBUTING.md`, issue templates, or community links exist |
+| 17 | **Sponsors & Adopters** | A funding config or documented adopters exist |
+| 18 | **Security** | `SECURITY.md` exists, or the project handles auth, network or user data |
+| 19 | **Citation** | `CITATION.cff` exists, or the project has a published paper |
+| 20 | **License** | A licence file exists |
+
+Final section otherwise:
+
+> If no licence file exists, omit section 20 and close with one line instead:
+> `No LICENSE file detected. Add a LICENSE to clarify project licensing.`
+
+A typical project produces 10–14 of the 20 sections. Producing 20 is not the goal;
+producing the right ones in the right order is.
+
+Section recipes: `references/sections-core.md`, `sections-reference.md`, `sections-growth.md`.
+
+---
+
 ## Routing Table
 
 Read a reference only when the current task needs it.
@@ -74,19 +115,18 @@ Read a reference only when the current task needs it.
 |---|---|
 | Full phase procedures, Upgrade-mode diffing | `references/workflow.md` |
 | Detection rules, evidence-map format | `references/project-scan.md` |
-| Archetype → section set, defaults, maturity tier rules | `references/profiles.md` |
 | Hero / Features / Quick Start / Usage / Config / Deployment recipes | `references/sections-core.md` |
-| Architecture / API / Project Structure / Tech Stack recipes | `references/sections-reference.md` |
-| Contributing / Community / Sponsors / Roadmap / FAQ / License recipes | `references/sections-growth.md` |
+| Architecture / API / Commands / Structure / Stack / Compatibility recipes | `references/sections-reference.md` |
+| Contributing / Community / Sponsors / Roadmap / FAQ / Security / License recipes | `references/sections-growth.md` |
 | Hero template, HTML recipes, alerts, link pool, collapsing | `references/hero-and-html.md` |
 | Quick Start ladder, PaaS matrix, multi-package-manager blocks | `references/onboarding.md` |
 | Sponsors, adopters, contributors, citations, star history | `references/social-proof.md` |
 | Self-check checklist before delivery | `references/quality-gates.md` |
 | Alt text, contrast, RTL, table headers | `references/accessibility.md` |
 | Multi-language naming, switcher bar, localization policy | `references/language-guide.md` |
-| Voice, sentence rules, banned phrases | `references/tone-profiles.md` |
+| The house writing style and banned phrases | `references/writing-style.md` |
 | Technology → shields.io badge URL | `references/badges.md` |
-| Badge grouping by maturity tier | `references/badge-styles.md` |
+| Badge grouping and caps | `references/badge-styles.md` |
 | Mermaid / SVG diagram templates | `references/diagram-templates.md` |
 
 **Reference integrity.** Before generation, confirm every reference you intend to read
@@ -96,28 +136,26 @@ as if a missing reference had been loaded.
 
 ---
 
-## Phase 0 — Classify
+## Phase 0 — Configure
 
-1. Determine **archetype** (8 options) and **maturity tier** (T1/T2/T3) using
-   `references/profiles.md`.
-2. Confirm configuration with the user, offering the archetype's defaults as
-   pre-selected answers:
+Only two things are resolved. There is no structure to pick and no voice to pick.
 
 | Option | Values | Default |
 |---|---|---|
-| Tone | Energetic / Minimal / Professional / Playful / Academic / Enterprise | archetype default |
-| Badge style | flat / flat-square / for-the-badge | flat |
 | Primary language | any ISO 639-1 / BCP 47 code | Chinese (Simplified) |
 | Secondary languages | zero or more | none |
-| Growth sections | on / off | tier default |
 
-3. If the user supplies no answers, proceed with the archetype defaults and say so.
-   Do not block on questions.
+Plus the auto-detected entry mode (Create / Upgrade).
 
-> **Default language.** Output is Chinese (Simplified) unless the user asks otherwise. The
-> primary language always occupies `README.md`; every additional language takes
-> `README.<code>.md`. Adding English as a secondary is the usual choice for projects with
-> an international audience.
+If the user supplies no answers, proceed with the defaults and say so. Do not block on
+questions.
+
+> **Primary language.** The primary language always occupies `README.md`, whatever the
+> language is. Every additional language takes `README.<code>.md`. Adding English as a
+> secondary is the usual choice for projects with an international audience.
+
+Badge style is fixed at `flat`. Diagram colours are fixed by the palette in
+`diagram-templates.md`. Both are part of the house style and are not configurable.
 
 ## Phase 1 — Scan
 
@@ -125,26 +163,27 @@ Build an **evidence map**: an explicit `claim → source` list. Without it, Phas
 nothing to bind to and the anti-fabrication principle is unenforceable.
 
 Rules, detector precedence, and the evidence-map format live in
-`references/project-scan.md`.
+`references/project-scan.md`. The scan also reports which of the 20 sections have data.
 
 ## Phase 2 — Compose
 
-1. Read `references/profiles.md` for the section set of the detected archetype.
+1. Read the section list above. For each section, take the scan's verdict on whether data
+   exists; skip the ones that do not.
 2. Read the matching section recipes and the visual references you will use.
-3. Author sections in the profile's declared order. Skip a section only when the scan
-   produced no data for it — never emit `N/A`, `Coming soon`, or placeholder prose.
-4. Author Hero and other HTML regions directly as HTML per
-   `references/hero-and-html.md`. Do not write Markdown first and convert later.
-5. Prefer the reference-style link pool for all URLs (see `hero-and-html.md`).
-6. Mask secrets, keys, tokens and private hostnames as you write.
+3. Author the surviving sections in the fixed order. Never reorder them.
+4. Author Hero and other HTML regions directly as HTML per `references/hero-and-html.md`.
+   Do not write Markdown first and convert later.
+5. Write in the house style from `references/writing-style.md`.
+6. Prefer the reference-style link pool for all URLs (see `hero-and-html.md`).
+7. Mask secrets, keys, tokens and private hostnames as you write.
 
 Precedence when constraints conflict:
 
 1. Privacy protection
 2. Preserve manual content (Upgrade mode)
 3. Evidence binding — no unbound claim
-4. Section order for the archetype
-5. Visual/voice preferences
+4. The fixed section order
+5. Visual preferences
 
 ## Phase 3 — Verify
 
@@ -154,8 +193,8 @@ if a claim cannot be repaired it is deleted rather than weakened.
 | Gate | Checks |
 |---|---|
 | G1 Evidence | Every assertion traces to a source |
-| G2 Structure | Archetype-required sections present and ordered |
-| G3 Voice | No banned phrases, one consistent tone |
+| G2 Structure | Surviving sections appear in the fixed order, none reordered |
+| G3 Voice | No banned phrases, house style applied |
 | G4 Visual | Hero compliant, badges grouped, templates unmodified from source |
 | G5 Links | No placeholder URLs, relative paths resolve, anchors exist |
 | G6 Accessibility | Every image has alt text, every table has a header row |
@@ -181,7 +220,9 @@ If the scan produced no usable data, stop and reply exactly:
 ## Non-Negotiables
 
 - **No fabrication.** No invented feature, command, flag, version, path or benchmark.
-- **No filler.** Banned: placeholder sections, "coming soon", emoji-free-but-empty prose.
+- **No filler.** Banned: placeholder sections, "coming soon", empty prose.
+- **No reordering.** The section order is fixed. Sections are skipped, never moved.
+- **No extra sections.** Do not invent a section outside the 20 listed.
 - **No template drift.** If a template exists in a reference, copy it verbatim.
 - **No destructive edits.** In Upgrade mode `<!-- MANUAL-START -->` …
   `<!-- MANUAL-END -->` blocks and untagged top-level sections survive untouched.
@@ -192,17 +233,16 @@ If the scan produced no usable data, stop and reply exactly:
 |---|---|
 | `workflow.md` | Phase procedures and Upgrade-mode diffing |
 | `project-scan.md` | Detection rules, evidence-map format |
-| `profiles.md` | 8 archetypes, maturity tiers, defaults |
-| `sections-core.md` | Identity and onboarding section recipes |
-| `sections-reference.md` | Architecture, API, structure, stack recipes |
-| `sections-growth.md` | Community, sponsors, roadmap, FAQ, license recipes |
+| `sections-core.md` | Hero, Features, Demo, Quick Start, Usage, Configuration, Deployment, Limitations |
+| `sections-reference.md` | Architecture, API, Commands, Structure, Stack, Compatibility, SDKs, Packages |
+| `sections-growth.md` | Contributing, Community, Roadmap, FAQ, Security, Sponsors, Citation, License |
 | `hero-and-html.md` | Hero template and HTML recipe library |
 | `onboarding.md` | Quick Start ladder, deploy matrices |
 | `social-proof.md` | Sponsors, adopters, contributors, citations |
 | `quality-gates.md` | Seven delivery gates |
 | `accessibility.md` | Alt text, contrast, RTL |
 | `language-guide.md` | Naming, switcher, localization policy |
-| `tone-profiles.md` | Six voices and the tone × archetype matrix |
+| `writing-style.md` | The house style and banned phrases |
 | `badges.md` | Technology → badge URL mapping |
-| `badge-styles.md` | Badge grouping by tier |
+| `badge-styles.md` | Badge grouping and caps |
 | `diagram-templates.md` | Mermaid and SVG templates |

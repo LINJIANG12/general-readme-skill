@@ -17,7 +17,7 @@ cp SKILL.md .github/copilot-instructions.md
 3. Copy reference files:
 
 ```bash
-cp -r references/ .github/copilot-instructions/references/
+cp -r references/ .github/references/
 ```
 
 ## Usage

@@ -168,7 +168,7 @@
 
 ## 四、研究结论如何落地（已执行）
 
-本节原内容为重构前的改进设想。完整设计方案见 **`REDESIGN.md`**，执行结果见已发布的 **`SKILL.md` v2.0**。
+本节原内容为重构前的改进设想。执行结果见已发布的 **`SKILL.md` v3.0**。
 
 ### 已落地的主要升级
 
@@ -179,18 +179,18 @@
 | ECharts | 品牌调色盘徽章规则 | `badges.md` |
 | RustDesk | GFM Alerts 风控前置、四级渐进构建 | `hero-and-html.md`、`onboarding.md` |
 | FastAPI / Dify | 4 行启动 + localhost 回执、硬件门槛声明、预期输出块 | `onboarding.md` |
-| Milvus | 三列 GIF 卡片、场景-特性矩阵、渐进接入阶梯 | `hero-and-html.md`、`profiles.md` |
-| Chatchat | 双环境隔离警示、能力梯队适配表 | `profiles.md`、`sections-core.md` |
+| Milvus | 三列 GIF 卡片、场景-特性矩阵、渐进接入阶梯 | `hero-and-html.md`、`sections-reference.md`、`onboarding.md` |
+| Chatchat | 双环境隔离警示、能力梯队适配表 | `onboarding.md`、`sections-reference.md` |
 | Nacos | 人机统一 SSOT 规范分层 | `quality-gates.md`、`project-scan.md` |
-| System Design Primer | 双层目录漏斗、四段式知识卡片 | `profiles.md` |
+| System Design Primer | 双层目录漏斗、四段式知识卡片 | `sections-growth.md` |
 | 全体 | 赞助商 / 采纳者 / 引用 / 星标趋势等成长型章节 | `social-proof.md`、`sections-growth.md` |
 
 ### 架构层面的根本性改变
 
-1. **从线性五阶段改为「分类 → 扫描 → 组合 → 校验 → 输出」**，废除独立美化阶段（Hero 直接以 HTML 撰写，避免两遍劳动）。
-2. **引入 8 种项目原型**（Library / Application / CLI / UI Library / AI App / Knowledge Base / Infrastructure / Monorepo），结构由项目类型决定，而非固定 12 章。
-3. **引入 3 级成熟度分层**（T1 / T2 / T3），按项目成熟度控制章节与徽章预算。
+1. **从线性五阶段改为「配置 → 扫描 → 组合 → 校验 → 输出」**，废除独立美化阶段（Hero 直接以 HTML 撰写，避免两遍劳动）。
+2. **统一固定章节结构**：20 个章节、固定顺序，对所有项目一致；扫描得不到数据的章节整体跳过。结构由扫描结果决定，而非项目类型。
+3. **移除项目原型、成熟度分层与语气档案**：v2.0 的 8 种原型、3 级分层与 6 种语气已废弃，只保留一套结构与一套语气。
 4. **引入证据图（Evidence Map）**，把"不捏造"从一条规则变成可校验的产物。
 5. **引入 7 道质量门禁**（证据 / 结构 / 语气 / 视觉 / 链接 / 无障碍 / 国际化），交付前强制校验。
 6. **模板单一真源化**，消除 Hero HTML 模板原先分散在三处的重复。
-7. **参考文件从 7 个扩展到 16 个**，SKILL.md 从 337 行精简至约 190 行的路由式入口。
+7. **参考文件精简为 15 个**（移除 `profiles.md`、`tone-profiles.md`，新增 `writing-style.md`），SKILL.md 保持精简的路由式入口。

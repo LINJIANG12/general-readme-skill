@@ -1,6 +1,6 @@
 # Section Recipes — Core
 
-Identity and onboarding sections. These appear in nearly every archetype.
+Identity and onboarding sections. These appear in nearly every project.
 
 Templates for HTML regions are **not** reproduced here. Copy them verbatim from
 `hero-and-html.md`. Quick Start ladder variants live in `onboarding.md`.
@@ -60,30 +60,14 @@ not `logo` or `banner`.
 
 **Purpose:** the differentiators, in a form a reader can skim in ten seconds.
 
-### Shape by tone
-
-**Table** (Professional, Enterprise):
+### Shape
 
 ```
 | Feature | Description |
 |---|---|
 | Real-time sync | WebSocket updates pushed to every connected client |
 | Role-based access | Permissions resolved per workspace membership |
-```
-
-**Emoji list** (Energetic, Playful):
-
-```
-- ⚡ **Instant reload** — Config changes apply without a restart
-- 🔒 **Scoped tokens** — Each token is limited to one workspace
-```
-
-**Plain list** (Minimal, Academic):
-
-```
-- Real-time sync over WebSocket
-- Role-based access per workspace
-- Full-text search across all records
+| Typed errors | Failures carry a status code and the parsed response body |
 ```
 
 ### Rules
@@ -102,7 +86,7 @@ not `logo` or `banner`.
 - List every dependency as a feature
 - Write "and much more"
 - Include a feature the project plans but has not implemented
-- Use the words banned in `tone-profiles.md`
+- Use a phrase from the banned list in `writing-style.md`
 
 ---
 
@@ -110,7 +94,7 @@ not `logo` or `banner`.
 
 **Purpose:** prove the product works before the reader installs anything.
 
-Include when the scan found image or video assets, or the project is a UI/Application/AI App.
+**Include when:** image or video assets exist in the repository.
 
 ### Asset shapes
 
@@ -311,7 +295,7 @@ charts, or cloud manifests.
 **Purpose:** state what the project does not do. Honest scope prevents mismatched adoption
 and misdirected bug reports.
 
-Include for AI App, Infrastructure, and any T3 project. Optional elsewhere.
+**Include when:** the code, docs or issues state a real boundary or constraint.
 
 ### Shape
 

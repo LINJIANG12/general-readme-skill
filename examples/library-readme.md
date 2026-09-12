@@ -1,6 +1,5 @@
 <!--
   Example: Library README
-  Tone: Energetic
   Badge style: Flat
   Project type: npm package (typed-fetch)
   Sections: Hero, Features, Quick Start, Usage, API, Contributing, License

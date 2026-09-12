@@ -185,15 +185,16 @@ Extract variable names only. Never copy values that look like credentials.
 
 ### 11. Documentation Corpus
 
-Detect whether the project is documentation-heavy, which switches the archetype to
-Knowledge Base:
+Detect whether the project is documentation-heavy. This does not change the section order —
+it only tells Compose whether the document needs a table of contents and how much prose the
+reader is expected to absorb.
 
 | Signal | Meaning |
 |---|---|
-| >20 Markdown files, no build system | Knowledge Base |
-| `docs/<locale>/` directories | Multilingual docs |
-| `SUMMARY.md` / `mkdocs.yml` / `docusaurus.config.*` | Docs site |
-| Large single README (>800 lines) | Needs the TOC funnel treatment |
+| >20 Markdown files, no build system | Documentation-heavy; add a table of contents |
+| `docs/<locale>/` directories | Multilingual docs already exist; check the switcher |
+| `SUMMARY.md` / `mkdocs.yml` / `docusaurus.config.*` | Docs site; link it rather than duplicating it |
+| Large single README (>800 lines) | Needs a two-layer table of contents |
 
 ### 12. Security & Governance Signals
 
@@ -260,19 +261,25 @@ Knowledge Base:
 ```
 SCAN SUMMARY — <project>
 ─────────────────────────────────────
-Archetype        : <one of 8>
-Maturity tier    : T1 | T2 | T3
 Language         : <declared>
 Framework        : <declared, comma-separated>
 Database / ORM   : <declared>
 Build / CI       : <declared>
 Architecture     : <inferred>
 API style        : <declared or inferred>
+CLI entrypoint   : <yes | no>
 License          : <declared>
 Project type     : <declared>
 Config files     : <count> (<names>)
 Docs corpus      : <light | standard | heavy>
 Governance files : <SECURITY.md, CODE_OF_CONDUCT.md, ...>
 Evidence rows    : <count>
+─────────────────────────────────────
+SECTIONS WITH DATA (of the fixed 20)
+  1 Hero               yes
+  2 Features           yes
+  ...
+ 20 License            yes
+─────────────────────────────────────
 ─────────────────────────────────────
 ```

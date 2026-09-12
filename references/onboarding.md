@@ -43,7 +43,7 @@ Open http://localhost:3000 — the setup wizard appears.
 ```
 
 Without a stated success condition, a reader cannot tell whether it worked. A Quick Start
-that ends on a command fails gate G2 for Application and CLI Tool archetypes.
+that ends on a command fails gate G2.
 
 ### Anti-patterns
 
@@ -60,9 +60,9 @@ that ends on a command fails gate G2 for Application and CLI Tool archetypes.
 
 ## Ladder Variants
 
-Choose the variant that matches the archetype.
+Choose the variant that matches the project's shape.
 
-### A — Container-first (Application)
+### A — Container-first
 
 Use when a `Dockerfile` or compose file exists. Containers eliminate environment drift.
 
@@ -95,7 +95,7 @@ Open http://localhost:3000.
 </details>
 ```
 
-### B — Package-manager-first (Library, CLI Tool)
+### B — Package-manager-first
 
 Use when the artefact is published to a registry. Lead with the one-line install.
 
@@ -127,7 +127,7 @@ bun add <package>
 
 Each manager gets its **own fence**. Never `npm/yarn/pnpm install`.
 
-### C — Language-runtime-first (Application, Library in Python/Go/Rust)
+### C — Language-runtime-first
 
 Use when the project is consumed from source or a language-native registry.
 
@@ -152,7 +152,7 @@ Use when the project is consumed from source or a language-native registry.
 
 State the runtime version only when the manifest declares it.
 
-### D — Integration-first (UI Library, Framework plugin)
+### D — Integration-first
 
 Use when the package plugs into a host framework and needs the peer dependency.
 
@@ -175,7 +175,7 @@ npm install <package> <peer-dependency>
 Peer dependencies must be called out explicitly — a silent missing peer is the most common
 installation failure.
 
-### E — Hardware-gated (AI App)
+### E — Hardware-gated
 
 Use when model inference imposes real hardware constraints.
 
@@ -210,10 +210,10 @@ Use when model inference imposes real hardware constraints.
 ```
 ```
 
-The two-environment rule is mandatory for AI App. Enforcing the separation prevents the
-most common and most confusing failure class.
+The two-environment rule is mandatory when model inference runs locally. Enforcing the
+separation prevents the most common and most confusing failure class.
 
-### F — Learning-path (Knowledge Base)
+### F — Learning-path
 
 Knowledge bases have no `run` command. Replace with a progression:
 
@@ -379,7 +379,7 @@ Steps that take minutes with no output cause users to interrupt them. Mitigate:
 
 ## Checklist Before Writing Quick Start
 
-- [ ] Archetype-appropriate variant selected
+- [ ] Variant matched to the project's shape
 - [ ] Hardware/runtime gate placed before the first command (or omitted with reason)
 - [ ] Four steps or fewer
 - [ ] Every command exists in the repository, evidence-bound

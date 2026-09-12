@@ -1,7 +1,11 @@
 # Section Recipes — Growth
 
-Community, governance and sustainability sections. Enabled by maturity tier — see
-`profiles.md`. A T1 project writes almost none of these; a T3 project writes most.
+Community, governance and sustainability sections. Each recipe is included only when the
+scan finds the data it needs — see the include-when column in `SKILL.md`. Which sections are
+present never affects their order.
+
+`Contributing` and `Community` are one section in the fixed structure
+(**Contributing & Community**). The two recipes below are written to be merged into it.
 
 Section visuals (sponsor grids, star-history charts) come from `social-proof.md`.
 
@@ -29,9 +33,12 @@ Section visuals (sponsor grids, star-history charts) come from `social-proof.md`
 
 **Purpose:** turn a reader into a contributor with the least friction.
 
-**Tier:** T1 (short form) · T2, T3 (full form).
+**Include when:** `CONTRIBUTING.md`, issue templates, or community links exist.
 
-### Short form (T1)
+Use the short form when the repository has only a contributing guide. Use the full form when
+it also has a development workflow worth documenting.
+
+### Short form
 
 ```
 ## Contributing
@@ -44,7 +51,7 @@ Issues and pull requests are welcome.
 4. Push and open a pull request
 ```
 
-### Full form (T2 / T3)
+### Full form
 
 ```
 ## Contributing
@@ -80,7 +87,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide.
    contributor cannot fix a bug they cannot run.
 3. **State the commit convention** only when one is declared. Do not impose one.
 4. **Link `CONTRIBUTING.md`** when it exists instead of duplicating it.
-5. **List non-code contributions** at T3 — documentation, triage, translation, support.
+5. **List non-code contributions** — documentation, triage, translation, support.
 6. **Never open with "We welcome contributions!"** — open with the steps.
 7. **Name the code of conduct** when `CODE_OF_CONDUCT.md` exists.
 
@@ -90,7 +97,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide.
 
 **Purpose:** tell people where to talk, and route each kind of question correctly.
 
-**Tier:** T2, T3.
+**Include when:** a community channel is documented — Discussions, a chat invite, or a
+forum link.
 
 ### Shape
 
@@ -122,7 +130,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide.
 
 **Purpose:** show direction and let users plan.
 
-**Tier:** T2, T3.
+**Include when:** a roadmap file, milestone configuration, or documented plan exists.
 
 ### Shape
 
@@ -157,7 +165,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide.
 
 **Purpose:** pre-answer the questions the maintainers are asked most.
 
-**Tier:** T3. Optional at T2 when the scan found a FAQ doc or repeated issue themes.
+**Include when:** an FAQ document exists, or recurring questions are documented in issues
+or discussions.
 
 ### Shape
 
@@ -193,7 +202,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide.
 
 **Purpose:** point at what changed, without duplicating the changelog itself.
 
-**Tier:** T2, T3 when release automation exists.
+**Include when:** `CHANGELOG.md` exists, or releases are published with notes.
 
 ### Shape
 
@@ -218,7 +227,8 @@ This project follows [Semantic Versioning](https://semver.org/).
 
 **Purpose:** give vulnerabilities a private channel instead of a public issue.
 
-**Tier:** T2, T3, or any project handling authentication, network traffic or user data.
+**Include when:** `SECURITY.md` exists, or the project handles authentication, network
+traffic or user data.
 
 ### Shape
 
@@ -251,7 +261,7 @@ We acknowledge reports within <period>.
 
 **Purpose:** acknowledge funding and make the funding path visible.
 
-**Tier:** T3, or when `.github/FUNDING.yml` / sponsor files exist.
+**Include when:** `.github/FUNDING.yml`, a sponsors file, or documented sponsors exist.
 
 **Visual templates:** `social-proof.md` → *Sponsor Grid*, *Tiered Sponsor Wall*.
 
@@ -272,7 +282,7 @@ We acknowledge reports within <period>.
 
 **Purpose:** social proof from real users, and a growth loop.
 
-**Tier:** T3, or Infrastructure / Application with documented adopters.
+**Include when:** organisations publicly document their use of the project.
 
 **Visual templates:** `social-proof.md` → *Adopter Wall*.
 
@@ -287,13 +297,15 @@ We acknowledge reports within <period>.
 
 ---
 
-## Acknowledgments
+## Citation & Acknowledgments
 
-**Purpose:** credit upstream projects, prior art and inspiration.
+**Purpose:** credit prior work, and let researchers cite the project correctly.
 
-**Tier:** T3, or when the code clearly derives from other projects.
+**Include when:** the code derives from, extends or implements prior work worth crediting,
+**or** `CITATION.cff` / a published paper / a DOI exists. Either half may appear on its own —
+write only the subsection that has data.
 
-### Rules
+### Acknowledgments
 
 1. **Credit real dependencies of significance** — the framework the project extends, the
    protocol it implements.
@@ -303,17 +315,9 @@ We acknowledge reports within <period>.
    manifest.
 4. **Do not pad** with every transitive dependency.
 
----
-
-## Citation
-
-**Purpose:** let researchers cite the project correctly.
-
-**Tier:** T3 for projects with academic roots, Infrastructure, Knowledge Base, AI App.
+### Citation
 
 **Template:** `social-proof.md` → *Citation Block*.
-
-### Rules
 
 1. **Only include when a real citation exists** — `CITATION.cff`, a published paper, or a
    documented DOI.
@@ -323,29 +327,12 @@ We acknowledge reports within <period>.
 
 ---
 
-## Star History
-
-**Purpose:** show traction.
-
-**Tier:** T3 only, and only when the repository has meaningful star growth.
-
-**Template:** `social-proof.md` → *Dual-Theme Star Chart*.
-
-### Rules
-
-1. **Use the dark/light adaptive form.** A hardcoded light chart is unreadable in dark
-   mode and fails gate G4.
-2. **Place it near the end**, above the license.
-3. **Read the repository owner and name from the scan** — never a placeholder.
-4. **Omit for new or low-traction repositories.** An empty chart weakens the document.
-
----
-
 ## Comparison
 
 **Purpose:** help a reader choose between this project and its alternatives, honestly.
 
-**Tier:** T3, or when the project competes in a crowded space.
+**Include when:** the project competes with named alternatives and a fair, sourced
+comparison is possible.
 
 ### Shape
 
@@ -375,7 +362,8 @@ We acknowledge reports within <period>.
 
 **Purpose:** state the terms in one line.
 
-**Tier:** all tiers. Required.
+**Include when:** a licence file exists. If none does, close the document with the one-line
+recommendation instead.
 
 ### Shape
 

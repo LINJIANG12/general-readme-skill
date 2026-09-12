@@ -26,4 +26,4 @@ Type `/readme` or say "generate readme" in any Claude Code session.
 
 ## How It Works
 
-Claude Code automatically loads skills from `.claude/skills/`. The skill triggers when you type `/readme` or say something that matches the trigger phrases in the skill description. It will ask you about tone, badge style, and language preferences before generating.
+Claude Code automatically loads skills from `.claude/skills/`. The skill triggers when you type `/readme` or say something that matches the trigger phrases in the skill description. It resolves only the primary language and detects the entry mode, then proceeds with the fixed structure and the house style.

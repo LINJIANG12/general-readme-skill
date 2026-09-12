@@ -23,8 +23,8 @@ covers when to include a section and how to shape its content.
 
 **Purpose:** let an engineer understand the system's shape before reading code.
 
-**Required for:** Application, Infrastructure, Monorepo.
-**Recommended for:** Library, CLI Tool, UI Library, AI App.
+**Include when:** the scan can derive a diagram from the source — services, modules, classes,
+tables or pipelines carrying real names.
 
 ### Diagram selection
 
@@ -42,7 +42,7 @@ covers when to include a section and how to shape its content.
 ```
 ## Architecture
 
-<optional: one line, skip entirely for Minimal tone>
+<optional: one line, omit when the diagram already tells the story>
 
 ```mermaid
 <diagram from diagram-templates.md, colors applied>
@@ -134,7 +134,8 @@ Include only when the scan detected routes, schema files, or exported service de
 
 **Purpose:** the command reference for CLI tools.
 
-**Required for:** CLI Tool.
+**Include when:** a CLI entrypoint exists — `bin` in a manifest, a `cmd/` directory, a
+`[[bin]]` target, or a `[project.scripts]` entry.
 
 ### Shape
 
@@ -177,8 +178,7 @@ Include only when the scan detected routes, schema files, or exported service de
 
 **Purpose:** orient a contributor in ten seconds.
 
-Include for Application, Monorepo, Infrastructure, and any project with more than one
-top-level source directory.
+**Include when:** more than one top-level source directory exists.
 
 ### Shape
 
@@ -208,7 +208,7 @@ src/
 5. **Use the real tree characters** `├──`, `│`, `└──`.
 6. **Include key root files** (manifests, Dockerfile, compose file) when they matter to a
    contributor.
-7. **For Monorepo**, additionally show which directories are packages vs apps.
+7. **For a workspace**, additionally show which directories are packages and which are apps.
 8. **Cap the listing at ~20 entries.** Beyond that, show top-level only and link a
    per-package README.
 
@@ -218,7 +218,7 @@ src/
 
 **Purpose:** let a reader assess fit and familiarity at a glance.
 
-Include for Application, Monorepo, Infrastructure. Optional for Library, UI Library.
+**Include when:** dependencies are declared in a manifest.
 
 ### Shape
 
@@ -301,7 +301,7 @@ For UI libraries, a browser icon row is readable:
 
 **Purpose:** for infrastructure projects that ship clients in several languages.
 
-**Required for:** Infrastructure, when multiple client packages exist.
+**Include when:** multiple client packages exist, each targeting a different language.
 
 ### Shape
 
@@ -335,7 +335,7 @@ For UI libraries, a browser icon row is readable:
 
 **Purpose:** connect business use cases to the technical primitives that serve them.
 
-**Recommended for:** Infrastructure, AI App, Knowledge Base.
+**Include when:** the project documents scenarios that map to specific primitives or guides.
 
 ### Shape
 
@@ -362,7 +362,7 @@ For UI libraries, a browser icon row is readable:
 
 **Purpose:** the package inventory for a monorepo.
 
-**Required for:** Monorepo.
+**Include when:** the workspace configuration declares multiple packages.
 
 ### Shape
 

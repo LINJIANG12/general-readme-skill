@@ -59,64 +59,63 @@ For each, locate the matching row in the evidence map.
 
 ## G2 — Structure
 
-**Question:** does the document match its archetype?
+**Question:** does the document follow the one fixed section order?
 
 ### Check
 
-1. Read the archetype's required section list from `profiles.md`.
-2. Confirm every **required** section is present.
-3. Confirm no **forbidden** section for this archetype appears.
-4. Confirm sections appear in the archetype's declared order.
-5. Confirm the section count is within the tier budget.
+1. Read the fixed 20-section order from `SKILL.md`.
+2. Confirm every section that has scan data is present.
+3. Confirm the present sections appear in the fixed order, with nothing reordered.
+4. Confirm no section outside the 20 was invented.
+5. Confirm every absent section genuinely had no data in the evidence map.
 
 ### Fail conditions
 
-- A required section is missing while the scan produced data for it
-- A forbidden section appears (e.g. an API table on a CLI tool with no API)
-- Order deviates from the archetype, with no manual section explaining it
-- Section count exceeds the tier budget
+- A section with data is missing
+- Sections appear out of the fixed order
+- A section outside the 20 was invented
+- A section was dropped despite having evidence
 
 ### Repair
 
 | Case | Action |
 |---|---|
-| Required section missing, data exists | Author it |
-| Required section missing, no data | Drop it and note the gap |
-| Forbidden section present | Remove it |
-| Over budget | Merge or drop the lowest-value sections until within budget |
+| Section has data but is missing | Author it |
+| Sections out of order | Reorder them; never rename a section to fit the order |
+| Invented section | Remove it, or fold its content into the closest listed section |
+| Section present with no evidence | Delete it — gate G1 takes precedence |
 
 ---
 
 ## G3 — Voice
 
-**Question:** is the tone consistent, and free of banned phrases?
+**Question:** is the house style applied, and is the text free of banned phrases?
 
 ### Check
 
-1. Confirm a single tone is applied throughout. Mixed tones (a Professional table next
-   to an Energetic emoji list) fail.
-2. Scan for every banned phrase in `tone-profiles.md`.
-3. Confirm sentence-length variety (no wall of identical-length sentences).
-4. Confirm no absolute claim without evidence ("the fastest", "100% secure").
+1. Confirm the house style from `references/writing-style.md` is applied throughout.
+2. Scan for every banned phrase in that file.
+3. Confirm no emoji in prose and no exclamation marks anywhere.
+4. Confirm sentence-length variety (no wall of identical-length sentences).
+5. Confirm no absolute claim without evidence ("the fastest", "100% secure").
+6. Confirm parallel structure within each list.
 
 ### Banned phrase master list
 
-Universal — banned in all tones:
+> powerful · robust · versatile · leverages · seamlessly · cutting-edge · comprehensive ·
+> state-of-the-art · ever-evolving landscape · game-changing · revolutionary ·
+> next-generation · best-in-class · enterprise-grade · blazingly fast · world-class ·
+> turnkey · synergy · effortless · unleash · supercharge · battle-tested · one-stop ·
+> production-ready (unless citing sourced production usage)
 
-> powerful · robust · versatile · leverages · seamlessly · cutting-edge ·
-> comprehensive · state-of-the-art · ever-evolving landscape · game-changing ·
-> revolutionary · next-generation · best-in-class · enterprise-grade ·
-> blazingly fast (unless quoting a benchmark)
+Plus:
 
-Minimal additionally bans:
-
+> emoji in prose · exclamation marks · awesome · cool · amazing · love · hate · super ·
 > simply · just · easy · straightforward · obviously · of course · as you can see ·
-> note that · it's worth mentioning
+> note that · it's worth mentioning · we believe · unsourced comparisons ·
+> unsourced security or compliance claims
 
-Professional additionally bans:
-
-> emoji in prose · exclamation marks in descriptions · awesome · cool · amazing ·
-> love · hate
+The authoritative list lives in `references/writing-style.md`.
 
 ### Repair
 
@@ -134,9 +133,9 @@ Rewrite the sentence. Prefer the concrete value over the adjective:
 1. **Hero present and compliant** — centered container, logo, one-line description,
    subtitle, primary badges, language switcher. Template must match
    `hero-and-html.md` exactly; no invented variants.
-2. **Badge grouping** — follows `badge-styles.md` for the resolved tier. No badge in the
-   wrong group. No conditional badge without its data.
-3. **Badge count within tier budget.**
+2. **Badge grouping** — follows the group definitions and caps in `badge-styles.md`. No
+   badge in the wrong group. No conditional badge without its data.
+3. **Badge count within each group's cap.**
 4. **Every badge URL resolves** to a real shields.io pattern (no `{PLACEHOLDER}` left).
 5. **Diagrams** — every Mermaid block declares `classDef` and applies `class`. No
    colorless diagram.
@@ -249,7 +248,7 @@ fully synchronized, add the anti-stale banner rather than shipping a silent mism
 Quality gates
 ─────────────────────────────────────
 G1 Evidence        pass        (24 rows, 0 unbound)
-G2 Structure       pass        (archetype: Application, tier: T2)
+G2 Structure       pass        (13 sections, fixed order)
 G3 Voice           pass        (2 phrases rewritten)
 G4 Visual          pass
 G5 Links           pass

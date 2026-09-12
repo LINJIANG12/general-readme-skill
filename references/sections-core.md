@@ -23,8 +23,8 @@ Templates for HTML regions are **not** reproduced here. Copy them verbatim from
 
 ## What's Inside
 
-**Purpose:** let the reader see the shape of the product in one screen — what it contains,
-in the reader's terms — before they read the detail.
+**Purpose:** give the reader the shape of the product in a single paragraph — what it
+contains, in the reader's terms — before they read the detail.
 
 **Include when:** the project ships a set of enumerable capabilities, modules, packages,
 skills or components. Omit it for a single-purpose tool that has nothing to enumerate.
@@ -34,30 +34,24 @@ skills or components. Omit it for a single-purpose tool that has nothing to enum
 ```
 ## What's Inside
 
-<one line: what the set is and how it is organised>
-
-### <Group name>
-
-| Item | What it does |
-|---|---|
-| `<item>` | <one clause on the capability> |
+<one paragraph: what the set is, how it is organised, and what it covers>
 ```
 
 ### Rules
 
-1. **Describe capabilities, not files.** `Draft, review and publish flow` — not
-   `src/flows/`. This is the section most likely to decay into an internal inventory, and
+1. **One paragraph.** No sub-headings, no table, no bullet list. This is a short
+   orientation, not an inventory — the sections that follow carry the detail.
+2. **Two to five sentences.** Name the parts, say how they relate, then stop.
+3. **Describe capabilities, not files.** `Draft, review and publish flow` — not
+   `src/flows/`. This is the section most likely to decay into an internal file list, and
    gate G1 will not catch it because every file name is true. The discipline is editorial.
-2. **Group by what the reader does**, not by the repository's folder layout. Two to five
-   groups is the useful range.
-3. **One line per item**, leading with the outcome, the same way Features does.
-4. **Link each item** to its detail page when one exists (`references/x.md`, `docs/x.md`).
-5. **Cap at about twelve items.** Beyond that it is a second table of contents, which the
-   document already has.
-6. **Do not restate Features.** Features argues why the product is better; What's Inside
-   states what exists. A row that would fit Features belongs there.
-7. **Sourcing.** Every row must trace to a scan row — a module, an exported symbol, a
-   documented capability. Delete a row rather than invent one.
+4. **Link the detail inline** where a part maps to a page (`references/x.md`,
+   `docs/x.md`). Do not build a second table of contents.
+5. **Do not restate Features.** Features argues why the product is better; What's Inside
+   states what exists.
+6. **No table and no item grid.** See `writing-style.md` → *Tables*.
+7. **Sourcing.** Every claim must trace to a scan row — a module, an exported symbol, a
+   documented capability. Delete a claim rather than invent one.
 
 ---
 
@@ -104,17 +98,17 @@ not `logo` or `banner`.
 ### Shape
 
 ```
-| Feature | Description |
-|---|---|
-| Real-time sync | WebSocket updates pushed to every connected client |
-| Role-based access | Permissions resolved per workspace membership |
-| Typed errors | Failures carry a status code and the parsed response body |
+- **Real-time sync** — WebSocket updates pushed to every connected client
+- **Role-based access** — Permissions resolved per workspace membership
+- **Typed errors** — Failures carry a status code and the parsed response body
 ```
 
 ### Rules
 
-1. Maximum 6. With 20 features, pick the 6 a buyer would notice.
-2. Never pad. Two real features beats six padded ones.
+1. Maximum 6 items. With 20 features, pick the 6 a buyer would notice.
+2. Never pad. Two real features beats six padded ones. A list is the default; a table is
+   warranted only when every row carries two or more comparable values — see
+   `writing-style.md` → *Tables*.
 3. Each entry leads with the outcome, not the mechanism.
    - Good: `Streams 10k events/sec` — Bad: `Uses a lock-free ring buffer`
 4. **A feature must be user-visible and high-impact.** Internal machinery — a build

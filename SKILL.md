@@ -29,6 +29,8 @@ differ in which sections have data behind them.
    files the current task needs.
 7. **Progressive onboarding.** A reader reaches a running system in four lines or fewer.
 8. **Accessible and maintainable.** Alt text, table headers, and reversible HTML only.
+9. **Sparing with tables.** A table is used only when the content is genuinely tabular. A
+   name plus one clause is a bullet, not a table; a short overview stays one paragraph.
 
 ## Trigger Rules
 
@@ -77,9 +79,9 @@ counted among the 20. A jumpable table of contents belongs there when the docume
 more than about five sections (`references/hero-and-html.md` → *Table of Contents*). It is
 a navigation aid, not one of the sections.
 
-**What's Inside is not a file inventory.** It describes what the project ships in the
-reader's terms — capabilities, modules or components — not the internal layout of the
-repository. The directory tree belongs in Project Structure, not here.
+**What's Inside is one paragraph, not an inventory.** It describes what the project ships
+in the reader's terms — capabilities, modules or components — as prose: no table, no bullet
+list. The directory tree belongs in Project Structure, not here.
 
 | # | Section | Include when |
 |---|---|---|

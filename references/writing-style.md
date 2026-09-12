@@ -12,6 +12,7 @@ Read this before Phase 2 and again before running gate G3.
 - [Sentence Rules](#sentence-rules)
 - [Section Intros](#section-intros)
 - [Feature and List Format](#feature-and-list-format)
+- [Tables](#tables)
 - [Numbers Over Adjectives](#numbers-over-adjectives)
 - [Emoji and Punctuation](#emoji-and-punctuation)
 - [Banned Phrases](#banned-phrases)
@@ -85,19 +86,19 @@ Optional, and at most one sentence.
 
 ## Feature and List Format
 
-Features are a table in every README, with a bolded name and one clause of substance.
+Features are a **bullet list** — one bolded name and one clause of substance per item. A
+table is warranted only when every row carries two or more comparable values the reader
+scans across; see [Tables](#tables).
 
 ```markdown
-| Feature | Description |
-|---|---|
-| Real-time sync | WebSocket updates pushed to every connected client |
-| Role-based access | Permissions resolved per workspace membership |
-| Typed errors | Failures carry a status code and the parsed response body |
+- **Real-time sync** — WebSocket updates pushed to every connected client
+- **Role-based access** — Permissions resolved per workspace membership
+- **Typed errors** — Failures carry a status code and the parsed response body
 ```
 
 Rules:
 
-1. **Maximum 6 rows.** With 20 candidate features, choose the 6 a reader would notice.
+1. **Maximum 6 items.** With 20 candidate features, choose the 6 a reader would notice.
 2. **Never pad.** Two real features beat six padded ones.
 3. **Lead with the outcome**, not the mechanism.
    - Good: `Streams 10k events per second`
@@ -105,9 +106,44 @@ Rules:
 4. **No feature the scan did not evidence.**
 5. **Do not restate the Hero description.**
 6. **No "and much more".**
+7. **Parallel structure.** Every item starts with a noun phrase, or every item starts with a
+   verb — never mixed within one list.
 
-For lists outside the Features table (steps, options, limitations), use `-` bullets, keep
-them flat, and apply the parallel-structure rule.
+For steps, options and limitations, use flat `-` bullets and the same parallel-structure
+rule.
+
+---
+
+## Tables
+
+A table is a layout decision, not a default. Most content is a list or a paragraph, and a
+document that reaches for a table in every section reads as a specification sheet rather
+than a README.
+
+Use a table only when the content is genuinely tabular:
+
+- **Three or more comparable columns** the reader scans across — `Phase | Input | Output`.
+- **A lookup of many rows by key** — a section index, a flag reference, an endpoint list.
+- **A wide comparison** where aligning rows is the point.
+
+Everything else stays a list or prose:
+
+- A name plus one clause is a **bullet**, not a two-column table.
+- Two or three key/value pairs are a sentence or a bullet.
+- A short sequence is a numbered list.
+- Section prose is never wrapped in a table.
+
+### Rules
+
+1. **Never use a table to decorate prose.** If the cells hold sentences, it is prose.
+2. **Two columns are usually a list.** Convert when `-` bullets read the same or better.
+3. **Below four rows, a table rarely pays off** unless the columns are genuinely comparable.
+4. **A section that can be one paragraph stays one paragraph.** Do not split a short
+   overview into a grid.
+5. **Every table keeps a header row**, and no header cell is empty — gate G6.
+6. **Never nest a list inside a table cell.**
+7. When in doubt, prefer the list. A document of lists reads faster than a document of
+   tables.
 
 ---
 

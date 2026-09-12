@@ -47,39 +47,7 @@ Type `/readme` in any repository and the skill scans the project, writes a READM
 
 ## What's Inside
 
-The skill covers the whole path from scan to delivery, and each part has a reference you can open on its own.
-
-### Scan and evidence
-
-- **Three-pass reading** — map the file tree first, read the manifests and entry points in full, sample the rest on demand
-- **Evidence map** — every `claim → source` row is recorded; a claim the scan cannot support is deleted
-- **Read-only** — static files only, the project's code is never executed
-
-### Section recipes
-
-- **Fixed order** — rules for writing and skipping each of the 20 sections; a section with no data is dropped entirely
-- **Progressive disclosure** — long tables collapse, the Hero is authored as HTML, URLs live in a link pool
-- **Real code** — usage examples come only from calls and exports already in the repository
-
-### Visuals and accessibility
-
-- **Single source of truth** — one template each for the Hero, table of contents, badges, diagrams and collapsible blocks
-- **Diagram colours** — a fixed Mermaid palette, with nodes labelled `Name + Technology`
-- **Accessible** — alt text on images, header rows on tables, no skipped heading levels
-
-### Multi-language
-
-- **Naming** — the primary language takes `README.md`; every other language takes `README.<code>.md`
-- **Bidirectional switcher** — every language reaches every other one
-- **Localization** — links are mapped per region, and a stale translation carries a status notice
-
-### Quality gates
-
-Before delivery the document is checked for evidence, structure, voice, visuals, links, accessibility and i18n; failures are repaired or deleted.
-
-### Example outputs
-
-Three finished documents you can read directly — see [Demo](#demo).
+The skill is one router file plus 15 reference files loaded on demand, covering the whole path from scan to delivery. The evidence map binds every claim to a real source; the section recipes define how each of the 20 sections is written and skipped, so a section with no data is dropped; the visual templates unify the Hero, table of contents, badges, diagrams and collapsible blocks, and require alt text and header rows. The multi-language rules define file naming, a bidirectional switcher and region-mapped links, and the quality gates check evidence, structure, voice, visuals, links, accessibility and i18n before delivery.
 
 <div align="right">
 
@@ -89,14 +57,12 @@ Three finished documents you can read directly — see [Demo](#demo).
 
 ## Features
 
-| Feature | Description |
-|---|---|
-| One command | A single `/readme` takes the document from scan to finished file |
-| Only what is evidenced | Sections stay only when the scan supports them; the rest are dropped rather than padded |
-| Safe on re-runs | Upgrade mode preserves the paragraphs you wrote and rewrites only the auto regions |
-| Navigation on every section | A fixed section order plus a jumpable table of contents, so a long document stays searchable |
-| Bilingual output | A primary and a secondary language in parallel, with a bidirectional switcher |
-| Install and go | No extra CLI or runtime — copy the files and use it |
+- **One command** — a single `/readme` takes the document from scan to finished file
+- **Only what is evidenced** — sections stay only when the scan supports them; the rest are dropped rather than padded
+- **Safe on re-runs** — Upgrade mode preserves the paragraphs you wrote and rewrites only the auto regions
+- **Navigation on every section** — a fixed section order plus a jumpable table of contents, so a long document stays searchable
+- **Bilingual output** — a primary and a secondary language in parallel, with a bidirectional switcher
+- **Install and go** — no extra CLI or runtime; copy the files and use it
 
 <div align="right">
 
@@ -106,13 +72,11 @@ Three finished documents you can read directly — see [Demo](#demo).
 
 ## Demo
 
-This document is itself a product of the skill, generated under the same rules. The three examples below cover the most common project shapes.
+This document is itself a product of the skill, generated under the same rules. The three examples below cover the most common project shapes:
 
-| Project shape | Example | What it demonstrates |
-|---|---|---|
-| Full-stack application | [`app-readme.md`](examples/app-readme.md) | A complete architecture, configuration, API and deployment write-up |
-| Published library | [`library-readme.md`](examples/library-readme.md) | A benefit-oriented feature table and a minimal usage example |
-| Real bilingual project | [`oxyteamtasks-readme.md`](examples/oxyteamtasks-readme.md) | A bilingual switcher and auto-generated markers |
+- [`app-readme.md`](examples/app-readme.md) — full-stack application: a complete architecture, configuration, API and deployment write-up
+- [`library-readme.md`](examples/library-readme.md) — published library: a benefit-oriented feature list and a minimal usage example
+- [`oxyteamtasks-readme.md`](examples/oxyteamtasks-readme.md) — real bilingual project: a bilingual switcher and auto-generated markers
 
 <div align="right">
 
@@ -227,17 +191,15 @@ Each section appears only when the scan has data for it.
 | 19 | **Citation** | `CITATION.cff` exists, or a published paper exists |
 | 20 | **License** | A licence file exists |
 
-The seven quality gates run before delivery.
+The seven quality gates run before delivery:
 
-| Gate | Checks |
-|---|---|
-| **G1 Evidence** | Every assertion traces to a source |
-| **G2 Structure** | Surviving sections appear in the fixed order, none reordered |
-| **G3 Voice** | No banned phrases, house style applied |
-| **G4 Visual** | Hero compliant, badges grouped, templates unmodified from source |
-| **G5 Links** | No placeholder URLs, relative paths resolve, anchors exist |
-| **G6 Accessibility** | Every image has alt text, every table has a header row |
-| **G7 i18n** | Switcher is bidirectional, localized links mapped |
+- **G1 Evidence** — every assertion traces to a source
+- **G2 Structure** — surviving sections appear in the fixed order, none reordered
+- **G3 Voice** — no banned phrases, house style applied
+- **G4 Visual** — Hero compliant, badges grouped, templates unmodified from source
+- **G5 Links** — no placeholder URLs, relative paths resolve, anchors exist
+- **G6 Accessibility** — every image has alt text, every table has a header row
+- **G7 i18n** — switcher is bidirectional, localized links mapped
 
 </details>
 
@@ -251,21 +213,17 @@ The seven quality gates run before delivery.
 
 ### Trigger phrases
 
-| Input | Behaviour |
-|---|---|
-| `/readme` | Trigger generation |
-| `update readme` / `更新README` | Enter Upgrade mode, preserving manual content |
-| `帮我写 README` | Trigger generation |
-| `优化README` / `review my README` | Run the seven gates against an existing file |
+- `/readme` — trigger generation
+- `update readme` / `更新README` — enter Upgrade mode, preserving manual content
+- `帮我写 README` — trigger generation
+- `优化README` / `review my README` — run the seven gates against an existing file
 
 The full trigger rules are in [`SKILL.md`](SKILL.md).
 
 ### Entry modes
 
-| Mode | Condition | Behaviour |
-|---|---|---|
-| **Create** | No `README.md`, or a full-regeneration request | Author every section from the evidence map |
-| **Upgrade** | `README.md` exists and the user wants it improved | Preserve manual content, regenerate auto regions, emit a change summary |
+- **Create** — with no `README.md`, or on a full-regeneration request, every section is authored from the evidence map
+- **Upgrade** — when `README.md` exists, manual content is preserved, only the auto regions are rewritten, and a change summary is emitted
 
 ### Example session
 
@@ -300,13 +258,11 @@ AI:   Defaults: Chinese (Simplified), entry mode auto-detected.
 
 ## Requirements
 
-| Item | Requirement |
-|---|---|
-| Host platforms | CodeBuddy, Claude Code, GitHub Copilot, Cursor |
-| Runtime | None — the skill executes no code |
-| Render targets | GitHub, GitLab or any GFM-capable editor |
-| Diagram rendering | A renderer with Mermaid support |
-| Skill format | `SKILL.md` + `references/`, following the common skill-directory convention |
+- **Host platforms** — CodeBuddy, Claude Code, GitHub Copilot, Cursor
+- **Runtime** — none; the skill executes no code
+- **Render targets** — GitHub, GitLab or any GFM-capable editor
+- **Diagram rendering** — a renderer with Mermaid support
+- **Skill format** — `SKILL.md` + `references/`, following the common skill-directory convention
 
 > [!NOTE]
 > GitHub renders Mermaid natively. Some terminal Markdown viewers show diagrams as code blocks, which does not affect the rest of the content.

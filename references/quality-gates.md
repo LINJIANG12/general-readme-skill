@@ -143,6 +143,8 @@ Rewrite the sentence. Prefer the concrete value over the adjective:
 7. **Link pool** — all URLs in the pool, body uses reference form.
 8. **Alerts** — every `> [!NOTE]` / `[!TIP]` / `[!WARNING]` / `[!CAUTION]` has content on
    the following line.
+9. **Tables are warranted** — no table stands where a list or a paragraph would read the
+   same or better (`writing-style.md` → *Tables*).
 
 ### Fail conditions
 

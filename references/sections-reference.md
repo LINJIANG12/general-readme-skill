@@ -256,6 +256,9 @@ src/
    with", not "what does it do".
 7. Cross-reference names against `badges.md` so the same vocabulary is used in the badge
    matrix.
+8. **Prefer a list to a two-column table.** `- **Technology** — purpose` reads better than
+   a Technology/Purpose table unless a layer carries several comparable columns
+   (`writing-style.md` → *Tables*).
 
 ---
 
@@ -294,6 +297,9 @@ For UI libraries, a browser icon row is readable:
 3. **Icon rows must carry text alternatives** — an icon-only row fails gate G6 when the
    icon has no accessible label.
 4. **Note server-side rendering or platform caveats** when the source shows them.
+5. **With only a few entries, use a list.** A Runtime/Support table is warranted only when
+   several rows share comparable values; otherwise `- **Runtime** — 18, 20, 22` reads
+   better (`writing-style.md` → *Tables*).
 
 ---
 

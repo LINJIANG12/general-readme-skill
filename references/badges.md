@@ -23,6 +23,122 @@ https://img.shields.io/badge/{LABEL}-{COLOR}?style={STYLE}&logo={LOGO}&logoColor
 
 ---
 
+## Brand Palette Rule
+
+A Hero whose badges are all shields.io defaults reads as an accident. Derive badge colours
+from the project's own palette.
+
+### Procedure
+
+1. Extract 3–4 colours from the project's logo, theme tokens, CSS variables, or brand file.
+2. Assign them by role, keeping the pairing stable across the document:
+
+| Role | Badge |
+|---|---|
+| Primary accent | License, or the highest-signal static badge |
+| Secondary accent | Version |
+| Tertiary accent | Downloads / coverage |
+| Neutral | Language and stack badges (keep these at their official brand colours) |
+
+3. **Stack badges keep their official brand colours.** `TypeScript` is always `3178C6`,
+   `Docker` always `2496ED`. Never recolour a technology badge to match your palette — the
+   colour is the recognition cue.
+4. **Fall back cleanly.** If the project has no discoverable palette, use the archetype
+   accent from `hero-and-html.md` → *Archetype defaults* rather than the shields.io default
+   `brightgreen`.
+
+### Example
+
+```markdown
+<!-- project palette: #5470c6 #91cc75 #fac858 #3ba272 -->
+[![License][badge-license]][link-license]     <!-- 5470c6 -->
+[![Release][badge-release]][link-release]     <!-- 91cc75 -->
+[![Downloads][badge-downloads]][link-downloads] <!-- fac858 -->
+[![Contributors][badge-contrib]][link-contrib]  <!-- 3ba272 -->
+```
+
+---
+
+## Dynamic vs Static Badges
+
+| Kind | Use when | Form |
+|---|---|---|
+| Dynamic | The value changes: version, downloads, stars, build status, coverage | `https://img.shields.io/npm/v/{package}` |
+| Static | The value is fixed: licence type, language, framework | `https://img.shields.io/badge/{LABEL}-{COLOR}` |
+
+### Rules
+
+1. **A dynamic badge requires the real package or repository identifier.** Never a
+   placeholder — gate G5.
+2. **Do not add a dynamic badge the source cannot support.** No `npm/v/...` on a project
+   that is not published to npm.
+3. **Prefer dynamic over static for anything that changes.** A hand-written version number
+   goes stale.
+4. **Static badges for licence and language** — those are facts, not metrics.
+5. **Style parameter must match the resolved badge style** across the whole document.
+
+---
+
+## Regional and Community Badges
+
+For projects targeting specific regions, add the channels their audience actually uses.
+Only include a badge when the channel exists and is maintained.
+
+### Chinese ecosystem
+
+| Channel | Badge |
+|---|---|
+| Gitee mirror | `![Gitee](https://img.shields.io/badge/Gitee-{REPO}-C71D23?style=flat&logo=gitee&logoColor=white)` |
+| WeChat group | `![WeChat](https://img.shields.io/badge/WeChat-Group-07C160?style=flat&logo=wechat&logoColor=white)` |
+| Bilibili | `![Bilibili](https://img.shields.io/badge/Bilibili-{NAME}-00A1D6?style=flat&logo=bilibili&logoColor=white)` |
+| Zhihu | `![Zhihu](https://img.shields.io/badge/Zhihu-{NAME}-0084FF?style=flat&logo=zhihu&logoColor=white)` |
+| Juejin | `![Juejin](https://img.shields.io/badge/Juejin-{NAME}-1E80FF?style=flat&logo=juejin&logoColor=white)` |
+| Weibo | `![Weibo](https://img.shields.io/badge/Weibo-{NAME}-E6162D?style=flat&logo=sinaweibo&logoColor=white)` |
+
+### Global community
+
+| Channel | Badge |
+|---|---|
+| Discord | `![Discord](https://img.shields.io/discord/{GUILD_ID}?logo=discord&labelColor=%235462eb&color=%235462eb)` |
+| Slack | `![Slack](https://img.shields.io/badge/Slack-Join-4A154B?style=flat&logo=slack&logoColor=white)` |
+| X / Twitter | `![X](https://img.shields.io/badge/X-Follow-000000?style=flat&logo=x&logoColor=white)` |
+| Reddit | `![Reddit](https://img.shields.io/reddit/subreddit-subscribers/{SUB}?style=flat&logo=reddit)` |
+| Mastodon | `![Mastodon](https://img.shields.io/badge/Mastodon-Follow-6364FF?style=flat&logo=mastodon&logoColor=white)` |
+
+### Platform badges
+
+| Platform | Badge |
+|---|---|
+| VS Code | `![VS Code](https://img.shields.io/badge/VS_Code-Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white)` |
+| JetBrains | `![JetBrains](https://img.shields.io/badge/JetBrains-Marketplace-000000?style=flat&logo=jetbrains&logoColor=white)` |
+| F-Droid | `![F-Droid](https://img.shields.io/badge/F--Droid-{APP}-1976D2?style=flat&logo=fdroid&logoColor=white)` |
+| Flathub | `![Flathub](https://img.shields.io/badge/Flathub-{APP}-4A90D9?style=flat&logo=flathub&logoColor=white)` |
+| Homebrew | `![Homebrew](https://img.shields.io/badge/Homebrew-{FORMULA}-FBB040?style=flat&logo=homebrew&logoColor=black)` |
+| Docker Hub | `![Docker Pulls](https://img.shields.io/docker/pulls/{IMAGE}?logo=docker&logoColor=white)` |
+
+### Governance and recognition
+
+| Signal | Badge |
+|---|---|
+| CNCF | `![CNCF](https://img.shields.io/badge/CNCF-Project-0086FF?style=flat&logo=cncf&logoColor=white)` |
+| Apache | `![Apache](https://img.shields.io/badge/Apache-Software_Foundation-D22128?style=flat&logo=apache&logoColor=white)` |
+| LF AI & Data | `![LF AI](https://img.shields.io/badge/LF_AI_%26_Data-Project-0095D5?style=flat)` |
+| OpenSSF | `![OpenSSF](https://img.shields.io/badge/OpenSSF-Best_Practices-3DA639?style=flat&logo=openssf&logoColor=white)` |
+| Product Hunt | `![Product Hunt](https://img.shields.io/badge/Product_Hunt-{RANK}-DA552F?style=flat&logo=producthunt&logoColor=white)` |
+
+### Rules
+
+1. **A community badge requires a working link** to a live channel. A dead invite fails
+   gate G5.
+2. **Keep community badges in the Hero identity group**, not scattered through the body.
+3. **Do not add regional badges to the primary English file** unless the project genuinely
+   serves that region. They belong in the localized file when the localization policy calls
+   for them.
+4. **Governance badges are trust signals** — include them only when the project actually
+   belongs to that foundation.
+
+---
+
 ## AI IDE Platforms
 
 | Technology | Badge |
@@ -355,3 +471,67 @@ https://img.shields.io/badge/{LABEL}-{COLOR}?style={STYLE}&logo={LOGO}&logoColor
 | Yup | `![Yup](https://img.shields.io/badge/Yup-FF6200?style=flat&logo=yup&logoColor=white)` |
 | Joi | `![Joi](https://img.shields.io/badge/Joi-1B1B1F?style=flat&logo=joi&logoColor=white)` |
 | class-validator | `![class-validator](https://img.shields.io/badge/class--validator-E0234E?style=flat&logo=nestjs&logoColor=white)` |
+
+## Vector Databases & Retrieval
+
+| Technology | Badge |
+|---|---|
+| Milvus | `![Milvus](https://img.shields.io/badge/Milvus-00A1EA?style=flat&logo=milvus&logoColor=white)` |
+| Pinecone | `![Pinecone](https://img.shields.io/badge/Pinecone-000000?style=flat&logo=pinecone&logoColor=white)` |
+| Qdrant | `![Qdrant](https://img.shields.io/badge/Qdrant-DC244C?style=flat&logo=qdrant&logoColor=white)` |
+| Weaviate | `![Weaviate](https://img.shields.io/badge/Weaviate-FF6B6B?style=flat&logo=weaviate&logoColor=white)` |
+| Chroma | `![Chroma](https://img.shields.io/badge/Chroma-FF6E4A?style=flat&logo=chroma&logoColor=white)` |
+| pgvector | `![pgvector](https://img.shields.io/badge/pgvector-4169E1?style=flat&logo=postgresql&logoColor=white)` |
+| FAISS | `![FAISS](https://img.shields.io/badge/FAISS-0467DF?style=flat&logo=meta&logoColor=white)` |
+
+## AI Inference & Serving
+
+| Technology | Badge |
+|---|---|
+| vLLM | `![vLLM](https://img.shields.io/badge/vLLM-FFD23F?style=flat&logo=vllm&logoColor=black)` |
+| llama.cpp | `![llama.cpp](https://img.shields.io/badge/llama.cpp-000000?style=flat&logo=llama&logoColor=white)` |
+| ONNX Runtime | `![ONNX](https://img.shields.io/badge/ONNX_Runtime-005CED?style=flat&logo=onnx&logoColor=white)` |
+| GGUF | `![GGUF](https://img.shields.io/badge/GGUF-4B8BBE?style=flat&logo=llama&logoColor=white)` |
+| TensorRT | `![TensorRT](https://img.shields.io/badge/TensorRT-76B900?style=flat&logo=nvidia&logoColor=white)` |
+| CUDA | `![CUDA](https://img.shields.io/badge/CUDA-76B900?style=flat&logo=nvidia&logoColor=white)` |
+| Transformers | `![Transformers](https://img.shields.io/badge/Transformers-FFD21E?style=flat&logo=huggingface&logoColor=black)` |
+
+## Data & Streaming
+
+| Technology | Badge |
+|---|---|
+| Apache Spark | `![Spark](https://img.shields.io/badge/Apache_Spark-E25A1C?style=flat&logo=apachespark&logoColor=white)` |
+| Apache Flink | `![Flink](https://img.shields.io/badge/Apache_Flink-E6526F?style=flat&logo=apacheflink&logoColor=white)` |
+| Airflow | `![Airflow](https://img.shields.io/badge/Airflow-017CEE?style=flat&logo=apacheairflow&logoColor=white)` |
+| dbt | `![dbt](https://img.shields.io/badge/dbt-FF694B?style=flat&logo=dbt&logoColor=white)` |
+| MinIO | `![MinIO](https://img.shields.io/badge/MinIO-C72E49?style=flat&logo=minio&logoColor=white)` |
+| DuckDB | `![DuckDB](https://img.shields.io/badge/DuckDB-FFF000?style=flat&logo=duckdb&logoColor=black)` |
+| Arrow | `![Arrow](https://img.shields.io/badge/Apache_Arrow-2A2A2A?style=flat&logo=apachearrow&logoColor=white)` |
+
+## Runtime & Package Managers
+
+| Technology | Badge |
+|---|---|
+| Node.js | `![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=nodedotjs&logoColor=white)` |
+| Deno | `![Deno](https://img.shields.io/badge/Deno-000000?style=flat&logo=deno&logoColor=white)` |
+| Bun | `![Bun](https://img.shields.io/badge/Bun-000000?style=flat&logo=bun&logoColor=white)` |
+| uv | `![uv](https://img.shields.io/badge/uv-DE5FE9?style=flat&logo=astral&logoColor=white)` |
+| Poetry | `![Poetry](https://img.shields.io/badge/Poetry-60A5FA?style=flat&logo=poetry&logoColor=white)` |
+| Conda | `![Conda](https://img.shields.io/badge/Conda-44A833?style=flat&logo=anaconda&logoColor=white)` |
+| JVM | `![JVM](https://img.shields.io/badge/JVM-ED8B00?style=flat&logo=openjdk&logoColor=white)` |
+| .NET | `![.NET](https://img.shields.io/badge/.NET-512BD4?style=flat&logo=dotnet&logoColor=white)` |
+
+---
+
+## Adding a Missing Technology
+
+When a technology is not listed:
+
+1. Find its Simple Icons slug at `https://simpleicons.org/`.
+2. Use the brand's official hex colour without the leading `#`.
+3. Choose logo text colour for contrast — `white` on dark fills, `black` on light fills.
+4. Format: `![Name](https://img.shields.io/badge/{Name}-{HEX}?style=flat&logo={slug}&logoColor={white|black})`
+5. URL-encode spaces as `%20` and literal hyphens as `--`.
+
+**Do not invent a colour or slug.** If the icon does not exist in Simple Icons, omit the
+`logo` parameter rather than guessing a slug that will render as a broken image.

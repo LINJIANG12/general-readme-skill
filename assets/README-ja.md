@@ -1,3 +1,7 @@
+> [!NOTE]
+> この翻訳は v2.0 アーキテクチャに未同期です。内容が異なる場合は
+> [English original](../README.md) が優先されます。
+
 <h1 align="center">General README Skill</h1>
 <p align="center">
   <strong>AI コーディングアシスタントを使用して、任意のプロジェクトのプロフェッショナルな README を生成</strong>

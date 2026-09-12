@@ -1,3 +1,7 @@
+> [!NOTE]
+> 本译文尚未同步至 v2.0 架构，仍在描述 v1 的流水线。如有出入，请以
+> [English original](../README.md) 为准。
+
 <h1 align="center">General README Skill</h1>
 <p align="center">
   <strong>使用 AI 编程助手为任意项目生成专业的 README 文件</strong>

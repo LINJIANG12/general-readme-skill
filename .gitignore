@@ -1,1 +1,10 @@
 docs
+
+# Local research material — third-party README snapshots used for benchmarking.
+# Not part of the distributed skill.
+benchmark_readmes/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp

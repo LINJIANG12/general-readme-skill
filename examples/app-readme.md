@@ -110,6 +110,18 @@ graph LR
     D --> F[(PostgreSQL)]
     D --> G[(Redis)]
     E --> G
+
+    classDef client fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
+    classDef service fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
+    classDef auth fill:#F97316,stroke:#EA580C,color:#fff,stroke-width:2px
+    classDef data fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
+    classDef queue fill:#06B6D4,stroke:#0891B2,color:#fff,stroke-width:2px
+
+    class A client
+    class B,D,E service
+    class C auth
+    class F data
+    class G queue
 ```
 
 ## Configuration

@@ -1,3 +1,7 @@
+> [!NOTE]
+> Этот перевод не синхронизирован с архитектурой v2.0. При расхождениях
+> приоритет имеет [English original](../README.md).
+
 <h1 align="center">General README Skill</h1>
 <p align="center">
   <strong>Генерация профессиональных README файлов для любого проекта с помощью AI-ассистентов</strong>

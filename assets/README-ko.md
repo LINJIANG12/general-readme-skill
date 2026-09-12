@@ -1,3 +1,7 @@
+> [!NOTE]
+> 이 번역은 v2.0 아키텍처와 동기화되지 않았습니다. 내용이 다를 경우
+> [English original](../README.md)이 우선합니다.
+
 <h1 align="center">General README Skill</h1>
 <p align="center">
   <strong>AI 코딩 어시스턴트를 사용하여 모든 프로젝트의 전문적인 README 파일 생성</strong>

@@ -63,10 +63,10 @@ For each, locate the matching row in the evidence map.
 
 ### Check
 
-1. Read the fixed 20-section order from `SKILL.md`.
+1. Read the fixed section order from `SKILL.md`.
 2. Confirm every section that has scan data is present.
 3. Confirm the present sections appear in the fixed order, with nothing reordered.
-4. Confirm no section outside the 20 was invented.
+4. Confirm no section outside the fixed list was invented.
 5. Confirm every absent section genuinely had no data in the evidence map.
 
 ### Fail conditions

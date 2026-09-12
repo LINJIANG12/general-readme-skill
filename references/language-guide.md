@@ -280,13 +280,16 @@ follow the project.
 
 | English | Chinese | Japanese | Korean | Spanish | French | German |
 |---|---|---|---|---|---|---|
+| What's Inside | 核心内容 | 収録内容 | 포함 내용 | Contenido | Contenu | Inhalt |
 | Features | 功能特性 | 機能 | 기능 | Características | Fonctionnalités | Funktionen |
+| Demo | 演示 | デモ | 데모 | Demostración | Démonstration | Demo |
 | Quick Start | 快速开始 | クイックスタート | 빠른 시작 | Inicio rápido | Démarrage rapide | Schnellstart |
 | Installation | 安装 | インストール | 설치 | Instalación | Installation | Installation |
 | Usage | 使用方法 | 使い方 | 사용법 | Uso | Utilisation | Verwendung |
+| Requirements | 运行环境与依赖 | 動作環境 | 실행 환경 | Requisitos | Prérequis | Voraussetzungen |
 | Configuration | 配置 | 設定 | 설정 | Configuración | Configuration | Konfiguration |
 | API | API | API | API | API | API | API |
-| Architecture | 架构 | アーキテクチャ | 아키텍처 | Arquitectura | Architecture | Architektur |
+| How It Works | 基本工作流程 | 仕組み | 동작 방식 | Cómo funciona | Fonctionnement | Funktionsweise |
 | Deployment | 部署 | デプロイ | 배포 | Despliegue | Déploiement | Bereitstellung |
 | Contributing | 贡献 | コントリビュート | 기여 | Contribuir | Contribuer | Mitwirken |
 | Community | 社区 | コミュニティ | 커뮤니티 | Comunidad | Communauté | Community |

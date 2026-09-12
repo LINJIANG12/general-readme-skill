@@ -72,24 +72,29 @@ This is the only README structure the skill produces. Sections appear in exactly
 order. **A section is skipped entirely when the scan produced no data for it** — never
 `N/A`, never `Coming soon`, never a placeholder.
 
-A jumpable table of contents may sit between the Hero and the first section when the
-document has more than about five sections (`references/hero-and-html.md` → *Table of
-Contents*). It is a navigation aid, not one of the sections.
+The **Hero** always sits first, followed by an optional **Table of Contents**; neither is
+counted among the 20. A jumpable table of contents belongs there when the document has
+more than about five sections (`references/hero-and-html.md` → *Table of Contents*). It is
+a navigation aid, not one of the sections.
+
+**What's Inside is not a file inventory.** It describes what the project ships in the
+reader's terms — capabilities, modules or components — not the internal layout of the
+repository. The directory tree belongs in Project Structure, not here.
 
 | # | Section | Include when |
 |---|---|---|
-| 1 | **Hero** | Always |
+| 1 | **What's Inside** | The project ships enumerable capabilities, modules or components |
 | 2 | **Features** | At least one user-visible, high-impact differentiator |
-| 3 | **Demo / Preview** | Image or video assets exist in the repo |
+| 3 | **Demo / Preview** | Image, video or example output exists in the repo |
 | 4 | **Quick Start** | A runnable entry point exists |
-| 5 | **Usage** | A public API, interface or exported surface exists |
-| 6 | **Configuration** | Config files detected (`.env.example`, `*.config.*`, `*.yaml`, `*.toml`) |
-| 7 | **Architecture** | A diagram can be derived from the source |
-| 8 | **API** | Routes, schemas or exported service definitions detected |
-| 9 | **Commands** | A CLI entrypoint exists (`bin`, `cmd/`, `[[bin]]`, `[project.scripts]`) |
-| 10 | **Project Structure** | More than one top-level source directory |
-| 11 | **Tech Stack** | Dependencies declared in a manifest |
-| 12 | **Compatibility** | Runtime, browser or OS requirements are declared |
+| 5 | **How It Works** | A flow, workflow or architecture can be derived from the source |
+| 6 | **Usage** | A public API, interface or exported surface exists |
+| 7 | **Requirements** | Runtime, platform or dependency requirements exist |
+| 8 | **Configuration** | Config files detected (`.env.example`, `*.config.*`, `*.yaml`, `*.toml`) |
+| 9 | **Project Structure** | More than one top-level source directory |
+| 10 | **API** | Routes, schemas or exported service definitions detected |
+| 11 | **Commands** | A CLI entrypoint exists (`bin`, `cmd/`, `[[bin]]`, `[project.scripts]`) |
+| 12 | **Tech Stack** | Dependencies declared in a manifest |
 | 13 | **Deployment** | Dockerfile, compose file, CI config or platform manifests detected |
 | 14 | **Roadmap** | A roadmap file, milestone config or documented plan exists |
 | 15 | **FAQ** | An FAQ document exists, or recurring questions are documented |
@@ -119,8 +124,8 @@ Read a reference only when the current task needs it.
 |---|---|
 | Full phase procedures, Upgrade-mode diffing | `references/workflow.md` |
 | Detection rules, evidence-map format | `references/project-scan.md` |
-| Hero / Features / Quick Start / Usage / Config / Deployment recipes | `references/sections-core.md` |
-| Architecture / API / Commands / Structure / Stack / Compatibility recipes | `references/sections-reference.md` |
+| What's Inside / Hero / Features / Demo / Quick Start / Usage / Config / Deployment recipes | `references/sections-core.md` |
+| How It Works / API / Commands / Structure / Stack / Requirements recipes | `references/sections-reference.md` |
 | Contributing / Community / Sponsors / Roadmap / FAQ / Security / License recipes | `references/sections-growth.md` |
 | Hero template, HTML recipes, alerts, link pool, collapsing | `references/hero-and-html.md` |
 | Quick Start ladder, PaaS matrix, multi-package-manager blocks | `references/onboarding.md` |
@@ -243,8 +248,8 @@ If the scan produced no usable data, stop and reply exactly:
 |---|---|
 | `workflow.md` | Phase procedures and Upgrade-mode diffing |
 | `project-scan.md` | Detection rules, evidence-map format |
-| `sections-core.md` | Hero, Features, Demo, Quick Start, Usage, Configuration, Deployment, Limitations |
-| `sections-reference.md` | Architecture, API, Commands, Structure, Stack, Compatibility, SDKs, Packages |
+| `sections-core.md` | What's Inside, Hero, Features, Demo, Quick Start, Usage, Configuration, Deployment, Limitations |
+| `sections-reference.md` | How It Works, API, Commands, Structure, Stack, Requirements, SDKs, Packages |
 | `sections-growth.md` | Contributing, Community, Roadmap, FAQ, Security, Sponsors, Citation, License |
 | `hero-and-html.md` | Hero template and HTML recipe library |
 | `onboarding.md` | Quick Start ladder, deploy matrices |

@@ -2,7 +2,7 @@
   Example: Application README
   Badge style: Flat
   Project type: Full-stack application (taskboard)
-  Sections: Hero, Features, Quick Start, Architecture, Configuration, API, Directory Structure, Tech Stack, Deployment, Contributing, License
+  Sections: Hero, Features, Quick Start, How It Works, Configuration, API, Directory Structure, Tech Stack, Deployment, Contributing, License
   This example demonstrates a comprehensive README for a full-stack web application.
 -->
 
@@ -98,7 +98,7 @@ npm run dev
 
 The application is available at `http://localhost:3000`.
 
-## Architecture
+## How It Works
 
 ```mermaid
 graph LR

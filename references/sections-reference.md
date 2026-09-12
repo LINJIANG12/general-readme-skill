@@ -7,21 +7,21 @@ covers when to include a section and how to shape its content.
 
 ## Table of Contents
 
-- [Architecture](#architecture)
+- [How It Works](#how-it-works)
 - [API](#api)
 - [Commands](#commands)
 - [Project Structure](#project-structure)
 - [Tech Stack](#tech-stack)
-- [Compatibility](#compatibility)
+- [Requirements](#requirements)
 - [SDK Matrix](#sdk-matrix)
 - [Scenario Matrix](#scenario-matrix)
 - [Packages](#packages)
 
 ---
 
-## Architecture
+## How It Works
 
-**Purpose:** let an engineer understand the system's shape before reading code.
+**Purpose:** let an engineer understand the system's shape and flow before reading code.
 
 **Include when:** the scan can derive a diagram from the source — services, modules, classes,
 tables or pipelines carrying real names.
@@ -40,7 +40,7 @@ tables or pipelines carrying real names.
 ### Shape
 
 ```
-## Architecture
+## How It Works
 
 <optional: one line, omit when the diagram already tells the story>
 
@@ -259,7 +259,7 @@ src/
 
 ---
 
-## Compatibility
+## Requirements
 
 **Purpose:** answer "will this run on my machine" before installation.
 
@@ -268,7 +268,7 @@ Include when the scan found declared runtime, browser, OS or platform requiremen
 ### Shape
 
 ```
-## Compatibility
+## Requirements
 
 | Runtime | Supported |
 |---|---|

@@ -76,7 +76,7 @@ These are part of the house style and are never offered as options:
 
 | Fixed | Value |
 |---|---|
-| Section order | The 20-section order in `SKILL.md` |
+| Section order | The fixed section order in `SKILL.md` |
 | Writing style | The house style in `references/writing-style.md` |
 | Badge style | `flat` |
 | Diagram palette | The colour system in `references/diagram-templates.md` |
@@ -140,7 +140,7 @@ Only `declared` evidence may be used for versions, defaults, ports and commands.
 
 ### 2.1 Loading Order
 
-1. `SKILL.md` → the fixed 20-section order and the include-when conditions
+1. `SKILL.md` → the fixed section order and the include-when conditions
 2. `references/project-scan.md` → which sections have data
 3. `references/sections-core.md` → identity and onboarding recipes
 4. `references/sections-reference.md` → technical recipes
@@ -285,7 +285,7 @@ Report:
 ```
 Upgrade summary
   Preserved   : 3 manual sections, 12 manual link keys
-  Regenerated : Hero, Features, Quick Start, Architecture
+  Regenerated : Hero, What's Inside, Features, Demo, Quick Start, How It Works
   Added       : Roadmap, FAQ (newly supported by scan)
   Removed     : none
   Gates       : all pass

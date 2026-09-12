@@ -163,7 +163,7 @@ onMessage('kicked', (data) => { /* handle session kicked */ })
 
 ---
 
-## Architecture
+## How It Works
 
 ```mermaid
 graph LR

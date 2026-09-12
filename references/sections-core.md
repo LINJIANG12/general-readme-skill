@@ -9,6 +9,7 @@ Templates for HTML regions are **not** reproduced here. Copy them verbatim from
 
 ## Table of Contents
 
+- [What's Inside](#whats-inside)
 - [Hero](#hero)
 - [Features](#features)
 - [Demo / Preview](#demo--preview)
@@ -17,6 +18,46 @@ Templates for HTML regions are **not** reproduced here. Copy them verbatim from
 - [Configuration](#configuration)
 - [Deployment](#deployment)
 - [Limitations](#limitations)
+
+---
+
+## What's Inside
+
+**Purpose:** let the reader see the shape of the product in one screen — what it contains,
+in the reader's terms — before they read the detail.
+
+**Include when:** the project ships a set of enumerable capabilities, modules, packages,
+skills or components. Omit it for a single-purpose tool that has nothing to enumerate.
+
+### Shape
+
+```
+## What's Inside
+
+<one line: what the set is and how it is organised>
+
+### <Group name>
+
+| Item | What it does |
+|---|---|
+| `<item>` | <one clause on the capability> |
+```
+
+### Rules
+
+1. **Describe capabilities, not files.** `Draft, review and publish flow` — not
+   `src/flows/`. This is the section most likely to decay into an internal inventory, and
+   gate G1 will not catch it because every file name is true. The discipline is editorial.
+2. **Group by what the reader does**, not by the repository's folder layout. Two to five
+   groups is the useful range.
+3. **One line per item**, leading with the outcome, the same way Features does.
+4. **Link each item** to its detail page when one exists (`references/x.md`, `docs/x.md`).
+5. **Cap at about twelve items.** Beyond that it is a second table of contents, which the
+   document already has.
+6. **Do not restate Features.** Features argues why the product is better; What's Inside
+   states what exists. A row that would fit Features belongs there.
+7. **Sourcing.** Every row must trace to a scan row — a module, an exported symbol, a
+   documented capability. Delete a row rather than invent one.
 
 ---
 
@@ -87,7 +128,7 @@ not `logo` or `banner`.
 ### What counts as a feature
 
 A feature answers "what does this do for me". An implementation detail answers "how is it
-built" and belongs in Architecture or Contributing.
+built" and belongs in How It Works or Contributing.
 
 | Verdict | Feature | Why |
 |---|---|---|

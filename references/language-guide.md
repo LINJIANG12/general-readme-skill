@@ -280,7 +280,7 @@ follow the project.
 
 | English | Chinese | Japanese | Korean | Spanish | French | German |
 |---|---|---|---|---|---|---|
-| What's Inside | 核心内容 | 収録内容 | 포함 내용 | Contenido | Contenu | Inhalt |
+| Overview | 概览 | 概要 | 개요 | Descripción general | Vue d'ensemble | Überblick |
 | Features | 功能特性 | 機能 | 기능 | Características | Fonctionnalités | Funktionen |
 | Demo | 演示 | デモ | 데모 | Demostración | Démonstration | Demo |
 | Quick Start | 快速开始 | クイックスタート | 빠른 시작 | Inicio rápido | Démarrage rapide | Schnellstart |

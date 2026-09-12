@@ -35,7 +35,7 @@ Type `/readme` in any repository and the skill scans the project, writes a READM
 
 ## Table of Contents
 
-- [What's Inside](#whats-inside)
+- [Overview](#overview)
 - [Features](#features)
 - [Demo](#demo)
 - [Quick Start](#quick-start)
@@ -45,15 +45,13 @@ Type `/readme` in any repository and the skill scans the project, writes a READM
 - [Contributing & Community](#contributing--community)
 - [License](#license)
 
-## What's Inside
+## Overview
 
 This is a skill for AI coding assistants: it lets your assistant read the project in front of it and write it a README worth keeping.
 
 The usual failure of AI-written READMEs is invention — commands the project does not have, features that were never built, version numbers pulled out of thin air. The skill closes that door. Everything it writes lands on an evidence map first: every claim has to point at a file in the repository, and a claim that cannot is deleted rather than hedged.
 
-It starts with a read-only scan. The skill lists the full file tree with its hierarchy, reads the manifests, entry points and primary config in full, and samples or skips the rest. It does not try to understand every line of the implementation — only enough to write a document that holds up.
-
-The scan produces an evidence map. The skill fills the sections that have data, in a fixed order, and drops the ones that do not: no `N/A`, no `Coming soon`, no placeholders. Before anything is written, seven gates check evidence, structure, voice, visuals, links, accessibility and i18n; anything that fails is repaired or deleted. The primary language occupies `README.md`, every other language gets its own file, and the switcher runs both ways.
+What you get is a document you can commit as-is: no placeholders, no broken links, alt text on every image. The section order is fixed, so every project produces the same layout, and a primary and a secondary language each get their own file with a switcher that runs both ways.
 
 You do one thing: type `/readme` in the project directory. If a README already exists, the skill switches to Upgrade mode, keeps what you wrote by hand, and rewrites only the parts it maintains.
 
@@ -159,7 +157,11 @@ flowchart LR
     class A1,B1,C1,D1 artifact
 ```
 
-A typical generation lands between 10 and 14 sections. The order is fixed; a section the scan cannot support is dropped entirely — never `N/A`, never `Coming soon`, never a placeholder.
+- **0 Configure** — resolves two things only: the primary language (Chinese Simplified by default) and the entry mode (Create / Upgrade). No structure to pick, no voice to pick
+- **1 Scan** — reads static files only, never executes code. It lists the full file tree with its hierarchy, reads the manifests, entry points, `README`, `LICENSE` and primary config in full, and samples or skips the rest. The output is a `claim → source` evidence map
+- **2 Compose** — fills the sections that have data, in the fixed order. A typical generation lands between 10 and 14 sections; a section with no data is dropped
+- **3 Verify** — runs the seven gates; anything that fails is repaired or deleted
+- **4 Output** — writes `README.md` and each language file, normalising encoding, line endings and blank lines
 
 <details>
 <summary>Full section list and quality gates</summary>
@@ -168,7 +170,7 @@ Each section appears only when the scan has data for it.
 
 | # | Section | Include when |
 |---|---|---|
-| 1 | **What's Inside** | The project ships enumerable capabilities, modules or components |
+| 1 | **Overview** | There is a story to tell about what the project is and why it exists |
 | 2 | **Features** | At least one user-visible, high-impact differentiator |
 | 3 | **Demo / Preview** | Image, video or example output exists in the repo |
 | 4 | **Quick Start** | A runnable entry point exists |

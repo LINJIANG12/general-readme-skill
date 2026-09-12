@@ -9,7 +9,7 @@ Templates for HTML regions are **not** reproduced here. Copy them verbatim from
 
 ## Table of Contents
 
-- [What's Inside](#whats-inside)
+- [Overview](#overview)
 - [Hero](#hero)
 - [Features](#features)
 - [Demo / Preview](#demo--preview)
@@ -21,46 +21,45 @@ Templates for HTML regions are **not** reproduced here. Copy them verbatim from
 
 ---
 
-## What's Inside
+## Overview
 
-**Purpose:** orient the reader — what this project is, what it does, and how it works — in
-flowing prose, before they reach the reference material.
+**Purpose:** orient the reader — what this project is and why it exists — in flowing prose,
+before they reach the reference material. The concrete mechanics belong to **How It Works**.
 
-**Include when:** there is a story to tell about what the project is and how it goes. Most
+**Include when:** there is a story to tell about what the project is and why it exists. Most
 projects have one. Omit it only for a trivial tool with nothing to explain.
 
 ### Shape
 
 ```
-## What's Inside
+## Overview
 
 <paragraph 1: what this is, and who it is for>
 
 <paragraph 2: the problem it solves, or why it exists>
 
-<paragraph 3-4: how it works, narrated in order>
+<paragraph 3: what the reader gets — the promise, in outcomes>
 
-<paragraph 5: what the reader has to do>
+<paragraph 4: what the reader has to do>
 ```
 
 ### Rules
 
-1. **Prose, in short paragraphs.** No table, no bullet list, no sub-headings. Three to five
+1. **Prose, in short paragraphs.** No table, no bullet list, no sub-headings. Three to four
    paragraphs of two to four sentences each. A paragraph stays a paragraph — see
    `writing-style.md` → *Tables*.
-2. **Answer "what is this and how does it work".** That is the whole job. Not an inventory,
-   not a feature list, not a file map.
+2. **Answer "what is this and why does it exist".** The *why* is the point. If the section
+   only restates what the project does, it has no reason to exist.
 3. **Open with what it is.** The first sentence names the thing and its purpose: `A skill
    that lets your AI read a project and write it a README`.
-4. **Narrate in order.** Walk the reader through the flow as a sequence, the way you would
-   explain it to a colleague.
-5. **Concrete over abstract.** Name the actual steps and outputs — the evidence map, the
-   fixed section order, the quality gates — not "a sophisticated pipeline".
-6. **Do not repeat the Hero**, and do not restate How It Works in full. This is the
-   orientation; How It Works, when a project still needs it, carries the diagram and the
-   mechanics.
-7. **Do not restate Features.** Features argues why the product is better; What's Inside
-   states what it is and how it works.
+4. **Leave the mechanics to How It Works.** Give the shape and the payoff here; the
+   phase-by-phase walk, the diagram and the parameters belong to the next section. The two
+   sections must not say the same thing twice.
+5. **Concrete over abstract.** Name the real promise — no invented content, no placeholders,
+   hand-written parts survive a re-run — not "a better README experience".
+6. **Do not repeat the Hero.** The Hero is one line; this is the paragraph behind it.
+7. **Do not restate Features.** Features argues why the product is better; Overview says what
+   it is and why it exists.
 8. **Every claim must trace to a scan row.** Delete a claim rather than invent one.
 
 ---

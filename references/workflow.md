@@ -285,7 +285,7 @@ Report:
 ```
 Upgrade summary
   Preserved   : 3 manual sections, 12 manual link keys
-  Regenerated : Hero, What's Inside, Features, Demo, Quick Start, How It Works
+  Regenerated : Hero, Overview, Features, Demo, Quick Start, How It Works
   Added       : Roadmap, FAQ (newly supported by scan)
   Removed     : none
   Gates       : all pass

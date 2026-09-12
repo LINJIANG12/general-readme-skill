@@ -79,13 +79,14 @@ counted among the 20. A jumpable table of contents belongs there when the docume
 more than about five sections (`references/hero-and-html.md` → *Table of Contents*). It is
 a navigation aid, not one of the sections.
 
-**What's Inside is prose, not an inventory.** It answers, in a few short paragraphs, what
-the project is and how it works — no table, no bullet list. It is the reader's orientation;
-the directory tree belongs in Project Structure, not here.
+**Overview is prose, not an inventory.** It answers, in a few short paragraphs, what the
+project is and why it exists — no table, no bullet list. It is the reader's orientation and
+it carries the *why*; **How It Works** carries the concrete mechanics. The directory tree
+belongs in Project Structure, not here.
 
 | # | Section | Include when |
 |---|---|---|
-| 1 | **What's Inside** | There is a story to tell about what the project is and how it works |
+| 1 | **Overview** | There is a story to tell about what the project is and why it exists |
 | 2 | **Features** | At least one user-visible, high-impact differentiator |
 | 3 | **Demo / Preview** | Image, video or example output exists in the repo |
 | 4 | **Quick Start** | A runnable entry point exists |
@@ -126,7 +127,7 @@ Read a reference only when the current task needs it.
 |---|---|
 | Full phase procedures, Upgrade-mode diffing | `references/workflow.md` |
 | Detection rules, evidence-map format | `references/project-scan.md` |
-| What's Inside / Hero / Features / Demo / Quick Start / Usage / Config / Deployment recipes | `references/sections-core.md` |
+| Overview / Hero / Features / Demo / Quick Start / Usage / Config / Deployment recipes | `references/sections-core.md` |
 | How It Works / API / Commands / Structure / Stack / Requirements recipes | `references/sections-reference.md` |
 | Contributing / Community / Sponsors / Roadmap / FAQ / Security / License recipes | `references/sections-growth.md` |
 | Hero template, HTML recipes, alerts, link pool, collapsing | `references/hero-and-html.md` |
@@ -250,7 +251,7 @@ If the scan produced no usable data, stop and reply exactly:
 |---|---|
 | `workflow.md` | Phase procedures and Upgrade-mode diffing |
 | `project-scan.md` | Detection rules, evidence-map format |
-| `sections-core.md` | What's Inside, Hero, Features, Demo, Quick Start, Usage, Configuration, Deployment, Limitations |
+| `sections-core.md` | Overview, Hero, Features, Demo, Quick Start, Usage, Configuration, Deployment, Limitations |
 | `sections-reference.md` | How It Works, API, Commands, Structure, Stack, Requirements, SDKs, Packages |
 | `sections-growth.md` | Contributing, Community, Roadmap, FAQ, Security, Sponsors, Citation, License |
 | `hero-and-html.md` | Hero template and HTML recipe library |

@@ -47,7 +47,15 @@ Type `/readme` in any repository and the skill scans the project, writes a READM
 
 ## What's Inside
 
-The skill is one router file plus 15 reference files loaded on demand, covering the whole path from scan to delivery. The evidence map binds every claim to a real source; the section recipes define how each of the 20 sections is written and skipped, so a section with no data is dropped; the visual templates unify the Hero, table of contents, badges, diagrams and collapsible blocks, and require alt text and header rows. The multi-language rules define file naming, a bidirectional switcher and region-mapped links, and the quality gates check evidence, structure, voice, visuals, links, accessibility and i18n before delivery.
+This is a skill for AI coding assistants: it lets your assistant read the project in front of it and write it a README worth keeping.
+
+The usual failure of AI-written READMEs is invention — commands the project does not have, features that were never built, version numbers pulled out of thin air. The skill closes that door. Everything it writes lands on an evidence map first: every claim has to point at a file in the repository, and a claim that cannot is deleted rather than hedged.
+
+It starts with a read-only scan. The skill lists the full file tree with its hierarchy, reads the manifests, entry points and primary config in full, and samples or skips the rest. It does not try to understand every line of the implementation — only enough to write a document that holds up.
+
+The scan produces an evidence map. The skill fills the sections that have data, in a fixed order, and drops the ones that do not: no `N/A`, no `Coming soon`, no placeholders. Before anything is written, seven gates check evidence, structure, voice, visuals, links, accessibility and i18n; anything that fails is repaired or deleted. The primary language occupies `README.md`, every other language gets its own file, and the switcher runs both ways.
+
+You do one thing: type `/readme` in the project directory. If a README already exists, the skill switches to Upgrade mode, keeps what you wrote by hand, and rewrites only the parts it maintains.
 
 <div align="right">
 
@@ -150,16 +158,6 @@ flowchart LR
     class A,B,C,D,E phase
     class A1,B1,C1,D1 artifact
 ```
-
-| Phase | Input | Output |
-|---|---|---|
-| **0 Configure** | User input | Primary language (Chinese Simplified by default), secondary languages, entry mode (Create / Upgrade) |
-| **1 Scan** | Static repository files | Evidence map: one `claim → source` row per assertion |
-| **2 Compose** | Evidence map | The surviving sections, filled in the fixed order |
-| **3 Verify** | Draft | Pass, repair or delete results for the seven gates |
-| **4 Output** | Verified draft | `README.md` and each language file |
-
-The scan reads files only and never executes code: it lists the full file tree with its hierarchy first, reads the manifests, entry points, `README`, `LICENSE` and primary config in full, then samples or skips the rest. The goal is enough understanding to write a qualified document, not to read every implementation.
 
 A typical generation lands between 10 and 14 sections. The order is fixed; a section the scan cannot support is dropped entirely — never `N/A`, never `Coming soon`, never a placeholder.
 

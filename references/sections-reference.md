@@ -23,6 +23,11 @@ covers when to include a section and how to shape its content.
 
 **Purpose:** let an engineer understand the system's shape and flow before reading code.
 
+**Include when:** a flow, workflow or architecture can be derived from the source. Keep it
+for the diagram and the mechanics. When What's Inside already narrates the flow in prose,
+this section adds the visual and the detail rather than repeating the story; omit it when
+there is nothing to add beyond the overview.
+
 **Include when:** the scan can derive a diagram from the source — services, modules, classes,
 tables or pipelines carrying real names.
 

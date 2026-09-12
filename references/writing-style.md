@@ -138,8 +138,7 @@ Everything else stays a list or prose:
 1. **Never use a table to decorate prose.** If the cells hold sentences, it is prose.
 2. **Two columns are usually a list.** Convert when `-` bullets read the same or better.
 3. **Below four rows, a table rarely pays off** unless the columns are genuinely comparable.
-4. **A section that can be one paragraph stays one paragraph.** Do not split a short
-   overview into a grid.
+4. **Prose stays prose.** Never split a paragraph section into a grid to look structured.
 5. **Every table keeps a header row**, and no header cell is empty — gate G6.
 6. **Never nest a list inside a table cell.**
 7. When in doubt, prefer the list. A document of lists reads faster than a document of

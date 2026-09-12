@@ -23,35 +23,45 @@ Templates for HTML regions are **not** reproduced here. Copy them verbatim from
 
 ## What's Inside
 
-**Purpose:** give the reader the shape of the product in a single paragraph — what it
-contains, in the reader's terms — before they read the detail.
+**Purpose:** orient the reader — what this project is, what it does, and how it works — in
+flowing prose, before they reach the reference material.
 
-**Include when:** the project ships a set of enumerable capabilities, modules, packages,
-skills or components. Omit it for a single-purpose tool that has nothing to enumerate.
+**Include when:** there is a story to tell about what the project is and how it goes. Most
+projects have one. Omit it only for a trivial tool with nothing to explain.
 
 ### Shape
 
 ```
 ## What's Inside
 
-<one paragraph: what the set is, how it is organised, and what it covers>
+<paragraph 1: what this is, and who it is for>
+
+<paragraph 2: the problem it solves, or why it exists>
+
+<paragraph 3-4: how it works, narrated in order>
+
+<paragraph 5: what the reader has to do>
 ```
 
 ### Rules
 
-1. **One paragraph.** No sub-headings, no table, no bullet list. This is a short
-   orientation, not an inventory — the sections that follow carry the detail.
-2. **Two to five sentences.** Name the parts, say how they relate, then stop.
-3. **Describe capabilities, not files.** `Draft, review and publish flow` — not
-   `src/flows/`. This is the section most likely to decay into an internal file list, and
-   gate G1 will not catch it because every file name is true. The discipline is editorial.
-4. **Link the detail inline** where a part maps to a page (`references/x.md`,
-   `docs/x.md`). Do not build a second table of contents.
-5. **Do not restate Features.** Features argues why the product is better; What's Inside
-   states what exists.
-6. **No table and no item grid.** See `writing-style.md` → *Tables*.
-7. **Sourcing.** Every claim must trace to a scan row — a module, an exported symbol, a
-   documented capability. Delete a claim rather than invent one.
+1. **Prose, in short paragraphs.** No table, no bullet list, no sub-headings. Three to five
+   paragraphs of two to four sentences each. A paragraph stays a paragraph — see
+   `writing-style.md` → *Tables*.
+2. **Answer "what is this and how does it work".** That is the whole job. Not an inventory,
+   not a feature list, not a file map.
+3. **Open with what it is.** The first sentence names the thing and its purpose: `A skill
+   that lets your AI read a project and write it a README`.
+4. **Narrate in order.** Walk the reader through the flow as a sequence, the way you would
+   explain it to a colleague.
+5. **Concrete over abstract.** Name the actual steps and outputs — the evidence map, the
+   fixed section order, the quality gates — not "a sophisticated pipeline".
+6. **Do not repeat the Hero**, and do not restate How It Works in full. This is the
+   orientation; How It Works, when a project still needs it, carries the diagram and the
+   mechanics.
+7. **Do not restate Features.** Features argues why the product is better; What's Inside
+   states what it is and how it works.
+8. **Every claim must trace to a scan row.** Delete a claim rather than invent one.
 
 ---
 

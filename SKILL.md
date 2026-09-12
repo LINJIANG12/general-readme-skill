@@ -79,13 +79,13 @@ counted among the 20. A jumpable table of contents belongs there when the docume
 more than about five sections (`references/hero-and-html.md` → *Table of Contents*). It is
 a navigation aid, not one of the sections.
 
-**What's Inside is one paragraph, not an inventory.** It describes what the project ships
-in the reader's terms — capabilities, modules or components — as prose: no table, no bullet
-list. The directory tree belongs in Project Structure, not here.
+**What's Inside is prose, not an inventory.** It answers, in a few short paragraphs, what
+the project is and how it works — no table, no bullet list. It is the reader's orientation;
+the directory tree belongs in Project Structure, not here.
 
 | # | Section | Include when |
 |---|---|---|
-| 1 | **What's Inside** | The project ships enumerable capabilities, modules or components |
+| 1 | **What's Inside** | There is a story to tell about what the project is and how it works |
 | 2 | **Features** | At least one user-visible, high-impact differentiator |
 | 3 | **Demo / Preview** | Image, video or example output exists in the repo |
 | 4 | **Quick Start** | A runnable entry point exists |

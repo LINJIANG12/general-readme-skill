@@ -1,0 +1,29 @@
+docs: register the skill with CodeBuddy and document the process
+
+Adds install/codebuddy.md and wires CodeBuddy into the READMEs, which
+previously covered only Claude Code, Copilot and Cursor.
+
+install/codebuddy.md
+- Documents the two discovery locations: user scope ~/.codebuddy/skills/ and
+  project scope <project>/.codebuddy/skills/
+- Gives the PowerShell sync commands for Windows, where the bash examples are
+  awkward
+- Records why a directory junction is the wrong tool here: Node reports a
+  junction as isSymbolicLink=true and isDirectory=false, so a loader that
+  filters entries with isDirectory() never sees it. Verified against the
+  installed skills directory before writing this down.
+- Documents verification: the expected layout, and how settings.json
+  disabledSkillsByPath can silently disable a skill
+
+README.md / README.en.md
+- CodeBuddy added to Quick Start, the per-platform install list and the
+  supported-host list
+- Corrected the English project tree, which still claimed README.md was the
+  English file and that assets/ held localized READMEs (both stale since the
+  Chinese-primary switch)
+
+Registered locally at ~/.codebuddy/skills/general-readme-skill as a real
+directory (not a junction) containing SKILL.md, references/, install/,
+examples/, assets/, README.md, README.en.md and LICENSE. Dev-only material
+(.git, benchmark_readmes/, benchmark_analysis.md) is deliberately excluded.
+Validator passes; the skill is not present in disabledSkillsByPath.

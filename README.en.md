@@ -65,7 +65,7 @@ by OxyTheCrack, and has been substantially rewritten and extended as **version 2
 | Kept | Notes |
 |---|---|
 | The core premise | Generate README files from a project scan using an AI coding assistant |
-| Multi-platform install model | Claude Code, GitHub Copilot, Cursor |
+| Multi-platform install model | Claude Code, GitHub Copilot, Cursor (CodeBuddy added in v2) |
 | Three writing tones | Energetic, Minimal, Professional (extended to six) |
 | Zero-dependency principle | No CLI, runtime or network service required |
 | Badge mapping table | Extended, not replaced |
@@ -264,6 +264,16 @@ See `references/tone-profiles.md` for the full definitions and the banned-phrase
 
 ## Quick Start
 
+### CodeBuddy
+
+```bash
+mkdir -p ~/.codebuddy/skills/general-readme-skill
+cp SKILL.md ~/.codebuddy/skills/general-readme-skill/
+cp -r references/ ~/.codebuddy/skills/general-readme-skill/
+```
+
+Restart CodeBuddy (or reload the window) so the skill directory is re-scanned.
+
 ### Claude Code
 
 ```bash
@@ -288,7 +298,7 @@ cp SKILL.md .cursor/rules/general-readme.mdc
 cp -r references/ .cursor/rules/references/
 ```
 
-Per-platform detail: `install/claude-code.md`, `install/copilot.md`, `install/cursor.md`.
+Per-platform detail: `install/codebuddy.md`, `install/claude-code.md`, `install/copilot.md`, `install/cursor.md`.
 
 ---
 
@@ -342,13 +352,15 @@ AI:   Detected: Application archetype, T2 tier.
 general-readme-skill/
 ├── SKILL.md                    # Router: principles, workflow, routing table
 ├── LICENSE                     # MIT License
-├── README.md                   # This file
-├── assets/                     # Banner and localized READMEs
+├── README.md                   # Primary documentation (Chinese)
+├── README.en.md                # This file
+├── assets/                      # Banner image
 ├── examples/                   # Worked example outputs
 │   ├── app-readme.md           # Full-stack application
 │   ├── library-readme.md       # Library / package
 │   └── oxyteamtasks-readme.md  # Real-world application
 ├── install/                    # Per-platform setup guides
+│   ├── codebuddy.md
 │   ├── claude-code.md
 │   ├── copilot.md
 │   └── cursor.md

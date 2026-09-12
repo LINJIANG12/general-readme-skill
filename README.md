@@ -59,6 +59,14 @@
 > [!IMPORTANT]
 > 需要 `git` 与一个支持技能的 AI 编程助手。本技能无其他运行时依赖。
 
+### CodeBuddy
+
+```bash
+mkdir -p ~/.codebuddy/skills/general-readme-skill
+cp SKILL.md ~/.codebuddy/skills/general-readme-skill/
+cp -r references/ ~/.codebuddy/skills/general-readme-skill/
+```
+
 ### Claude Code
 
 ```bash
@@ -85,7 +93,7 @@ cp -r references/ .cursor/rules/references/
 
 安装完成后，在对话中输入 `/readme` 即可触发。
 
-各平台完整说明见 [install/claude-code.md](install/claude-code.md)、[install/copilot.md](install/copilot.md)、[install/cursor.md](install/cursor.md)。
+各平台完整说明见 [install/codebuddy.md](install/codebuddy.md)、[install/claude-code.md](install/claude-code.md)、[install/copilot.md](install/copilot.md)、[install/cursor.md](install/cursor.md)。
 
 ## 使用方法
 
@@ -232,7 +240,7 @@ flowchart LR
 
 | 项 | 支持情况 |
 |---|---|
-| 宿主平台 | Claude Code、GitHub Copilot、Cursor |
+| 宿主平台 | CodeBuddy、Claude Code、GitHub Copilot、Cursor |
 | 渲染环境 | GitHub、GitLab、支持 GFM 的编辑器 |
 | 运行时依赖 | 无（仅需 `git` 完成安装） |
 | 技能格式 | `SKILL.md` + `references/`，遵循通用技能目录约定 |
@@ -300,6 +308,7 @@ general-readme-skill/
 │   ├── library-readme.md       # 库 / 包
 │   └── oxyteamtasks-readme.md  # 真实项目
 ├── install/                    # 各平台安装指引
+│   ├── codebuddy.md
 │   ├── claude-code.md
 │   ├── copilot.md
 │   └── cursor.md

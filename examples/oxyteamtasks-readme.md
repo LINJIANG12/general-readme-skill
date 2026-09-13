@@ -51,14 +51,12 @@
 
 ## Features
 
-| Feature | Description |
-|---|---|
-| **Microservice Architecture** | 6 independent services (5 C++ / 1 Node.js) communicating via gRPC, each with its own database access and connection pooling |
-| **Real-Time Push Notifications** | WebSocket-based push with cross-node forwarding, auto-reconnect, and offline message caching via Redis |
-| **Role-Based Access Control** | Three-tier roles (member, captain, coach) enforced at both frontend route guards and backend RPC handlers |
-| **Per-Assignee Task Tracking** | Independent status tracking per assignee on shared tasks, with batch SQL population and rollback support |
-| **Distributed Concurrency Safety** | Redis distributed locks with Lua atomic scripts for login tokens, message push, and unread counters |
-| **Load-Balanced Push Servers** | Segment tree algorithm for O(log n) PushServer allocation by connection count, with horizontal scaling support |
+- **Microservice architecture** — 6 independent services (5 C++ / 1 Node.js) communicating via gRPC, each with its own database access and connection pooling
+- **Real-time push notifications** — WebSocket-based push with cross-node forwarding, auto-reconnect and offline message caching via Redis
+- **Role-based access control** — Three-tier roles (member, captain, coach) enforced at both frontend route guards and backend RPC handlers
+- **Per-assignee task tracking** — Independent status tracking per assignee on shared tasks, with batch SQL population and rollback support
+- **Distributed concurrency safety** — Redis distributed locks with Lua atomic scripts for login tokens, message push and unread counters
+- **Load-balanced push servers** — Segment tree algorithm for O(log n) PushServer allocation by connection count, with horizontal scaling
 
 ---
 

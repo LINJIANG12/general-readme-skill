@@ -43,14 +43,12 @@
 
 ## Features
 
-| Feature | Description |
-|---|---|
-| Real-time Collaboration | WebSocket-based updates across all connected clients |
-| Task Management | Create, assign, track, and filter tasks with drag-and-drop boards |
-| Team Workspaces | Isolated workspaces with role-based access control |
-| Notifications | Email and in-app notifications for task assignments and updates |
-| Search | Full-text search across tasks, comments, and descriptions |
-| API Access | RESTful API for integrations and custom workflows |
+- **Real-time collaboration** — WebSocket-based updates across all connected clients
+- **Task management** — Create, assign, track and filter tasks with drag-and-drop boards
+- **Team workspaces** — Isolated workspaces with role-based access control
+- **Notifications** — Email and in-app notifications for task assignments and updates
+- **Search** — Full-text search across tasks, comments and descriptions
+- **API access** — RESTful API for integrations and custom workflows
 
 ## Quick Start
 

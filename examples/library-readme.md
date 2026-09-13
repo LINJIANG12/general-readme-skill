@@ -39,14 +39,12 @@
 
 ## Features
 
-| Feature | Description |
-|---|---|
-| Zero overhead | Built on native `fetch`, with no extra dependencies |
-| Type-safe responses | Full TypeScript inference from endpoint to response |
-| Automatic parsing | JSON, text and blob bodies, handled by `Content-Type` |
-| Typed errors | Errors carry the status code and the parsed response body |
-| Interceptors | Request and response middleware for auth, logging and retries |
-| Tree-shakeable | Import only what you use |
+- **Zero overhead** — Built on native `fetch`, with no extra dependencies
+- **Type-safe responses** — Full TypeScript inference from endpoint to response
+- **Automatic parsing** — JSON, text and blob bodies, handled by `Content-Type`
+- **Typed errors** — Errors carry the status code and the parsed response body
+- **Interceptors** — Request and response middleware for auth, logging and retries
+- **Tree-shakeable** — Import only what you use
 
 ## Quick Start
 

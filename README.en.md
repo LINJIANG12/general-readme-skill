@@ -135,12 +135,13 @@ Documentation generation executes across five sequential phases, finalized by se
 
 ```mermaid
 flowchart LR
-    P0["0 Configure<br/>Language & Mode"] --> P1["1 Scan<br/>Three-Pass Inspection"]
-    P1 --> P2["2 Compose<br/>Sections chosen and ordered"]
-    P2 --> P3["3 Verify<br/>7 Quality Gates"]
-    P3 --> P4["4 Output<br/>Bi-directional i18n"]
+    P0["0 Configure"] --> P1["1 Scan"] --> P2["2 Compose"] --> P3["3 Verify"] --> P4["4 Output"]
 
-    classDef default fill:#1e293b,stroke:#3b82f6,stroke-width:1.5px,color:#f8fafc;
+    classDef step fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
+    classDef gate fill:#F59E0B,stroke:#D97706,color:#fff,stroke-width:2px
+
+    class P0,P1,P2,P4 step
+    class P3 gate
 ```
 
 ### Phase Details

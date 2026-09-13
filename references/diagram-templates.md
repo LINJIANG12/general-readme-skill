@@ -67,6 +67,39 @@ classDef queue fill:#06B6D4,stroke:#0891B2,color:#fff,stroke-width:2px
 
 ---
 
+## Label Width
+
+Mermaid measures a label with one font, then the viewer renders it with another. CJK glyphs
+are roughly twice as wide as that measurement often assumes, so the text spills outside the
+node box — the single most common diagram defect.
+
+| Label script | Overflow risk | Per-line guidance |
+|---|---|---|
+| Latin | Low — measured accurately | Under ~20 characters; `Name<br/>Technology` is fine |
+| CJK | **High** — commonly under-measured | One short line, ~6 characters; never two |
+
+**Rules:**
+
+1. **One short line per node.** Prefer `A[Scan]` over `A[Scan<br/>three-pass discovery]`.
+2. **Never a two-line CJK label.** `A[扫描<br/>三步精读]` overflows in most viewers. Use a
+   single term and explain it in the prose under the diagram.
+3. **Latin keeps `Name<br/>Technology`**, each line under about 20 characters.
+4. **The prose carries the detail.** A node names a thing; the paragraph under the diagram
+   explains it. Never compress an explanation into a box.
+5. **Prefer more nodes over longer labels.** Six short nodes read better than three crowded ones.
+6. **Edge labels: one or two words.** `-->|gRPC|` is fine; `-->|calls the user service over gRPC|` is not.
+7. **If a label needs a sentence, the diagram is the wrong form.** Use a table instead.
+
+### Do not
+
+| Anti-pattern | Why |
+|---|---|
+| `A[扫描<br/>三步业务精读]` | CJK two-line labels overflow the node |
+| `A[Handles authentication and session management]` | A sentence inside a node |
+| A whole workflow crushed into three long boxes | Unreadable — split it, or write prose |
+
+---
+
 ## Mermaid Templates
 
 ### 1. Architecture Graph (Microservice)
@@ -97,7 +130,8 @@ graph LR
 
 **Rules:**
 - `graph LR` for left-to-right flow
-- Node labels: `Name<br/>Technology` (two lines)
+- Node labels: `Name<br/>Technology` (two lines, Latin only — a CJK label stays one short
+  line, see *Label Width*)
 - Database nodes: `[(Name)]` for cylinder shape
 - Max 8 nodes. If more services exist, group related ones
 - Apply color classes to all nodes

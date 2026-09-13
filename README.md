@@ -135,12 +135,13 @@ cp -r references/ .cursor/rules/references/
 
 ```mermaid
 flowchart LR
-    P0["0 配置<br/>语言/模式解析"] --> P1["1 扫描<br/>三步业务精读"]
-    P1 --> P2["2 组合<br/>按固定结构装配"]
-    P2 --> P3["3 校验<br/>七道质量门禁"]
-    P3 --> P4["4 输出<br/>双语镜像成稿"]
+    P0["0 配置"] --> P1["1 扫描"] --> P2["2 组合"] --> P3["3 校验"] --> P4["4 输出"]
 
-    classDef default fill:#1e293b,stroke:#3b82f6,stroke-width:1.5px,color:#f8fafc;
+    classDef step fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
+    classDef gate fill:#F59E0B,stroke:#D97706,color:#fff,stroke-width:2px
+
+    class P0,P1,P2,P4 step
+    class P3 gate
 ```
 
 ### 阶段执行细节

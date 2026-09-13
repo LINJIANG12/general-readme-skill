@@ -66,7 +66,9 @@ tables or pipelines carrying real names.
 4. **No "the following diagram illustrates…"** preamble. Label it and place it.
 5. **Cap at 8 nodes.** Beyond that, group related components into a single node and
    explain the grouping in prose.
-6. **Label nodes as `Name<br/>Technology`** so the reader knows the stack at a glance.
+6. **Label nodes as `Name<br/>Technology`** so the reader knows the stack at a glance — Latin
+   only. A CJK label stays one short line; two-line CJK text overflows the node box
+   (`diagram-templates.md` → *Label Width*).
 7. **Add a second diagram** only when the project has a genuinely different second view
    (e.g. Architecture Graph + ER Diagram for a database-heavy service). Never add a
    second diagram for decoration.

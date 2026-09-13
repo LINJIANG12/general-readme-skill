@@ -68,13 +68,16 @@ For each, locate the matching row in the evidence map.
 3. Confirm the present sections appear in the fixed order, with nothing reordered.
 4. Confirm no section outside the fixed list was invented.
 5. Confirm every absent section genuinely had no data in the evidence map.
+6. **In Upgrade mode**: confirm no bespoke human content from the original README was silently
+   deleted; verify it was preserved, relocated to an auxiliary doc, or explicitly flagged to the user.
 
 ### Fail conditions
 
 - A section with data is missing
 - Sections appear out of the fixed order
-- A section outside the 20 was invented
+- A section outside the listed order was invented
 - A section was dropped despite having evidence
+- **Upgrade mode**: bespoke content in the source README vanished without relocation or user notice
 
 ### Repair
 
@@ -84,6 +87,7 @@ For each, locate the matching row in the evidence map.
 | Sections out of order | Reorder them; never rename a section to fit the order |
 | Invented section | Remove it, or fold its content into the closest listed section |
 | Section present with no evidence | Delete it — gate G1 takes precedence |
+| Displaced human content in Upgrade mode | Relocate to auxiliary doc (`CONTRIBUTING.md`, `docs/`) or prompt user (`workflow.md` Step 5) |
 
 ---
 

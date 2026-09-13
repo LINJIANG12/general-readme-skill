@@ -229,7 +229,7 @@ Report the gate results to the user as a short pass/fail list.
 4. Normalize: UTF-8, LF line endings, no trailing whitespace, single blank line between
    blocks.
 5. Report the change summary (Create mode: sections written; Upgrade mode: added /
-   regenerated / preserved).
+   regenerated / preserved / displaced).
 
 If the scan produced no usable data, stop and reply exactly:
 `No valid project content detected, cannot generate README.`
@@ -241,10 +241,14 @@ If the scan produced no usable data, stop and reply exactly:
 - **No fabrication.** No invented feature, command, flag, version, path or benchmark.
 - **No filler.** Banned: placeholder sections, "coming soon", empty prose.
 - **No reordering.** The section order is fixed. Sections are skipped, never moved.
-- **No extra sections.** Do not invent a section outside the 20 listed.
+- **No extra sections.** Do not invent a section outside the 19 listed.
 - **No template drift.** If a template exists in a reference, copy it verbatim.
 - **No destructive edits.** In Upgrade mode `<!-- MANUAL-START -->` …
   `<!-- MANUAL-END -->` blocks and untagged top-level sections survive untouched.
+- **No silent deletion of displaced content.** Any bespoke human content in an existing README
+  that cannot fit into the 19 standard sections must be relocated to appropriate auxiliary
+  docs (e.g., `CONTRIBUTING.md`, `MIGRATION.md`, `docs/`) with a link in README, or explicitly
+  prompted to the user for decision (`references/workflow.md` Step 5). Never drop it silently.
 
 ## Reference Catalog
 

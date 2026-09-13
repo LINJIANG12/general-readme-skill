@@ -196,7 +196,7 @@ Natural variations like `generate readme`, `write readme`, and `更新README` ar
 ### Modes
 
 - **Create Mode**: Automatically activated when a project lacks a `README.md` or when explicitly instructed to rewrite. Scans and assembles from scratch.
-- **Upgrade Mode**: Activated when an existing README is present. Preserves bespoke prose while surgically updating outdated commands and version facts.
+- **Upgrade Mode**: Activated when an existing README is present. Preserves bespoke prose while surgically updating outdated facts. If the source README contains bespoke content that cannot fit the standard sections, it is never deleted silently — it is relocated to auxiliary docs (`CONTRIBUTING.md`, `docs/`) with a link or prompted to the user for confirmation.
 
 <p align="right"><a href="#readme-top">Back to top &uarr;</a></p>
 

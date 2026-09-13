@@ -285,8 +285,9 @@ Report:
 ```
 Upgrade summary
   Preserved   : 3 manual sections, 12 manual link keys
-  Regenerated : Hero, Overview, Features, Demo, Quick Start, How It Works
+  Regenerated : Hero, Overview, Demo, Quick Start, How It Works
   Added       : Roadmap, FAQ (newly supported by scan)
+  Displaced   : 1 section relocated to docs/architecture.md, 1 section prompted to user
   Removed     : none
   Gates       : all pass
 ```
@@ -296,3 +297,26 @@ Upgrade summary
 If the existing README contains content the scan cannot verify (a hand-written feature
 list, a marketing tagline), preserve it. Upgrade Mode never deletes unverifiable human
 content — it only refuses to *generate* unverifiable content.
+
+### Step 5 — Displaced Content Policy (Never Delete Silently)
+
+When an existing README contains valuable human-written content that cannot fit into the
+standard 19 sections of the regenerated README (e.g., deep background, design history,
+migration steps, troubleshooting, bespoke testing guides), **never delete it silently**.
+
+Follow the two-tier relocation procedure:
+
+1. **Tier 1 — Relocate to dedicated auxiliary documents:**
+   - Detailed architecture / design rationale &rarr; Move to `docs/architecture.md`
+   - Migration guides / breaking change notes &rarr; Move to `MIGRATION.md`
+   - Detailed developer / contribution setup &rarr; Move to `CONTRIBUTING.md`
+   - Troubleshooting / known edge-cases &rarr; Move to `docs/troubleshooting.md` (or fold into `FAQ` if brief)
+   - Add a clean reference link in the relevant section of the new `README.md`.
+
+2. **Tier 2 — Prompt the user when intent is unclear:**
+   - If the content is idiosyncratic (e.g., specific project lore, team announcements,
+     custom operational conventions) and cannot be reliably mapped to standard auxiliary files:
+   - **Do not drop it.**
+   - Retain the raw content in a temporary staging note or explicitly prompt the user in the
+     summary output:
+     > *"Found bespoke content in source README ('[Section Name]') that does not fit the standard sections. Proposed moving to `[Target File]` or preserving in place. Awaiting user confirmation."*

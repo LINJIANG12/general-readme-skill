@@ -193,4 +193,4 @@
 4. **引入证据图（Evidence Map）**，把"不捏造"从一条规则变成可校验的产物。
 5. **引入 7 道质量门禁**（证据 / 结构 / 语气 / 视觉 / 链接 / 无障碍 / 国际化），交付前强制校验。
 6. **模板单一真源化**，消除 Hero HTML 模板原先分散在三处的重复。
-7. **参考文件精简为 15 个**（移除 `profiles.md`、`tone-profiles.md`，新增 `writing-style.md`），SKILL.md 保持精简的路由式入口。
+7. **参考文件按职责收敛**（移除 `profiles.md`、`tone-profiles.md`，新增 `writing-style.md`、`visual-design.md`），SKILL.md 保持精简的路由式入口。

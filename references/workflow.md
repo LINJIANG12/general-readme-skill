@@ -167,13 +167,14 @@ Rules:
 4. `references/sections-reference.md` → technical recipes
 5. `references/sections-growth.md` → community recipes
 6. `references/hero-and-html.md` → HTML-only regions
-7. `references/onboarding.md` → Quick Start ladder
-8. `references/social-proof.md` → sponsor/adopter/citation regions
-9. `references/writing-style.md` → voice rules
-9. `references/badges.md` + `badge-styles.md` → badge matrix
-10. `references/diagram-templates.md` → diagram(s)
-11. `references/accessibility.md` → alt text and table headers
-12. `references/language-guide.md` → switcher and localization
+7. `references/visual-design.md` → contrast, accent, rhythm, density, attention budget
+8. `references/onboarding.md` → Quick Start ladder
+9. `references/social-proof.md` → sponsor/adopter/citation regions
+10. `references/writing-style.md` → voice rules
+11. `references/badges.md` + `badge-styles.md` → badge matrix
+12. `references/diagram-templates.md` → diagram(s)
+13. `references/accessibility.md` → alt text and table headers
+14. `references/language-guide.md` → switcher and localization
 
 ### 2.2 Authoring Order
 

@@ -35,6 +35,9 @@ rigid list of sections to obey — and no arbitrary layout either.
    everything, and never prose dressed up as a table.
 10. **Nothing is lost.** A fact stated in an existing README survives every regeneration — in
     place, in another section, or in an auxiliary document. It is never dropped in silence.
+11. **Restrained, and varied.** One accent against many neutrals, contrast computed rather than
+    assumed, and a different form in each adjacent section so nothing reads as a template.
+    The system is in `references/visual-design.md`.
 
 ## Trigger Rules
 
@@ -149,6 +152,7 @@ Read a reference only when the current task needs it.
 | How It Works / API / Commands / Structure / Stack / Requirements recipes | `references/sections-reference.md` |
 | Contributing / Community / Sponsors / Roadmap / FAQ / Security / License recipes | `references/sections-growth.md` |
 | Hero template, HTML recipes, alerts, link pool, collapsing | `references/hero-and-html.md` |
+| Contrast, accent, rhythm, density, attention budget | `references/visual-design.md` |
 | Quick Start ladder, PaaS matrix, multi-package-manager blocks | `references/onboarding.md` |
 | Sponsors, adopters, contributors, citations, star history | `references/social-proof.md` |
 | Self-check checklist before delivery | `references/quality-gates.md` |
@@ -184,8 +188,8 @@ questions.
 > language is. Every additional language takes `README.<code>.md`. Adding English as a
 > secondary is the usual choice for projects with an international audience.
 
-Badge style is fixed at `flat`. Diagram colours are fixed by the palette in
-`diagram-templates.md`. Both are part of the house style and are not configurable.
+Badge style is fixed at `flat`. The diagram palette in `diagram-templates.md` and the visual
+system in `visual-design.md` are part of the house style and are not configurable.
 
 ## Phase 1 — Scan
 
@@ -213,14 +217,16 @@ Rules, detector precedence, the discovery-pass model, and the evidence-map forma
    mechanics → reference → operations → community.
 4. For each section, pick the form that reads best: table, list, prose, alert, diagram or
    code block (`writing-style.md` → *The Right Form*).
-5. Read the matching recipes and the visual references you will use.
-6. Author Hero and other HTML regions directly as HTML per `references/hero-and-html.md`.
+5. Apply the visual system in `references/visual-design.md`: verified colour pairs, one accent,
+   a different leading form per adjacent section, and the density caps.
+6. Read the matching recipes and the remaining visual references you will use.
+7. Author Hero and other HTML regions directly as HTML per `references/hero-and-html.md`.
    Do not write Markdown first and convert later.
-7. Place a jumpable table of contents between the Hero and the first section when the
+8. Place a jumpable table of contents between the Hero and the first section when the
    document has more than about five sections (`hero-and-html.md` → *Table of Contents*).
-8. Write in the house style from `references/writing-style.md`.
-9. Prefer the reference-style link pool for all URLs (see `hero-and-html.md`).
-10. Mask secrets, keys, tokens and private hostnames as you write.
+9. Write in the house style from `references/writing-style.md`.
+10. Prefer the reference-style link pool for all URLs (see `hero-and-html.md`).
+11. Mask secrets, keys, tokens and private hostnames as you write.
 
 Precedence when constraints conflict:
 
@@ -240,7 +246,7 @@ if a claim cannot be repaired it is deleted rather than weakened.
 | G1 Evidence | Every assertion traces to a source |
 | G2 Structure | Sections are ordered for the reader, none empty, nothing with data missing |
 | G3 Voice | No banned phrases, house style applied |
-| G4 Visual | Hero compliant, badges grouped, templates unmodified from source |
+| G4 Visual | Contrast, accent, rhythm and density per `visual-design.md`; Hero and badges compliant |
 | G5 Links | No placeholder URLs, relative paths resolve, anchors exist |
 | G6 Accessibility | Every image has alt text, every table has a header row |
 | G7 i18n | Switcher is bidirectional, localized links mapped |
@@ -291,6 +297,7 @@ If the scan produced no usable data, stop and reply exactly:
 | `sections-reference.md` | How It Works, API, Commands, Structure, Stack, Requirements, SDKs, Packages |
 | `sections-growth.md` | Contributing, Community, Roadmap, FAQ, Security, Sponsors, Citation, License |
 | `hero-and-html.md` | Hero template and HTML recipe library |
+| `visual-design.md` | Contrast, accent, rhythm, density, attention budget |
 | `onboarding.md` | Quick Start ladder, deploy matrices |
 | `social-proof.md` | Sponsors, adopters, contributors, citations |
 | `quality-gates.md` | Seven delivery gates |

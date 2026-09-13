@@ -23,47 +23,61 @@ Architecture diagram templates. Mermaid is the primary format — GitHub renders
 
 ---
 
-## Color System
+## Colour System
 
-All diagrams use a consistent color palette. Apply colors via `classDef` and `style` directives.
+A node is a **light tint** of its role hue, bordered with the role's mid shade, filled with
+**dark ink text**. This is the container/ink pattern used by current design systems, and it is
+what makes a diagram read as drawn rather than filled in with crayon. Every ratio below is
+computed against the WCAG 2.1 formula in `visual-design.md` → *Contrast*.
 
-### Color Palette
+### Palette
 
-| Role | Color | Hex | Usage |
-|---|---|---|---|
-| **Client / Frontend** | Blue | `#3B82F6` | UI, mobile, SPA |
-| **Gateway / Load Balancer** | Amber | `#F59E0B` | API gateways, proxies |
-| **Service / Logic** | Emerald | `#10B981` | Business logic, workers |
-| **Data / Storage** | Violet | `#8B5CF6` | Databases, caches, queues |
-| **External / Third-party** | Rose | `#F43F5E` | External APIs, webhooks |
-| **Auth / Security** | Orange | `#F97316` | Auth modules, JWT |
-| **Message / Queue** | Cyan | `#06B6D4` | Kafka, RabbitMQ, pub/sub |
+| Role | Fill (50) | Border (600) | Label ink (900) | Ink on fill | Usage |
+|---|---|---|---|---|---|
+| **Client / Frontend** | `#EFF6FF` | `#2563EB` | `#1E3A8A` | 9.5:1 | UI, mobile, SPA |
+| **Service / Logic** | `#ECFDF5` | `#059669` | `#065F46` | 7.3:1 | Business logic, workers |
+| **Gateway** | `#FFFBEB` | `#D97706` | `#78350F` | 8.8:1 | API gateways, proxies |
+| **Data / Storage** | `#F5F3FF` | `#7C3AED` | `#4C1D95` | 10.0:1 | Databases, caches |
+| **Auth / Security** | `#FFF7ED` | `#EA580C` | `#7C2D12` | 8.8:1 | Auth modules, JWT |
+| **Message / Queue** | `#ECFEFF` | `#0891B2` | `#164E63` | 8.8:1 | Kafka, RabbitMQ, pub/sub |
+| **External** | `#FFF1F2` | `#E11D48` | `#881337` | 8.7:1 | External APIs, webhooks |
+| **Neutral** | `#F8FAFC` | `#475569` | `#334155` | 9.9:1 | Everything not in play |
+| **Focal (solid)** | `#1D4ED8` | `#1E40AF` | `#FFFFFF` | 6.7:1 | The one node under discussion |
 
-### Applying Colors in Mermaid
+**Never put white text on a 50-level tint, and never put a 500-level fill behind white text.**
+The retired palette did exactly that; its pairs land between 2.1:1 and 4.2:1 and fail WCAG AA
+for any label the reader has to read.
+
+### Applying colours in Mermaid
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {
-  'primaryColor': '#3B82F6',
-  'primaryTextColor': '#fff',
+  'primaryColor': '#EFF6FF',
+  'primaryTextColor': '#1E3A8A',
+  'primaryBorderColor': '#2563EB',
   'lineColor': '#64748B',
   'fontSize': '14px'
 }}}%%
 
-classDef client fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
-classDef service fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
-classDef data fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
-classDef gateway fill:#F59E0B,stroke:#D97706,color:#fff,stroke-width:2px
-classDef external fill:#F43F5E,stroke:#E11D48,color:#fff,stroke-width:2px
-classDef auth fill:#F97316,stroke:#EA580C,color:#fff,stroke-width:2px
-classDef queue fill:#06B6D4,stroke:#0891B2,color:#fff,stroke-width:2px
+classDef client fill:#EFF6FF,stroke:#2563EB,color:#1E3A8A,stroke-width:1.5px
+classDef service fill:#ECFDF5,stroke:#059669,color:#065F46,stroke-width:1.5px
+classDef data fill:#F5F3FF,stroke:#7C3AED,color:#4C1D95,stroke-width:1.5px
+classDef gateway fill:#FFFBEB,stroke:#D97706,color:#78350F,stroke-width:1.5px
+classDef external fill:#FFF1F2,stroke:#E11D48,color:#881337,stroke-width:1.5px
+classDef auth fill:#FFF7ED,stroke:#EA580C,color:#7C2D12,stroke-width:1.5px
+classDef queue fill:#ECFEFF,stroke:#0891B2,color:#164E63,stroke-width:1.5px
+classDef neutral fill:#F8FAFC,stroke:#475569,color:#334155,stroke-width:1.5px
+classDef focal fill:#1D4ED8,stroke:#1E40AF,color:#FFFFFF,stroke-width:1.5px
 ```
 
 **Rules:**
-- Always include `classDef` declarations at the top of the mermaid block
-- Apply colors with `class` statement at the end: `class A,B client`
-- Use `%%{init}%%` for theme customization (optional, for enhanced visual)
-- Text color: white (`#fff`) on all colored backgrounds
-- Stroke: 2px, darker shade of the fill color
+- Always declare `classDef` at the top of the block and apply it with `class A,B client` at the
+  end. A diagram with no colour classes fails gate G4.
+- **At most three roles per diagram**, plus `neutral`. Beyond three it reads as a colour chart.
+- **At most one `focal` node** — the single node the section is about. Everything else is a tint.
+- Text colour is the role's 900 ink, never `#fff` — except on `focal`.
+- Borders 1.5px; arrows `#64748B` at 1.5px. Thin lines read as drawn; 2px reads as default.
+- Never invent a hue. If a role is missing, use `neutral`.
 
 ---
 
@@ -117,10 +131,10 @@ graph LR
     D --> F
     E --> G[(Redis)]
 
-    classDef client fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
-    classDef gateway fill:#F59E0B,stroke:#D97706,color:#fff,stroke-width:2px
-    classDef service fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
-    classDef data fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
+    classDef client fill:#EFF6FF,stroke:#2563EB,color:#1E3A8A,stroke-width:1.5px
+    classDef gateway fill:#FFFBEB,stroke:#D97706,color:#78350F,stroke-width:1.5px
+    classDef service fill:#ECFDF5,stroke:#059669,color:#065F46,stroke-width:1.5px
+    classDef data fill:#F5F3FF,stroke:#7C3AED,color:#4C1D95,stroke-width:1.5px
 
     class A client
     class B gateway
@@ -151,10 +165,10 @@ graph LR
     D --> E[(PostgreSQL)]
     D --> F[(Redis)]
 
-    classDef client fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
-    classDef service fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
-    classDef auth fill:#F97316,stroke:#EA580C,color:#fff,stroke-width:2px
-    classDef data fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
+    classDef client fill:#EFF6FF,stroke:#2563EB,color:#1E3A8A,stroke-width:1.5px
+    classDef service fill:#ECFDF5,stroke:#059669,color:#065F46,stroke-width:1.5px
+    classDef auth fill:#FFF7ED,stroke:#EA580C,color:#7C2D12,stroke-width:1.5px
+    classDef data fill:#F5F3FF,stroke:#7C3AED,color:#4C1D95,stroke-width:1.5px
 
     class A client
     class B,D service
@@ -176,9 +190,9 @@ graph TD
     C --> D[Data Layer<br/>Prisma]
     D --> E[(PostgreSQL)]
 
-    classDef client fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
-    classDef service fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
-    classDef data fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
+    classDef client fill:#EFF6FF,stroke:#2563EB,color:#1E3A8A,stroke-width:1.5px
+    classDef service fill:#ECFDF5,stroke:#059669,color:#065F46,stroke-width:1.5px
+    classDef data fill:#F5F3FF,stroke:#7C3AED,color:#4C1D95,stroke-width:1.5px
 
     class A client
     class B,C service
@@ -207,9 +221,9 @@ graph LR
     D --> G[(MongoDB)]
     E --> H[(Redis)]
 
-    classDef service fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
-    classDef queue fill:#06B6D4,stroke:#0891B2,color:#fff,stroke-width:2px
-    classDef data fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
+    classDef service fill:#ECFDF5,stroke:#059669,color:#065F46,stroke-width:1.5px
+    classDef queue fill:#ECFEFF,stroke:#0891B2,color:#164E63,stroke-width:1.5px
+    classDef data fill:#F5F3FF,stroke:#7C3AED,color:#4C1D95,stroke-width:1.5px
 
     class A,C,D,E service
     class B queue
@@ -259,10 +273,10 @@ classDiagram
     UserRepository --> User : manages
     AuthService --> User : authenticates
 
-    classDef service fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
-    classDef auth fill:#F97316,stroke:#EA580C,color:#fff,stroke-width:2px
-    classDef data fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
-    classDef model fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
+    classDef service fill:#ECFDF5,stroke:#059669,color:#065F46,stroke-width:1.5px
+    classDef auth fill:#FFF7ED,stroke:#EA580C,color:#7C2D12,stroke-width:1.5px
+    classDef data fill:#F5F3FF,stroke:#7C3AED,color:#4C1D95,stroke-width:1.5px
+    classDef model fill:#EFF6FF,stroke:#2563EB,color:#1E3A8A,stroke-width:1.5px
 
     class UserService,UserRepository,CacheService service
     class AuthService auth
@@ -321,8 +335,8 @@ erDiagram
     POSTS ||--o{ POST_TAGS : "tagged"
     TAGS ||--o{ POST_TAGS : "tagged"
 
-    classDef entity fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
-    classDef junction fill:#F59E0B,stroke:#D97706,color:#fff,stroke-width:2px
+    classDef entity fill:#EFF6FF,stroke:#2563EB,color:#1E3A8A,stroke-width:1.5px
+    classDef junction fill:#FFFBEB,stroke:#D97706,color:#78350F,stroke-width:1.5px
 
     class USERS,POSTS,COMMENTS,TAGS entity
     class POST_TAGS junction
@@ -356,11 +370,11 @@ flowchart TD
     H --> J[Write Output]
     J --> K[Cleanup & Exit]
 
-    classDef start fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
-    classDef process fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
-    classDef decision fill:#F59E0B,stroke:#D97706,color:#fff,stroke-width:2px
-    classDef error fill:#F43F5E,stroke:#E11D48,color:#fff,stroke-width:2px
-    classDef end fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
+    classDef start fill:#EFF6FF,stroke:#2563EB,color:#1E3A8A,stroke-width:1.5px
+    classDef process fill:#ECFDF5,stroke:#059669,color:#065F46,stroke-width:1.5px
+    classDef decision fill:#FFFBEB,stroke:#D97706,color:#78350F,stroke-width:1.5px
+    classDef error fill:#FFF1F2,stroke:#E11D48,color:#881337,stroke-width:1.5px
+    classDef end fill:#F5F3FF,stroke:#7C3AED,color:#4C1D95,stroke-width:1.5px
 
     class A start
     class C,D,E,F,H,J process
@@ -414,11 +428,11 @@ sequenceDiagram
     end
     API-->>Client: 200 OK + user data
 
-    classDef client fill:#3B82F6,stroke:#2563EB,color:#fff
-    classDef gateway fill:#F59E0B,stroke:#D97706,color:#fff
-    classDef auth fill:#F97316,stroke:#EA580C,color:#fff
-    classDef service fill:#10B981,stroke:#059669,color:#fff
-    classDef data fill:#8B5CF6,stroke:#7C3AED,color:#fff
+    classDef client fill:#EFF6FF,stroke:#2563EB,color:#1E3A8A,stroke-width:1.5px
+    classDef gateway fill:#FFFBEB,stroke:#D97706,color:#78350F,stroke-width:1.5px
+    classDef auth fill:#FFF7ED,stroke:#EA580C,color:#7C2D12,stroke-width:1.5px
+    classDef service fill:#ECFDF5,stroke:#059669,color:#065F46,stroke-width:1.5px
+    classDef data fill:#F5F3FF,stroke:#7C3AED,color:#4C1D95,stroke-width:1.5px
 
     class Client client
     class API gateway
@@ -454,11 +468,11 @@ stateDiagram-v2
     Returned --> Refunded : return_approved
     Refunded --> [*]
 
-    classDef initial fill:#64748B,stroke:#475569,color:#fff,stroke-width:2px
-    classDef active fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
-    classDef success fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
-    classDef error fill:#F43F5E,stroke:#E11D48,color:#fff,stroke-width:2px
-    classDef terminal fill:#64748B,stroke:#475569,color:#fff,stroke-width:2px
+    classDef initial fill:#F8FAFC,stroke:#475569,color:#334155,stroke-width:1.5px
+    classDef active fill:#EFF6FF,stroke:#2563EB,color:#1E3A8A,stroke-width:1.5px
+    classDef success fill:#ECFDF5,stroke:#059669,color:#065F46,stroke-width:1.5px
+    classDef error fill:#FFF1F2,stroke:#E11D48,color:#881337,stroke-width:1.5px
+    classDef terminal fill:#F8FAFC,stroke:#475569,color:#334155,stroke-width:1.5px
 
     class Pending active
     class Processing active
@@ -506,20 +520,14 @@ SVG nodes are positioned dynamically, not hardcoded.
 
 **Node structure:**
 ```svg
-<rect x="{X}" y="{Y}" width="120" height="60" rx="8" fill="{COLOR}"/>
-<text x="{X+60}" y="{Y+25}" text-anchor="middle" fill="white" font-size="14" font-weight="bold">{NAME}</text>
-<text x="{X+60}" y="{Y+45}" text-anchor="middle" fill="white" font-size="11">{TECH}</text>
+<rect x="{X}" y="{Y}" width="120" height="60" rx="8" fill="{FILL}" stroke="{BORDER}" stroke-width="1.5"/>
+<text x="{X+60}" y="{Y+25}" text-anchor="middle" fill="{INK}" font-size="14" font-weight="bold">{NAME}</text>
+<text x="{X+60}" y="{Y+45}" text-anchor="middle" fill="{INK}" font-size="11">{TECH}</text>
 ```
 
-**Color scheme (same as Mermaid palette):**
-- Client/Frontend: `#3B82F6` (blue)
-- Gateway: `#F59E0B` (amber)
-- Services: `#10B981` (emerald)
-- Auth: `#F97316` (orange)
-- Data/DB: `#8B5CF6` (violet)
-- Queue: `#06B6D4` (cyan)
-- External: `#F43F5E` (rose)
-- Arrows: `#64748B` (slate)
+**Colour scheme:** the same fill / border / ink triplets as the Mermaid palette above — `{FILL}` is
+the 50 tint, `{BORDER}` the 600 shade, `{INK}` the 900 shade. Never white text on a tint.
+Arrows: `#64748B`.
 
 ---
 

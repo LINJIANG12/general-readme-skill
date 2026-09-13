@@ -20,7 +20,7 @@
 </p>
 
 <p align="center">
-  <a href="#quick-start"><img src="https://img.shields.io/badge/Quick_Start-4CAF50?style=for-the-badge" alt="Quick Start" /></a>
+  <a href="#quick-start"><img src="https://img.shields.io/badge/Quick_Start-2E7D32?style=for-the-badge" alt="Quick Start" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License" /></a>
 </p>
 
@@ -189,10 +189,10 @@ graph LR
     P2 --> R
     M --> R
 
-    classDef client fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
-    classDef gateway fill:#F59E0B,stroke:#D97706,color:#fff,stroke-width:2px
-    classDef service fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
-    classDef data fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
+    classDef client fill:#EFF6FF,stroke:#2563EB,color:#1E3A8A,stroke-width:1.5px
+    classDef gateway fill:#FFFBEB,stroke:#D97706,color:#78350F,stroke-width:1.5px
+    classDef service fill:#ECFDF5,stroke:#059669,color:#065F46,stroke-width:1.5px
+    classDef data fill:#F5F3FF,stroke:#7C3AED,color:#4C1D95,stroke-width:1.5px
 
     class C client
     class G gateway

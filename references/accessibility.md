@@ -164,8 +164,10 @@ alt text should be short.
    not.
 3. **Do not rely on coloured text** — Markdown has no colour support anyway, and any HTML
    colour usage fails gate G4.
-4. **Contrast in custom SVG**: text on a coloured fill must use white or near-black. The
-   diagram palette in `diagram-templates.md` already pairs white text with dark fills.
+4. **Contrast in custom SVG**: a diagram node is a light tint carrying dark ink — never white
+   text on a mid-saturation fill. The triplets in `diagram-templates.md` are pre-computed to
+   ≥7:1; the thresholds and the luminance formula are in `visual-design.md` → *Contrast*.
+   Verify a pair before repeating any claim that it is safe.
 5. **Dual-theme media is mandatory** for charts with baked backgrounds — a light-background
    chart on a dark GitHub theme is both unreadable and, for low-vision readers, a contrast
    failure.

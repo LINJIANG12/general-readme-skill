@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="#quick-start"><img src="https://img.shields.io/badge/Quick_Start-4CAF50?style=for-the-badge" alt="Quick Start" /></a>
+  <a href="#quick-start"><img src="https://img.shields.io/badge/Quick_Start-2E7D32?style=for-the-badge" alt="Quick Start" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-yellow?style=for-the-badge" alt="License" /></a>
 </p>
 
@@ -108,11 +108,11 @@ graph LR
     D --> G[(Redis)]
     E --> G
 
-    classDef client fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
-    classDef service fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
-    classDef auth fill:#F97316,stroke:#EA580C,color:#fff,stroke-width:2px
-    classDef data fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
-    classDef queue fill:#06B6D4,stroke:#0891B2,color:#fff,stroke-width:2px
+    classDef client fill:#EFF6FF,stroke:#2563EB,color:#1E3A8A,stroke-width:1.5px
+    classDef service fill:#ECFDF5,stroke:#059669,color:#065F46,stroke-width:1.5px
+    classDef auth fill:#FFF7ED,stroke:#EA580C,color:#7C2D12,stroke-width:1.5px
+    classDef data fill:#F5F3FF,stroke:#7C3AED,color:#4C1D95,stroke-width:1.5px
+    classDef queue fill:#ECFEFF,stroke:#0891B2,color:#164E63,stroke-width:1.5px
 
     class A client
     class B,D,E service

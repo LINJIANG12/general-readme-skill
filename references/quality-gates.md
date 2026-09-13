@@ -134,37 +134,66 @@ Rewrite the sentence. Prefer the concrete value over the adjective:
 
 ## G4 — Visual
 
-**Question:** is the layout compliant and are templates unmodified?
+**Question:** does the page read as designed, rather than generated?
 
-### Check
+This gate has two halves: the **visual system** in `references/visual-design.md` and the
+**template compliance** that the templates themselves define. Run the checklist in
+`visual-design.md` → *Checklist*, then these.
 
-1. **Hero present and compliant** — centered container, logo, one-line description,
+### Check — visual system
+
+1. **Contrast** — no white text on a mid-saturation fill. Every colour pair is a verified
+   palette triplet from `diagram-templates.md`. Recompute the ratio; do not assume it.
+2. **Accent** — at most three roles per diagram plus Neutral, at most one solid focal node,
+   and a single accent hue across the document.
+3. **Rhythm** — no two adjacent sections open with the same form; at most one table per
+   non-reference section; `---` is not used between every section.
+4. **Density** — the paragraph, list, table-column, table-cell and code-block caps in
+   `visual-design.md` → *Density* are respected, and depth material sits inside `<details>`.
+5. **Attention budget** — at most one alert per three sections, each of the correct type and
+   none decorative.
+6. **Emphasis** — at most one bold run per paragraph; no negative for an entire sentence.
+7. **Terms** — one term per concept across the whole document.
+
+### Check — template compliance
+
+8. **Hero present and compliant** — centered container, logo, one-line description,
    subtitle, primary badges, language switcher. Template must match
    `hero-and-html.md` exactly; no invented variants.
-2. **Badge grouping** — follows the group definitions and caps in `badge-styles.md`. No
+9. **Badge grouping** — follows the group definitions and caps in `badge-styles.md`. No
    badge in the wrong group. No conditional badge without its data.
-3. **Badge count within each group's cap.**
-4. **Every badge URL resolves** to a real shields.io pattern (no `{PLACEHOLDER}` left).
-5. **Diagrams** — every Mermaid block declares `classDef` and applies `class`. No
-   colorless diagram.
-6. **Collapsibles** — every `<details>` has a `<summary>`.
-7. **Link pool** — all URLs in the pool, body uses reference form.
-8. **Alerts** — every `> [!NOTE]` / `[!TIP]` / `[!WARNING]` / `[!CAUTION]` has content on
-   the following line.
-9. **Tables are warranted** — no table stands where a list or a paragraph would read the
-   same or better (`writing-style.md` → *Tables*).
+10. **Badge count within each group's cap.**
+11. **Every badge URL resolves** to a real shields.io pattern (no `{PLACEHOLDER}` left).
+12. **Diagrams** — every Mermaid block declares `classDef` and applies `class`, and every
+    node label respects `diagram-templates.md` → *Label Width*.
+13. **Collapsibles** — every `<details>` has a `<summary>`.
+14. **Link pool** — all URLs in the pool, body uses reference form.
+15. **Alerts** — every `> [!NOTE]` / `[!TIP]` / `[!WARNING]` / `[!CAUTION]` has content on
+    the following line.
+16. **Tables are warranted** — no table stands where a list or a paragraph would read the
+    same or better (`writing-style.md` → *Tables*).
 
 ### Fail conditions
 
+- A text/background pair below 4.5:1
+- More than three roles, or more than one focal node, in a diagram
+- Two adjacent sections opening with the same form
+- A paragraph, list or table above its density cap
 - Hero deviates from the template
 - Placeholder tokens remain (`{PROJECT_NAME}`, `{COLOR}`, `TODO`)
-- A diagram has no color classes
+- A diagram has no colour classes
 - A badge group exceeds its maximum
 - A conditional badge appears without data
 
 ### Repair
 
-Re-render the region from the source template. Never hand-edit a template into a new shape.
+| Failure | Action |
+|---|---|
+| Contrast below threshold | Replace the pair with the palette triplet for that role |
+| Too many roles in a diagram | Demote the surplus nodes to Neutral |
+| Uniform rhythm | Change the leading form of one section — prose, list, code or diagram |
+| Over a density cap | Split the block, or move the depth into `<details>` |
+| Template drift | Re-render the region from the source template. Never hand-edit a template into a new shape |
 
 ---
 

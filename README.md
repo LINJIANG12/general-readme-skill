@@ -137,11 +137,13 @@ cp -r references/ .cursor/rules/references/
 flowchart LR
     P0["0 配置"] --> P1["1 扫描"] --> P2["2 组合"] --> P3["3 校验"] --> P4["4 输出"]
 
-    classDef step fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
-    classDef gate fill:#F59E0B,stroke:#D97706,color:#fff,stroke-width:2px
+    classDef step fill:#F8FAFC,stroke:#475569,color:#334155,stroke-width:1.5px
+    classDef gate fill:#FFFBEB,stroke:#D97706,color:#78350F,stroke-width:1.5px
+    classDef focal fill:#1D4ED8,stroke:#1E40AF,color:#FFFFFF,stroke-width:1.5px
 
-    class P0,P1,P2,P4 step
+    class P0,P1,P2 step
     class P3 gate
+    class P4 focal
 ```
 
 ### 阶段执行细节

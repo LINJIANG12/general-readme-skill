@@ -128,9 +128,14 @@ assortment. See `badges.md` → *Brand Palette Rule*.
 
 ### House accent
 
-The default accent is **`3178C6`**, with CTA buttons at **`4CAF50`**. Use it whenever the
+The default accent is **`3178C6`**, with CTA buttons at **`2E7D32`**. Use it whenever the
 project has no discoverable brand colour. There is one accent for every project — the
 structure and palette do not vary by project type.
+
+Every badge carries a white label on its own colour, so each colour must clear **4.5:1 against
+white**: `3178C6` is 4.53:1, `2E7D32` is 5.13:1. Bright web colours do not — `4CAF50`, the
+green this file used to specify, sits at 2.78:1 and is now rejected at gate G4. Check a
+candidate before use (`visual-design.md` → *Contrast*).
 
 ---
 

@@ -137,11 +137,13 @@ Documentation generation executes across five sequential phases, finalized by se
 flowchart LR
     P0["0 Configure"] --> P1["1 Scan"] --> P2["2 Compose"] --> P3["3 Verify"] --> P4["4 Output"]
 
-    classDef step fill:#10B981,stroke:#059669,color:#fff,stroke-width:2px
-    classDef gate fill:#F59E0B,stroke:#D97706,color:#fff,stroke-width:2px
+    classDef step fill:#F8FAFC,stroke:#475569,color:#334155,stroke-width:1.5px
+    classDef gate fill:#FFFBEB,stroke:#D97706,color:#78350F,stroke-width:1.5px
+    classDef focal fill:#1D4ED8,stroke:#1E40AF,color:#FFFFFF,stroke-width:1.5px
 
-    class P0,P1,P2,P4 step
+    class P0,P1,P2 step
     class P3 gate
+    class P4 focal
 ```
 
 ### Phase Details

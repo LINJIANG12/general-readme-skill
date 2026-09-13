@@ -43,9 +43,10 @@ from the project's own palette.
 3. **Stack badges keep their official brand colours.** `TypeScript` is always `3178C6`,
    `Docker` always `2496ED`. Never recolour a technology badge to match your palette — the
    colour is the recognition cue.
-4. **Fall back cleanly.** If the project has no discoverable palette, use the accent from
-   the palette in `diagram-templates.md` → *Color Palette* rather than the shields.io
-   default `brightgreen`.
+4. **Fall back cleanly.** If the project has no discoverable palette, use the house accent
+   from `hero-and-html.md` → *House accent* rather than the shields.io default `brightgreen`.
+   Every colour must clear 4.5:1 against the white badge label — see `visual-design.md`
+   → *Contrast*.
 
 ### Example
 

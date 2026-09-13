@@ -5,7 +5,7 @@
 <h1>General README Skill</h1>
 
 <p>
-  <strong>生成的 README 读起来像维护者亲手写的，因为每一条断言都能追溯到真实文件</strong>
+  <strong>扫描你的项目并生成 README，每一条断言都能追溯到仓库里的真实文件</strong>
   <br />
   <em>证据绑定 · 固定结构 · 单一语气 · 无障碍 · 零依赖 · 多语言</em>
 </p>
@@ -47,13 +47,13 @@
 
 ## 概览
 
-这是一个给 AI 编程助手用的技能：让助手读懂你手上的项目，并为它写出一份合适的 README。
+这是一个给 AI 编程助手用的技能：扫描项目，并按固定结构写出一份 README。
 
-AI 写 README 最常见的毛病是凭空编造——写出项目里并不存在的命令、从未实现的功能、随手填的版本号。这个技能把这条路堵住了：所有内容先落在一份证据图上，每条断言都必须对应到仓库里的某个文件；对不上的断言会被删除，而不是改说得含糊一点。
+它把「每条断言都能说到出处」做成了一道可校验的工序——扫描产出证据图，成稿前逐条核对，无来源的断言直接删除，而不是改说得含糊一点。规则写在 [`quality-gates.md`](references/quality-gates.md)，格式写在 [`project-scan.md`](references/project-scan.md)。
 
-成品可以直接提交：没有占位符，没有失效链接，图片都带 alt 文本。章节顺序固定，任何项目产出的版式一致；主要语言与次要语言各占一个文件，切换栏双向可达。
+章节顺序在 [`SKILL.md`](SKILL.md) 中固定为 20 项，扫描无数据的整节跳过，典型项目命中 10–14 节。成稿没有占位符、没有失效链接，图片都带 alt 文本；主要语言占 `README.md`，其余语言各占一个文件，切换栏双向可达。
 
-你需要做的只有一件事：在项目目录里输入 `/readme`。已经写过 README 的项目也没关系，技能会进入升级模式，保留你手写的部分，只重写由它维护的内容。
+你需要做的只有一件事：在项目目录里输入 `/readme`。已经写过 README 的项目会进入升级模式，保留你手写的部分。
 
 <div align="right">
 
@@ -63,12 +63,12 @@ AI 写 README 最常见的毛病是凭空编造——写出项目里并不存在
 
 ## 功能特性
 
-- **一条指令成稿** — 从扫描仓库到写出文件，一次 `/readme` 完成
-- **按需成文** — 只保留有证据的章节，没有数据的整节跳过，文档不注水
-- **二次运行安全** — 升级模式保留你手写的段落，只重写自动区域
-- **每节都有导航** — 固定章节顺序加可跳转目录，长文档也能快速定位
-- **双语产出** — 主要语言与次要语言并行，切换栏双向可达
-- **装上即用** — 不需要额外 CLI 或运行时，复制文件即可
+- **没有依据的内容进不了文档** — 无来源的断言由证据门禁 G1 删除，而不是弱化
+- **重跑不覆盖手写** — 升级模式只重写自动区域，手写章节原位保留
+- **产出结构稳定** — 章节顺序固定为 20 项，无数据的整节跳过，典型命中 10–14 节
+- **交付即可提交** — Web 链接门禁拒绝占位符与失效链接，无障碍门禁要求每张图有 alt、每张表有表头
+- **多语言结构镜像** — 主次语言章节一一对应、代码块逐字节一致，切换栏双向可达
+- **零运行时** — 不装 CLI、不构建，把 `SKILL.md` 与 `references/` 复制进技能目录即可
 
 <div align="right">
 
@@ -78,11 +78,22 @@ AI 写 README 最常见的毛病是凭空编造——写出项目里并不存在
 
 ## 演示
 
-本文档本身就是技能产物，由它按同一套规范生成。三份范例覆盖最常见的项目形态：
+`examples/` 里是三份完整产出，可以逐节核对：
 
-- [`app-readme.md`](examples/app-readme.md) — 全栈应用：架构、配置、API 与部署的完整写法
+- [`app-readme.md`](examples/app-readme.md) — 全栈应用：架构图、配置、API 与部署
 - [`library-readme.md`](examples/library-readme.md) — 已发布库：以收益为导向的特性与最小用法
-- [`oxyteamtasks-readme.md`](examples/oxyteamtasks-readme.md) — 真实双语项目：双语切换栏与自动生成标记
+- [`oxyteamtasks-readme.md`](examples/oxyteamtasks-readme.md) — 真实双语项目，带 `<!-- AUTO-GENERATED -->` 标记
+
+摘自 [`library-readme.md`](examples/library-readme.md)：
+
+```typescript
+import { createClient, type InferResponse } from 'typed-fetch'
+
+const api = createClient({ baseUrl: 'https://api.example.com' })
+
+type UserResponse = { id: string; name: string; email: string }
+const user = await api.get<UserResponse>('/users/123')
+```
 
 <div align="right">
 
@@ -136,7 +147,7 @@ cp -r references/ .cursor/rules/references/
 
 ## 基本工作流程
 
-技能在四个阶段内完成一次生成，交付前再执行七道门禁。
+技能分五个阶段完成一次生成（0 配置 → 1 扫描 → 2 组合 → 3 校验 → 4 输出），交付前再执行七道门禁。
 
 ```mermaid
 flowchart LR
@@ -158,13 +169,29 @@ flowchart LR
 ```
 
 - **0 配置** — 只解析两件事：主要语言（默认简体中文）与入口模式（新建 / 升级）。没有结构可选，也没有语气可选
-- **1 扫描** — 只读静态文件，不执行代码。先列出带层级的完整文件树，再精读清单、入口、`README`、`LICENSE` 与主要配置，其余按需样读或跳过。产出是一张「断言 → 来源」证据图
+- **1 扫描** — 只读静态文件：不执行代码、不运行 `git`。先列出带层级的完整文件树，再精读清单、入口、`README`、`LICENSE` 与主要配置，其余按需样读或跳过。写作时把密钥、令牌与内网主机名替换为占位符
 - **2 组合** — 按固定章节顺序填入有数据的章节。一次生成通常落在 10–14 个章节之间，没有数据的整节跳过
 - **3 校验** — 逐项执行七道门禁，不过关的修复或删除
 - **4 输出** — 写入 `README.md` 与各语言文件，并统一编码、换行与空行
 
+证据图长这样（格式取自 [`project-scan.md`](references/project-scan.md)）：
+
+```text
+EVIDENCE MAP — taskboard
+───────────────────────────────────────────────────────
+claim                          level      source
+───────────────────────────────────────────────────────
+Language = TypeScript          declared   package.json → devDependencies.typescript
+Framework = Express            declared   package.json → dependencies.express
+Default port = 3000            declared   src/config.ts:14
+Architecture = layered         inferred   src/{api,services,models}/ present
+───────────────────────────────────────────────────────
+```
+
+`declared` 可以直接写成事实，`inferred` 必须加限定词，`absent` 则整节略过。
+
 <details>
-<summary>完整章节表与质量门禁</summary>
+<summary>完整章节表、门禁动作与数量上限</summary>
 
 每个章节只在扫描有数据时出现，中英对照如下。
 
@@ -191,15 +218,27 @@ flowchart LR
 | 19 | **引用 / Citation** | 存在 `CITATION.cff` 或已发表论文 |
 | 20 | **许可证 / License** | 存在许可证文件 |
 
-七道质量门禁在交付前逐项执行：
+七道门禁在交付前逐项执行，每道都带着不过关时的动作。
 
-- **G1 证据** — 每条断言都能追溯到来源
-- **G2 结构** — 幸存的章节保持固定顺序，无一换位
-- **G3 语气** — 无禁用词，统一使用既定文风
-- **G4 视觉** — Hero 合规、徽章分组正确、模板未被改动
-- **G5 链接** — 无占位符、相对路径可达、锚点存在
-- **G6 无障碍** — 每张图有 alt、每张表有表头
-- **G7 国际化** — 切换栏双向可达、链接已本地化
+| 门禁 | 检查 | 不过关时 |
+|---|---|---|
+| **G1 证据** | 每条断言都能追溯到来源 | 删除该断言；若整节依赖它，整节删除 |
+| **G2 结构** | 幸存章节保持固定顺序 | 重排；不为凑顺序改名 |
+| **G3 语气** | 无禁用词，统一文风 | 改写句子 |
+| **G4 视觉** | Hero 合规、徽章分组正确 | 按模板重新渲染 |
+| **G5 链接** | 无占位符、相对路径可达、锚点存在 | 换成真实链接或删除 |
+| **G6 无障碍** | 每张图有 alt、每张表有表头 | 补 alt 文本或表头 |
+| **G7 国际化** | 切换栏双向可达、链接已本地化 | 修正切换栏，必要时加译文滞后提示 |
+
+另有一些数量上限是写死的：
+
+- 特性最多 6 条（[`sections-core.md`](references/sections-core.md)）
+- 徽章合计最多 16 个（[`badge-styles.md`](references/badge-styles.md)）
+- API 表最多约 15 行（[`sections-reference.md`](references/sections-reference.md)）
+- 目录树不超过 3 层、约 20 项（[`sections-reference.md`](references/sections-reference.md)）
+- 架构图不超过 8 个节点（[`diagram-templates.md`](references/diagram-templates.md)）
+- 快速开始不超过 4 条命令（[`onboarding.md`](references/onboarding.md)）
+- 证据置信度只有 `declared`、`inferred`、`absent` 三档（[`project-scan.md`](references/project-scan.md)）
 
 </details>
 
@@ -225,7 +264,11 @@ flowchart LR
 - **新建 Create** — 不存在 `README.md` 或要求全量重写时，依据证据图从零撰写每个章节
 - **升级 Upgrade** — 已存在 `README.md` 时，保留人工内容，只重生成自动区域并输出变更摘要
 
+升级模式依据标记识别保护范围：`<!-- MANUAL-START -->` 与 `<!-- MANUAL-END -->` 之间的内容、以及没有任何标记的顶层章节，都视为手写并原位保留（协议见 [`workflow.md`](references/workflow.md)）。
+
 ### 一次典型会话
+
+以下为一次运行的示意输出：
 
 ```text
 User: /readme
@@ -234,12 +277,12 @@ AI:   默认产出简体中文，入口模式自动识别。
 
       按默认配置继续。开始扫描……
 
-      扫描完成 —— 26 条证据，命中 11 个章节。
+      扫描完成 —— 24 条证据，命中 11 个章节。
 
       正在组合 11 个章节……
 
       质量门禁
-        G1 证据      通过（26 条，0 条无来源）
+        G1 证据      通过（24 条，0 条无来源）
         G2 结构      通过
         G3 语气      通过
         G4 视觉      通过
@@ -262,7 +305,7 @@ AI:   默认产出简体中文，入口模式自动识别。
 - **运行时** — 无，技能本身不执行代码
 - **渲染环境** — GitHub、GitLab 或任意支持 GFM 的编辑器
 - **图表渲染** — 需要支持 Mermaid 的渲染端
-- **技能格式** — `SKILL.md` + `references/`，遵循通用技能目录约定
+- **技能格式** — 入口 `SKILL.md`，加 15 个参考文件 `references/*.md`
 
 > [!NOTE]
 > GitHub 原生渲染 Mermaid。部分终端 Markdown 阅读器会把图表显示为代码块，不影响其余内容。
@@ -282,7 +325,7 @@ AI:   默认产出简体中文，入口模式自动识别。
 3. 提交改动（`git commit -m 'feat: add thing'`）
 4. 推送并提交 Pull Request
 
-改动章节配方、模板或写作风格之前，请先读 [`SKILL.md`](SKILL.md) 的固定结构与 [`writing-style.md`](references/writing-style.md)。模板只允许存在于一个文件中，结构顺序不可随意调整。欢迎补充翻译，新增语言文件时请同步所有文件中的切换栏。
+改动章节配方、模板或写作风格之前，请先读 [`SKILL.md`](SKILL.md) 的固定结构与 [`writing-style.md`](references/writing-style.md) 的禁用词清单（`powerful`、`robust`、`seamlessly`、`blazingly fast` 一类词一律不用）。模板只允许存在于一个文件中，结构顺序不可随意调整。欢迎补充翻译，新增语言文件时请同步所有文件中的切换栏。
 
 <div align="right">
 

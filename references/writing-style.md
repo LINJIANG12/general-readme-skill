@@ -194,7 +194,10 @@ Also banned:
 
 - Emoji in prose
 - Exclamation marks
-- Unourced comparisons (`faster than X`)
+- **A fabricated backdrop.** Never open with what "most tools" get wrong, an invented
+  industry trend, or a bad status quo you cannot cite. State what the subject does; a
+  strawman is an unsourced claim and is deleted like any other.
+- Unsourced comparisons (`faster than X`)
 - Unsourced compliance or security claims (`audited`, `secure`, `GDPR compliant`)
 
 ---

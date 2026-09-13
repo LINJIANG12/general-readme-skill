@@ -50,17 +50,20 @@ projects have one. Omit it only for a trivial tool with nothing to explain.
    `writing-style.md` → *Tables*.
 2. **Answer "what is this and why does it exist".** The *why* is the point. If the section
    only restates what the project does, it has no reason to exist.
-3. **Open with what it is.** The first sentence names the thing and its purpose: `A skill
+3. **Never invent the problem.** Do not open with a claim about what "most tools" or "the
+   industry" gets wrong, and do not set up a bad status quo you cannot cite. State what this
+   project does. A fabricated backdrop is an unsourced claim and fails gate G1.
+4. **Open with what it is.** The first sentence names the thing and its purpose: `A skill
    that lets your AI read a project and write it a README`.
-4. **Leave the mechanics to How It Works.** Give the shape and the payoff here; the
+5. **Leave the mechanics to How It Works.** Give the shape and the payoff here; the
    phase-by-phase walk, the diagram and the parameters belong to the next section. The two
    sections must not say the same thing twice.
-5. **Concrete over abstract.** Name the real promise — no invented content, no placeholders,
+6. **Concrete over abstract.** Name the real promise — no invented content, no placeholders,
    hand-written parts survive a re-run — not "a better README experience".
-6. **Do not repeat the Hero.** The Hero is one line; this is the paragraph behind it.
-7. **Do not restate Features.** Features argues why the product is better; Overview says what
+7. **Do not repeat the Hero.** The Hero is one line; this is the paragraph behind it.
+8. **Do not restate Features.** Features argues why the product is better; Overview says what
    it is and why it exists.
-8. **Every claim must trace to a scan row.** Delete a claim rather than invent one.
+9. **Every claim must trace to a scan row.** Delete a claim rather than invent one.
 
 ---
 

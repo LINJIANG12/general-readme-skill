@@ -5,7 +5,7 @@
 <h1>General README Skill</h1>
 
 <p>
-  <strong>Generate README files that read like a maintainer wrote them, because every claim traces to a real file</strong>
+  <strong>Scan your project and generate a README where every claim traces to a real file</strong>
   <br />
   <em>Evidence-bound · Fixed structure · One voice · Accessible · Zero dependencies · Multi-language</em>
 </p>
@@ -47,13 +47,13 @@ Type `/readme` in any repository and the skill scans the project, writes a READM
 
 ## Overview
 
-This is a skill for AI coding assistants: it lets your assistant read the project in front of it and write it a README worth keeping.
+This is a skill for AI coding assistants: it scans a project and writes it a README in a fixed structure.
 
-The usual failure of AI-written READMEs is invention — commands the project does not have, features that were never built, version numbers pulled out of thin air. The skill closes that door. Everything it writes lands on an evidence map first: every claim has to point at a file in the repository, and a claim that cannot is deleted rather than hedged.
+It turns "every claim must have a source" into a step you can check. The scan produces an evidence map; the draft is verified against it before delivery, and a claim with no source is deleted rather than hedged. The rules live in [`quality-gates.md`](references/quality-gates.md), the format in [`project-scan.md`](references/project-scan.md).
 
-What you get is a document you can commit as-is: no placeholders, no broken links, alt text on every image. The section order is fixed, so every project produces the same layout, and a primary and a secondary language each get their own file with a switcher that runs both ways.
+The section order is fixed at 20 items in [`SKILL.md`](SKILL.md), a section the scan cannot support is dropped entirely, and a typical project lands on 10–14 of them. The result carries no placeholders and no broken links, and every image has alt text. The primary language occupies `README.md`; every other language gets its own file, with a switcher that runs both ways.
 
-You do one thing: type `/readme` in the project directory. If a README already exists, the skill switches to Upgrade mode, keeps what you wrote by hand, and rewrites only the parts it maintains.
+You do one thing: type `/readme` in the project directory. A project that already has a README enters Upgrade mode, which keeps what you wrote by hand.
 
 <div align="right">
 
@@ -63,12 +63,12 @@ You do one thing: type `/readme` in the project directory. If a README already e
 
 ## Features
 
-- **One command** — a single `/readme` takes the document from scan to finished file
-- **Only what is evidenced** — sections stay only when the scan supports them; the rest are dropped rather than padded
-- **Safe on re-runs** — Upgrade mode preserves the paragraphs you wrote and rewrites only the auto regions
-- **Navigation on every section** — a fixed section order plus a jumpable table of contents, so a long document stays searchable
-- **Bilingual output** — a primary and a secondary language in parallel, with a bidirectional switcher
-- **Install and go** — no extra CLI or runtime; copy the files and use it
+- **No unsupported content** — a claim with no source is deleted by the evidence gate, G1, not softened
+- **Re-runs keep your writing** — Upgrade mode rewrites only the auto regions; hand-written sections stay where they are
+- **Predictable structure** — the section order is fixed at 20 items, sections with no data are dropped, and a typical project lands on 10–14
+- **Ready to commit** — the link gate rejects placeholders and broken links, and the accessibility gate requires alt text on every image and a header on every table
+- **Mirrored translations** — the primary and secondary languages share one section sequence and byte-identical code blocks, with a bidirectional switcher
+- **No runtime** — no CLI to install and no build step; copy `SKILL.md` and `references/` into the skill directory
 
 <div align="right">
 
@@ -78,11 +78,22 @@ You do one thing: type `/readme` in the project directory. If a README already e
 
 ## Demo
 
-This document is itself a product of the skill, generated under the same rules. The three examples below cover the most common project shapes:
+`examples/` holds three complete outputs you can check section by section:
 
-- [`app-readme.md`](examples/app-readme.md) — full-stack application: a complete architecture, configuration, API and deployment write-up
-- [`library-readme.md`](examples/library-readme.md) — published library: a benefit-oriented feature list and a minimal usage example
-- [`oxyteamtasks-readme.md`](examples/oxyteamtasks-readme.md) — real bilingual project: a bilingual switcher and auto-generated markers
+- [`app-readme.md`](examples/app-readme.md) — full-stack application: architecture diagram, configuration, API and deployment
+- [`library-readme.md`](examples/library-readme.md) — published library: benefit-oriented features and a minimal usage example
+- [`oxyteamtasks-readme.md`](examples/oxyteamtasks-readme.md) — real bilingual project, carrying the `<!-- AUTO-GENERATED -->` marker
+
+An excerpt from [`library-readme.md`](examples/library-readme.md):
+
+```typescript
+import { createClient, type InferResponse } from 'typed-fetch'
+
+const api = createClient({ baseUrl: 'https://api.example.com' })
+
+type UserResponse = { id: string; name: string; email: string }
+const user = await api.get<UserResponse>('/users/123')
+```
 
 <div align="right">
 
@@ -136,7 +147,7 @@ Type `/readme` in the project directory. The skill should list the file tree, pr
 
 ## How It Works
 
-The skill completes one generation across four phases, then runs seven gates before delivery.
+One generation runs through five phases (0 Configure → 1 Scan → 2 Compose → 3 Verify → 4 Output), then seven gates before delivery.
 
 ```mermaid
 flowchart LR
@@ -158,13 +169,29 @@ flowchart LR
 ```
 
 - **0 Configure** — resolves two things only: the primary language (Chinese Simplified by default) and the entry mode (Create / Upgrade). No structure to pick, no voice to pick
-- **1 Scan** — reads static files only, never executes code. It lists the full file tree with its hierarchy, reads the manifests, entry points, `README`, `LICENSE` and primary config in full, and samples or skips the rest. The output is a `claim → source` evidence map
+- **1 Scan** — reads static files only: it never executes code and never runs `git`. It lists the full file tree with its hierarchy, reads the manifests, entry points, `README`, `LICENSE` and primary config in full, and samples or skips the rest. Keys, tokens and private hostnames are replaced with placeholders as it writes
 - **2 Compose** — fills the sections that have data, in the fixed order. A typical generation lands between 10 and 14 sections; a section with no data is dropped
 - **3 Verify** — runs the seven gates; anything that fails is repaired or deleted
 - **4 Output** — writes `README.md` and each language file, normalising encoding, line endings and blank lines
 
+The evidence map looks like this (format from [`project-scan.md`](references/project-scan.md)):
+
+```text
+EVIDENCE MAP — taskboard
+───────────────────────────────────────────────────────
+claim                          level      source
+───────────────────────────────────────────────────────
+Language = TypeScript          declared   package.json → devDependencies.typescript
+Framework = Express            declared   package.json → dependencies.express
+Default port = 3000            declared   src/config.ts:14
+Architecture = layered         inferred   src/{api,services,models}/ present
+───────────────────────────────────────────────────────
+```
+
+`declared` may be written as fact, `inferred` must be hedged, and `absent` drops the section.
+
 <details>
-<summary>Full section list and quality gates</summary>
+<summary>Full section list, gate actions and hard caps</summary>
 
 Each section appears only when the scan has data for it.
 
@@ -191,15 +218,27 @@ Each section appears only when the scan has data for it.
 | 19 | **Citation** | `CITATION.cff` exists, or a published paper exists |
 | 20 | **License** | A licence file exists |
 
-The seven quality gates run before delivery:
+The seven gates run before delivery, and each one carries the action it takes on failure.
 
-- **G1 Evidence** — every assertion traces to a source
-- **G2 Structure** — surviving sections appear in the fixed order, none reordered
-- **G3 Voice** — no banned phrases, house style applied
-- **G4 Visual** — Hero compliant, badges grouped, templates unmodified from source
-- **G5 Links** — no placeholder URLs, relative paths resolve, anchors exist
-- **G6 Accessibility** — every image has alt text, every table has a header row
-- **G7 i18n** — switcher is bidirectional, localized links mapped
+| Gate | Checks | On failure |
+|---|---|---|
+| **G1 Evidence** | Every assertion traces to a source | Delete the claim; if a section depends on it, delete the section |
+| **G2 Structure** | Surviving sections keep the fixed order | Reorder; never rename a section to fit |
+| **G3 Voice** | No banned phrases, one house style | Rewrite the sentence |
+| **G4 Visual** | Hero compliant, badges grouped | Re-render from the template |
+| **G5 Links** | No placeholders, paths resolve, anchors exist | Replace with a real link or remove |
+| **G6 Accessibility** | Alt text on every image, header on every table | Add the alt text or the header |
+| **G7 i18n** | Bidirectional switcher, localized links | Fix the switcher; add a stale-translation notice if needed |
+
+Some numbers are hard caps:
+
+- Features: at most 6 ([`sections-core.md`](references/sections-core.md))
+- Badges: at most 16 in total ([`badge-styles.md`](references/badge-styles.md))
+- API table: about 15 rows ([`sections-reference.md`](references/sections-reference.md))
+- Directory tree: at most 3 levels and about 20 entries ([`sections-reference.md`](references/sections-reference.md))
+- Architecture diagram: at most 8 nodes ([`diagram-templates.md`](references/diagram-templates.md))
+- Quick Start: at most 4 commands ([`onboarding.md`](references/onboarding.md))
+- Evidence confidence: only `declared`, `inferred` or `absent` ([`project-scan.md`](references/project-scan.md))
 
 </details>
 
@@ -225,7 +264,11 @@ The full trigger rules are in [`SKILL.md`](SKILL.md).
 - **Create** — with no `README.md`, or on a full-regeneration request, every section is authored from the evidence map
 - **Upgrade** — when `README.md` exists, manual content is preserved, only the auto regions are rewritten, and a change summary is emitted
 
+Upgrade mode identifies what to protect by markers: anything between `<!-- MANUAL-START -->` and `<!-- MANUAL-END -->`, plus any top-level section with no marker, is treated as hand-written and kept in place (protocol in [`workflow.md`](references/workflow.md)).
+
 ### Example session
+
+The output below is an illustrative run:
 
 ```text
 User: /readme
@@ -234,12 +277,12 @@ AI:   Defaults: Chinese (Simplified), entry mode auto-detected.
 
       Proceeding with defaults. Scanning...
 
-      Scan complete — 26 evidence rows, 11 sections have data.
+      Scan complete — 24 evidence rows, 11 sections have data.
 
       Composing 11 sections...
 
       Quality gates
-        G1 Evidence       pass (26 rows, 0 unbound)
+        G1 Evidence       pass (24 rows, 0 unbound)
         G2 Structure      pass
         G3 Voice          pass
         G4 Visual         pass
@@ -262,7 +305,7 @@ AI:   Defaults: Chinese (Simplified), entry mode auto-detected.
 - **Runtime** — none; the skill executes no code
 - **Render targets** — GitHub, GitLab or any GFM-capable editor
 - **Diagram rendering** — a renderer with Mermaid support
-- **Skill format** — `SKILL.md` + `references/`, following the common skill-directory convention
+- **Skill format** — the `SKILL.md` entry point plus 15 reference files, `references/*.md`
 
 > [!NOTE]
 > GitHub renders Mermaid natively. Some terminal Markdown viewers show diagrams as code blocks, which does not affect the rest of the content.
@@ -282,7 +325,7 @@ Issues and pull requests are both submitted through the repository.
 3. Commit your changes (`git commit -m 'feat: add thing'`)
 4. Push and open a pull request
 
-Before changing a section recipe, a template or the writing style, read the fixed structure in [`SKILL.md`](SKILL.md) and the house style in [`writing-style.md`](references/writing-style.md). A template lives in exactly one file, and the section order is not free to rearrange. Translations are welcome — when adding a language file, update the switcher in every file.
+Before changing a section recipe, a template or the writing style, read the fixed structure in [`SKILL.md`](SKILL.md) and the banned-phrase list in [`writing-style.md`](references/writing-style.md) — words such as `powerful`, `robust`, `seamlessly` and `blazingly fast` are never used. A template lives in exactly one file, and the section order is not free to rearrange. Translations are welcome — when adding a language file, update the switcher in every file.
 
 <div align="right">
 

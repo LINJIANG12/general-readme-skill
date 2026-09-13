@@ -156,8 +156,10 @@ built" and belongs in How It Works or Contributing.
 
 ### Sourcing
 
-Every row must trace to a scan row. If a capability is real but no file evidences it,
-delete the row rather than softening it — gate G1.
+Every row must trace to a scan row grounded in actual business implementation code or explicit contracts.
+If a capability is real in intent but no code evidences its business execution,
+delete the row rather than softening it — gate G1. Do not use dependency manifests as proof of user features;
+a dependency only proves a library is installed, not what the application actually does with it.
 
 ---
 

@@ -175,11 +175,13 @@ Build an **evidence map**: an explicit `claim → source` list. Without it, Phas
 nothing to bind to and the anti-fabrication principle is unenforceable.
 
 Start with the three-pass discovery model: map the file tree with its hierarchy, read the
-core files in full, then sample the rest on demand. Documenting a project does not require
-reading all of it — stop once the sections have enough evidence behind them.
+core files (manifests, entry points, AND core business logic implementations: services, commands,
+domain engines) in full, then sample secondary modules on demand. Documenting a project
+does not require reading all of it — stop once the core capabilities and contracts have
+concrete evidence behind them.
 
 Rules, detector precedence, the discovery-pass model, and the evidence-map format live in
-`references/project-scan.md`. The scan also reports which of the 20 sections have data.
+`references/project-scan.md`. The scan also reports which sections have data.
 
 ## Phase 2 — Compose
 

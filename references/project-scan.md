@@ -25,26 +25,39 @@ where it changes the document.
 | Pass | Action | Budget |
 |---|---|---|
 | **1 — Map** | List every file path with its directory hierarchy. Read no content yet. | The whole tree, minus the ignored directories |
-| **2 — Core** | Read the files that define behaviour and contracts in full: manifests, entry points, `README`, `LICENSE`, primary config, and the top-level source files. | ~10–20 files |
-| **3 — Sample** | Open only what a section needs: skim a directory, read one representative file, or skip it. | On demand |
+| **2 — Core** | Read the files that define behaviour, business logic, and contracts in full: manifests, entry points, `README`, `LICENSE`, primary config, AND the core business implementation files (service layer, command handlers, primary classes, or domain algorithms). | ~10–25 files |
+| **3 — Sample** | Open only what a section needs: skim a directory, read one representative test/example, or check secondary routes. | On demand |
+
+### What to Read in Pass 2 (By Project Archetype)
+
+Manifests and entry points only tell you what packages a project uses; they never tell you what the project actually *does*. Pass 2 must read into the core business logic layer:
+
+| Archetype | Surface Files (Entry / Manifest) | **Core Business Files (Must Read in Pass 2)** |
+|---|---|---|
+| **CLI Tool** | `package.json` `bin`, `main.go`, `cli.py` | Command handlers and action executors (`src/commands/`, `cmd/` handlers): what actions, flags, and pipeline steps are executed. |
+| **Library / SDK** | `index.ts`, `mod.rs`, `lib.py`, exported signatures | Core client/engine classes and main algorithmic routines (`src/client.ts`, core processing methods): what problem it solves and what data it transforms. |
+| **Web / Backend Service** | Manifest dependencies, router definitions | Controllers and business service implementations (`services/`, `controllers/`, domain logic): the actual business rules (e.g., payment, auth verification, data reconciliation). |
+| **Microservices / Distributed** | `docker-compose.yml`, root directories | Primary service implementation modules and RPC handler logic: how the core domain models interact and what each service actually computes. |
+| **Skill / Agent Extension** | `SKILL.md` frontmatter, trigger commands | Core workflow definitions, rule reference sets (`references/` SOPs, core decision engines): the actual steps, quality gates, and decision trees. |
 
 ### Rules
 
 1. **Map first.** The hierarchical file list is the cheapest complete view of the project.
    It tells you what exists and where the boundaries are before you open anything.
-2. **Depth over breadth where it counts.** Manifests, entry points and public interfaces
-   repay a full read; leaf modules usually do not.
-3. **Partial reading is expected.** Read the first screen of a file, the exported names, or
-   the section headers. Stop as soon as the document's needs are met.
-4. **Match read depth to the section that consumes it:**
+2. **Read business logic, not just manifests.** Inspecting dependencies only identifies the stack;
+   understanding features and writing a faithful Overview requires inspecting the core business implementation.
+3. **Depth over breadth where it counts.** Manifests, entry points, and primary business handlers
+   repay a full read; leaf utility modules, repetitive boilerplates, and build scripts usually do not.
+4. **Partial reading is expected.** Read exported functions, main class workflows, or core processing methods. Stop as soon as the document's needs are met.
+5. **Match read depth to the section that consumes it:**
 
    | Section | Typical depth |
    |---|---|
-   | Hero, Features | Full read of the entry point and README |
-   | Quick Start, Requirements | Full read of manifests and config |
-   | Usage, API, Commands | Exported names and signatures; one or two real call sites |
-   | Architecture | Top-level directory shapes; skim for real component names |
-   | Project Structure, Tech Stack | The file tree and the manifest |
+   | Overview, Features | Full read of entry points, primary business service/command files, and existing README |
+   | Quick Start, Requirements | Full read of manifests, package scripts, and config files |
+   | Usage, API, Commands | Core command handlers, exported public API signatures, and realistic usage test files |
+   | How It Works | Top-level architecture directories and core pipeline orchestrators |
+   | Project Structure, Tech Stack | The file tree hierarchy and manifest dependencies |
 
 5. **Stop condition.** You can state what the project is, who it is for, how it is run, and
    what its public surface is. Implementation detail beyond that is out of scope — the

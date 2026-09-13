@@ -169,7 +169,7 @@ flowchart LR
 ```
 
 - **0 Configure** — resolves two things only: the primary language (Chinese Simplified by default) and the entry mode (Create / Upgrade). No structure to pick, no voice to pick
-- **1 Scan** — reads static files only: it never executes code and never runs `git`. It lists the full file tree with its hierarchy, reads the manifests, entry points, `README`, `LICENSE` and primary config in full, and samples or skips the rest. Keys, tokens and private hostnames are replaced with placeholders as it writes
+- **1 Scan** — reads static files only: it never executes code and never runs `git`. It lists the full file tree with its hierarchy, reads the manifests, entry points, core business logic implementations (service layer, command handlers, primary classes) and primary config in full, and samples or skips the rest. Keys, tokens and private hostnames are replaced with placeholders as it writes
 - **2 Compose** — fills the sections that have data, in the fixed order. A typical generation lands between 10 and 14 sections; a section with no data is dropped
 - **3 Verify** — runs the seven gates; anything that fails is repaired or deleted
 - **4 Output** — writes `README.md` and each language file, normalising encoding, line endings and blank lines

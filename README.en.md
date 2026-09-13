@@ -42,7 +42,7 @@ This is a specialized skill for AI coding assistants: it guides your assistant t
 
 The foundational principle is **turning "every claim must have evidence" into an automated verification pipeline**. Before drafting any copy, the AI executes a three-pass discovery scan to build an Evidence Map tracking `declared` facts (explicitly asserted in code) and `inferred` mechanisms. Claims lacking evidence are strictly blocked or deleted.
 
-The output strictly follows a standardized 19-section structure. Sections with no detected data are omitted entirely rather than left with hollow placeholders. The draft is audited by seven quality gates (Evidence, Structure, Tone, Visuals, Links, Accessibility, and i18n). The primary language occupies `README.md`, while secondary languages are cleanly linked via a bidirectional switcher.
+Sections are not forced into a fixed list: they are ordered by what the reader asks next (identity → proof → onboarding → mechanics → reference → operations → community), chosen and dropped to fit the project, and a section with no data is omitted rather than padded with a placeholder. The draft is audited by seven quality gates (Evidence, Structure, Tone, Visuals, Links, Accessibility, and i18n). The primary language occupies `README.md`, while secondary languages are linked via a bidirectional switcher.
 
 You only need one command: `/readme`. The assistant autonomously scans, maps, composes, audits, and outputs the documentation in seconds.
 
@@ -136,7 +136,7 @@ Documentation generation executes across five sequential phases, finalized by se
 ```mermaid
 flowchart LR
     P0["0 Configure<br/>Language & Mode"] --> P1["1 Scan<br/>Three-Pass Inspection"]
-    P1 --> P2["2 Compose<br/>Fixed 19 Sections"]
+    P1 --> P2["2 Compose<br/>Sections chosen and ordered"]
     P2 --> P3["3 Verify<br/>7 Quality Gates"]
     P3 --> P4["4 Output<br/>Bi-directional i18n"]
 
@@ -147,13 +147,15 @@ flowchart LR
 
 - **0 Configure** — Resolves primary language (default Simplified Chinese), secondary languages, and entry mode (Create or Upgrade).
 - **1 Scan** — Runs three-pass discovery (hierarchical file map &rarr; core business logic reading &rarr; on-demand sampling) to construct the Evidence Map. Secrets and private hostnames are masked automatically.
-- **2 Compose** — Formats chapters strictly along the fixed 19-section sequence. Empty sections are omitted without placeholders.
+- **2 Compose** — Selects the sections the project needs and orders them for the reader. Empty sections are omitted without placeholders.
 - **3 Verify** — Executes gates G1~G7 to automatically fix formatting issues or eliminate unsourced claims.
 - **4 Output** — Emits standard, accessible `README.md` alongside mirror language files.
 
 <details>
-<summary><b>Click to expand: Full 19-section order and inclusion criteria</b></summary>
+<summary><b>Click to expand: Section library and selection rules</b></summary>
 <br />
+
+Pick what fits — there is no requirement to use them all. Project-specific sections may be added, named for their content. The list below follows the reader's order.
 
 | # | Section | Included When |
 |---|---|---|

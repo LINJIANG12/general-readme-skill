@@ -59,35 +59,39 @@ For each, locate the matching row in the evidence map.
 
 ## G2 — Structure
 
-**Question:** does the document follow the one fixed section order?
+**Question:** is the document shaped for the reader — nothing empty, nothing missing,
+nothing lost?
 
 ### Check
 
-1. Read the fixed section order from `SKILL.md`.
-2. Confirm every section that has scan data is present.
-3. Confirm the present sections appear in the fixed order, with nothing reordered.
-4. Confirm no section outside the fixed list was invented.
-5. Confirm every absent section genuinely had no data in the evidence map.
-6. **In Upgrade mode**: confirm no bespoke human content from the original README was silently
-   deleted; verify it was preserved, relocated to an auxiliary doc, or explicitly flagged to the user.
+1. **No empty sections.** Every section has data behind it; no `N/A`, no filler. The Demo
+   placeholder is the single permitted exception.
+2. **The reader's order.** Sections follow the ordering principle in `SKILL.md`
+   (identity → proof → onboarding → mechanics → reference → operations → community), or a
+   deviation the project's own logic justifies.
+3. **Nothing with data is missing.** Every section the scan supports is present, or its
+   content is carried elsewhere with a stated reason.
+4. **Project-specific sections are named for their content**, not for their position.
+5. **In Upgrade mode**, walk the content ledger: every entry from the source README ends as
+   kept, relocated, merged or prompted. Nothing — section or fact — ends as "dropped".
 
 ### Fail conditions
 
-- A section with data is missing
-- Sections appear out of the fixed order
-- A section outside the listed order was invented
-- A section was dropped despite having evidence
-- **Upgrade mode**: bespoke content in the source README vanished without relocation or user notice
+- An empty or placeholder section (Demo excepted)
+- Sections ordered against the reader's logic with no stated reason
+- A section with data missing, or its content silently dropped
+- A section named after its position (`更多`, `其他`, `Misc`)
+- **Upgrade mode**: any ledger entry unaccounted for
 
 ### Repair
 
 | Case | Action |
 |---|---|
-| Section has data but is missing | Author it |
-| Sections out of order | Reorder them; never rename a section to fit the order |
-| Invented section | Remove it, or fold its content into the closest listed section |
 | Section present with no evidence | Delete it — gate G1 takes precedence |
-| Displaced human content in Upgrade mode | Relocate to auxiliary doc (`CONTRIBUTING.md`, `docs/`) or prompt user (`workflow.md` Step 5) |
+| Section has data but is missing | Author it, or move the content to the right section |
+| Sections in a poor order | Reorder by the ordering principle |
+| Content forced into a wrong section | Add a section named for that content |
+| Ledger entry unaccounted for | Relocate to an auxiliary doc, or prompt the user (`workflow.md` → *Displaced Content Policy*) |
 
 ---
 
@@ -254,7 +258,7 @@ fully synchronized, add the anti-stale banner rather than shipping a silent mism
 Quality gates
 ─────────────────────────────────────
 G1 Evidence        pass        (24 rows, 0 unbound)
-G2 Structure       pass        (13 sections, fixed order)
+G2 Structure       pass        (13 sections, reader order)
 G3 Voice           pass        (2 phrases rewritten)
 G4 Visual          pass
 G5 Links           pass

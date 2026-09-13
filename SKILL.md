@@ -10,16 +10,16 @@ tags: documentation, readme, auto-generate, project-docs, i18n, accessibility
 Generate README files that read like a maintainer who knows the codebase wrote them,
 because every claim is bound to a real source file.
 
-**One structure. One voice. Every project.** There is a single fixed section order and a
-single writing style. A CLI tool and a vector database get the same skeleton — they simply
-differ in which sections have data behind them.
+**One ordering logic. One voice. Every project.** Sections are chosen to fit the project and
+ordered so that a reader's questions are answered in the order they are asked. There is no
+rigid list of sections to obey — and no arbitrary layout either.
 
 ## Design Principles
 
 1. **Evidence-bound.** Every feature, command, version, path and default must resolve to a
    scanned file. An unbound claim is deleted, never softened.
-2. **One structure.** A single fixed section order applies to every project. No profiles, no
-   variants, no per-type templates. Sections with no data are skipped; the rest never move.
+2. **One ordering logic.** Sections are chosen per project and ordered by what the reader
+   needs next. No rigid list, no per-type template — but never an arbitrary order either.
 3. **One voice.** A single house writing style. No tone selection.
 4. **Compose once.** Hero and other HTML regions are authored as HTML directly. There is no
    separate beautification pass.
@@ -29,8 +29,12 @@ differ in which sections have data behind them.
    files the current task needs.
 7. **Progressive onboarding.** A reader reaches a running system in four lines or fewer.
 8. **Accessible and maintainable.** Alt text, table headers, and reversible HTML only.
-9. **Sparing with tables.** A table is used only when the content is genuinely tabular. A
-   name plus one clause is a bullet, not a table; a short overview stays one paragraph.
+9. **The right form for the content.** A comparison across attributes is a table; a name plus
+   one clause is a bullet; a sequence is a numbered list; a risk is an alert; a flow is a
+   diagram; a picture beats a paragraph. Choose the form that reads best — never one form for
+   everything, and never prose dressed up as a table.
+10. **Nothing is lost.** A fact stated in an existing README survives every regeneration — in
+    place, in another section, or in an auxiliary document. It is never dropped in silence.
 
 ## Trigger Rules
 
@@ -49,7 +53,7 @@ Trigger when user input matches any of:
 ```
 Phase 0  Configure → language, entry mode
 Phase 1  Scan      → build an evidence map from static files only
-Phase 2  Compose   → fill the fixed section order, skipping sections with no data
+Phase 2  Compose   → choose the sections the project needs and order them for the reader
 Phase 3  Verify    → run the seven quality gates, repair or drop failures
 Phase 4  Output    → write primary file, then localized files
 ```
@@ -68,51 +72,66 @@ Detailed phase instructions: `references/workflow.md` — read it before Phase 1
 
 ---
 
-## The Structure
+## Document Shape
 
-This is the only README structure the skill produces. Sections appear in exactly this
-order. **A section is skipped entirely when the scan produced no data for it** — never
-`N/A`, never `Coming soon`, never a placeholder.
+There is no fixed section list. A README is a set of sections chosen to fit the project,
+ordered so that a reader's questions are answered in the order they are asked.
 
-The **Hero** always sits first, followed by an optional **Table of Contents**; neither is
-counted among the 20. A jumpable table of contents belongs there when the document has
-more than about five sections (`references/hero-and-html.md` → *Table of Contents*). It is
-a navigation aid, not one of the sections.
+### The ordering principle
 
-**Overview is prose, not an inventory.** It answers, in a few short paragraphs, what the
-project is and why it exists — no table, no bullet list. It is the reader's orientation and
-it carries the *why*; **How It Works** carries the concrete mechanics. The directory tree
-belongs in Project Structure, not here.
+Order by what the reader needs next, not by a template.
 
-| # | Section | Include when |
+| Stage | Answers | Typical sections |
 |---|---|---|
-| 1 | **Overview** | There is a story to tell about what the project is and why it exists |
-| 2 | **Demo / Preview** | Always included — displays real usage effects (screenshots/recordings/links); placeholder emitted when assets absent |
-| 3 | **Quick Start** | A runnable entry point exists |
-| 4 | **How It Works** | A flow, workflow or architecture can be derived from the source |
-| 5 | **Usage** | A public API, interface or exported surface exists |
-| 6 | **Requirements** | Runtime, platform or dependency requirements exist |
-| 7 | **Configuration** | Config files detected (`.env.example`, `*.config.*`, `*.yaml`, `*.toml`) |
-| 8 | **Project Structure** | More than one top-level source directory |
-| 9 | **API** | Routes, schemas or exported service definitions detected |
-| 10 | **Commands** | A CLI entrypoint exists (`bin`, `cmd/`, `[[bin]]`, `[project.scripts]`) |
-| 11 | **Tech Stack** | Dependencies declared in a manifest |
-| 12 | **Deployment** | Dockerfile, compose file, CI config or platform manifests detected |
-| 13 | **Roadmap** | A roadmap file, milestone config or documented plan exists |
-| 14 | **FAQ** | An FAQ document exists, or recurring questions are documented |
-| 15 | **Contributing & Community** | `CONTRIBUTING.md`, issue templates, or community links exist |
-| 16 | **Sponsors & Adopters** | A funding config or documented adopters exist |
-| 17 | **Security** | `SECURITY.md` exists, or the project handles auth, network or user data |
-| 18 | **Citation** | `CITATION.cff` exists, or the project has a published paper |
-| 19 | **License** | A licence file exists |
+| **Identity** | What is this? | Hero, Overview |
+| **Proof** | Why should I believe it? | Demo / Preview |
+| **Onboarding** | How do I start? | Quick Start, Requirements |
+| **Mechanics** | How does it work? | How It Works |
+| **Reference** | The detail | Usage, API, Commands, Configuration, Project Structure, Tech Stack |
+| **Operations** | Running it for real | Deployment, Security |
+| **Community** | Who else is involved? | Contributing & Community, Roadmap, FAQ, Sponsors & Adopters, Citation, License |
 
-Final section otherwise:
+### The section library
 
-> If no licence file exists, omit section 19 and close with one line instead:
-> `No LICENSE file detected. Add a LICENSE to clarify project licensing.`
+Pick what fits; skip what does not. Recipes live in `references/sections-*.md`.
 
-A typical project produces 9–13 of the 19 sections. Producing 19 is not the goal;
-producing the right ones in the right order is.
+| Section | Include when | Recipe |
+|---|---|---|
+| **Hero** | Always | `sections-core.md` |
+| **Overview** | The project has a reason to exist worth stating | `sections-core.md` |
+| **Demo / Preview** | Always — show real effects (screenshots, recordings, links); emit a placeholder when no asset is provided | `sections-core.md` |
+| **Quick Start** | A runnable entry point exists | `sections-core.md` |
+| **How It Works** | A flow, workflow or architecture can be derived from the source | `sections-reference.md` |
+| **Usage** | A public API, interface or exported surface exists | `sections-core.md` |
+| **Requirements** | Runtime, platform or dependency requirements exist | `sections-reference.md` |
+| **Configuration** | Config files are detected | `sections-core.md` |
+| **Project Structure** | More than one top-level source directory | `sections-reference.md` |
+| **API** | Routes, schemas or exported services are detected | `sections-reference.md` |
+| **Commands** | A CLI entrypoint exists | `sections-reference.md` |
+| **Tech Stack** | Dependencies are declared | `sections-reference.md` |
+| **Deployment** | Dockerfile, compose, CI or platform manifests are detected | `sections-core.md` |
+| **Roadmap** | A roadmap file or documented plan exists | `sections-growth.md` |
+| **FAQ** | An FAQ document or recurring questions exist | `sections-growth.md` |
+| **Contributing & Community** | A contributing guide, templates or community links exist | `sections-growth.md` |
+| **Sponsors & Adopters** | A funding config or documented adopters exist | `sections-growth.md` |
+| **Security** | `SECURITY.md` exists, or the project handles auth, network or user data | `sections-growth.md` |
+| **Citation** | `CITATION.cff` exists, or a published paper exists | `sections-growth.md` |
+| **License** | A licence file exists | `sections-growth.md` |
+
+### Rules
+
+1. **A section with no data is not written.** Never `N/A`, never `Coming soon`, never filler —
+   the Demo section excepted, which carries a placeholder by design when no asset exists.
+2. **A section with data is not silently lost**, and neither is any other fact from an existing
+   README. See the Displaced Content Policy in `references/workflow.md`.
+3. **Add project-specific sections when the project needs them.** A section named for its
+   content (`数据来源`, `计算模型`, `迁移指南`) beats forcing that content into a wrong one.
+   Name it after what it holds, never after its position.
+4. **The order above is the default, not a law.** Move a section when the project's own logic
+   demands it — a hardware-gated project may need Requirements before Quick Start.
+5. **Never force content into a wrong section** to satisfy a shape.
+6. **The Hero always sits first**, followed by an optional table of contents
+   (`hero-and-html.md`). Neither counts as a section.
 
 Section recipes: `references/sections-core.md`, `sections-reference.md`, `sections-growth.md`.
 
@@ -179,29 +198,36 @@ domain engines) in full, then sample secondary modules on demand. Documenting a 
 does not require reading all of it — stop once the core capabilities and contracts have
 concrete evidence behind them.
 
+In **Upgrade mode**, also build a **content ledger** first: list every section and every
+notable block of the existing README. The ledger is the checklist that guarantees nothing is
+lost — each entry must end the run as kept, relocated, merged or explicitly prompted.
+
 Rules, detector precedence, the discovery-pass model, and the evidence-map format live in
 `references/project-scan.md`. The scan also reports which sections have data.
 
 ## Phase 2 — Compose
 
-1. Read the section list above. For each section, take the scan's verdict on whether data
-   exists; skip the ones that do not.
-2. Read the matching section recipes and the visual references you will use.
-3. Author the surviving sections in the fixed order. Never reorder them.
-4. Author Hero and other HTML regions directly as HTML per `references/hero-and-html.md`.
+1. From the section library, take the sections the scan has data for; skip the rest.
+2. Add a project-specific section when the project genuinely needs one (see *Document Shape*).
+3. Order the chosen sections by the ordering principle — identity → proof → onboarding →
+   mechanics → reference → operations → community.
+4. For each section, pick the form that reads best: table, list, prose, alert, diagram or
+   code block (`writing-style.md` → *The Right Form*).
+5. Read the matching recipes and the visual references you will use.
+6. Author Hero and other HTML regions directly as HTML per `references/hero-and-html.md`.
    Do not write Markdown first and convert later.
-5. Place a jumpable table of contents between the Hero and the first section when the
+7. Place a jumpable table of contents between the Hero and the first section when the
    document has more than about five sections (`hero-and-html.md` → *Table of Contents*).
-6. Write in the house style from `references/writing-style.md`.
-7. Prefer the reference-style link pool for all URLs (see `hero-and-html.md`).
-8. Mask secrets, keys, tokens and private hostnames as you write.
+8. Write in the house style from `references/writing-style.md`.
+9. Prefer the reference-style link pool for all URLs (see `hero-and-html.md`).
+10. Mask secrets, keys, tokens and private hostnames as you write.
 
 Precedence when constraints conflict:
 
 1. Privacy protection
-2. Preserve manual content (Upgrade mode)
+2. Lose nothing (Upgrade mode) — preserve manual content, and every fact, in place or elsewhere
 3. Evidence binding — no unbound claim
-4. The fixed section order
+4. The reader's order — questions answered in the order they are asked
 5. Visual preferences
 
 ## Phase 3 — Verify
@@ -212,7 +238,7 @@ if a claim cannot be repaired it is deleted rather than weakened.
 | Gate | Checks |
 |---|---|
 | G1 Evidence | Every assertion traces to a source |
-| G2 Structure | Surviving sections appear in the fixed order, none reordered |
+| G2 Structure | Sections are ordered for the reader, none empty, nothing with data missing |
 | G3 Voice | No banned phrases, house style applied |
 | G4 Visual | Hero compliant, badges grouped, templates unmodified from source |
 | G5 Links | No placeholder URLs, relative paths resolve, anchors exist |
@@ -228,7 +254,9 @@ Report the gate results to the user as a short pass/fail list.
 3. Ensure the language switcher is present and bidirectional in **every** file.
 4. Normalize: UTF-8, LF line endings, no trailing whitespace, single blank line between
    blocks.
-5. Report the change summary (Create mode: sections written; Upgrade mode: added /
+5. In **Upgrade mode**, walk the content ledger and report every entry: kept, relocated,
+   merged or prompted. No entry may end as "dropped".
+6. Report the change summary (Create mode: sections written; Upgrade mode: added /
    regenerated / preserved / displaced).
 
 If the scan produced no usable data, stop and reply exactly:
@@ -240,15 +268,18 @@ If the scan produced no usable data, stop and reply exactly:
 
 - **No fabrication.** No invented feature, command, flag, version, path or benchmark.
 - **No filler.** Banned: placeholder sections, "coming soon", empty prose.
-- **No reordering.** The section order is fixed. Sections are skipped, never moved.
-- **No extra sections.** Do not invent a section outside the 19 listed.
+- **No arbitrary order.** Sections are ordered for the reader — never shuffled to look
+  organised, and never left in the order they happened to be written.
+- **No empty sections.** A section without data is not written; the Demo placeholder is the
+  single exception.
 - **No template drift.** If a template exists in a reference, copy it verbatim.
 - **No destructive edits.** In Upgrade mode `<!-- MANUAL-START -->` …
-  `<!-- MANUAL-END -->` blocks and untagged top-level sections survive untouched.
-- **No silent deletion of displaced content.** Any bespoke human content in an existing README
-  that cannot fit into the 19 standard sections must be relocated to appropriate auxiliary
-  docs (e.g., `CONTRIBUTING.md`, `MIGRATION.md`, `docs/`) with a link in README, or explicitly
-  prompted to the user for decision (`references/workflow.md` Step 5). Never drop it silently.
+  `<!-- MANUAL-END -->` blocks and untagged sections survive untouched.
+- **Nothing is lost.** Any content in an existing README that cannot fit the new shape must be
+  relocated to an appropriate auxiliary document (`CONTRIBUTING.md`, `MIGRATION.md`, `docs/`)
+  with a link back, or explicitly prompted to the user. This covers facts as well as sections:
+  a dependency, command or caveat named in the old README must still be present in the new one
+  (`references/workflow.md` → *Displaced Content Policy*).
 
 ## Reference Catalog
 

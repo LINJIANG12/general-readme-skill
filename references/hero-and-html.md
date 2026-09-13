@@ -16,6 +16,7 @@ point here. Never restate a template elsewhere; never invent a variant.
 - [GFM Alerts](#gfm-alerts)
 - [Dual-Theme Media](#dual-theme-media)
 - [Demo Card Row](#demo-card-row)
+- [Capability Card Row](#capability-card-row)
 - [Back to Top](#back-to-top)
 - [Kept as Markdown](#kept-as-markdown)
 - [Upgrading an Existing README](#upgrading-an-existing-readme)
@@ -396,6 +397,47 @@ Three equal-width cards, each a visual plus a caption link.
 4. Pair with a fourth capability described in prose rather than a four-column row, which
    renders poorly on narrow viewports.
 5. Prefer animated GIF/WebP under ~5 MB; larger assets should be linked, not embedded.
+
+---
+
+## Capability Card Row
+
+A two-column grid for a handful of capabilities or highlights, when a plain list would read
+as a wall. Use it sparingly — cards add weight, and a list is lighter.
+
+```html
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h4>{CAPABILITY_1}</h4>
+      <p>{ONE_LINE_OUTCOME_1}</p>
+    </td>
+    <td width="50%" valign="top">
+      <h4>{CAPABILITY_2}</h4>
+      <p>{ONE_LINE_OUTCOME_2}</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h4>{CAPABILITY_3}</h4>
+      <p>{ONE_LINE_OUTCOME_3}</p>
+    </td>
+    <td width="50%" valign="top">
+      <h4>{CAPABILITY_4}</h4>
+      <p>{ONE_LINE_OUTCOME_4}</p>
+    </td>
+  </tr>
+</table>
+```
+
+### Rules
+
+1. **Every cell carries real content** — a name and one clause. An empty cell fails gate G4.
+2. **Four to six items.** Beyond six, a list reads better.
+3. **Lead with the outcome**, exactly as a feature row would.
+4. **Never let an icon carry the meaning alone.** The `<h4>` names the capability.
+5. **Do not use it to pad.** Two capabilities are two bullets, not a two-cell grid.
+6. **One card row per document.** Repeating the grid turns the page into a wall of boxes.
 
 ---
 

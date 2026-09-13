@@ -49,9 +49,11 @@ projects have one. Omit it only for a trivial tool with nothing to explain.
    `writing-style.md` → *Tables*.
 2. **Answer "what is this and why does it exist".** The *why* is the point. If the section
    only restates what the project does, it has no reason to exist.
-3. **Never invent the problem.** Do not open with a claim about what "most tools" or "the
-   industry" gets wrong, and do not set up a bad status quo you cannot cite. State what this
-   project does. A fabricated backdrop is an unsourced claim and fails gate G1.
+3. **Never invent the problem, and never open with a contrast.** Do not open with a claim
+   about what "most tools" or "the industry" gets wrong, do not set up a bad status quo you
+   cannot cite, and do not begin with "unlike other projects". The reader came for this
+   project, not for a review of its alternatives. A fabricated backdrop is an unsourced
+   claim and fails gate G1; a 踩一捧一 opener is deleted on sight.
 4. **Open with what it is.** The first sentence names the thing and its purpose: `A skill
    that lets your AI read a project and write it a README`.
 5. **Leave the mechanics to How It Works.** Give the shape and the payoff here; the

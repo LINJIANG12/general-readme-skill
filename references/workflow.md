@@ -76,7 +76,7 @@ These are part of the house style and are never offered as options:
 
 | Fixed | Value |
 |---|---|
-| Section order | The fixed section order in `SKILL.md` |
+| Ordering principle | The reader-first ordering in `SKILL.md` → *Document Shape* |
 | Writing style | The house style in `references/writing-style.md` |
 | Badge style | `flat` |
 | Diagram palette | The colour system in `references/diagram-templates.md` |
@@ -98,13 +98,14 @@ in full, sample the rest on demand.
 1. Build the file tree with its hierarchy (respecting the ignore rules below).
 2. Read the core files in full: manifests, entry points, `README`, `LICENSE`, primary config.
 3. Sample the remaining files on demand, for the sections that consume them.
-4. Parse manifests in precedence order.
-5. Parse dependency declarations.
-6. Count file extensions (fallback only).
-7. Apply filename heuristics (last resort).
-8. Detect: language, framework, build/CI, database/ORM, architecture, API style,
+4. **In Upgrade mode, build the content ledger** — see 1.5.
+5. Parse manifests in precedence order.
+6. Parse dependency declarations.
+7. Count file extensions (fallback only).
+8. Apply filename heuristics (last resort).
+9. Detect: language, framework, build/CI, database/ORM, architecture, API style,
    license, project type, config files, git/contributor signals.
-9. Emit the evidence map.
+10. Emit the evidence map.
 
 ### 1.2 Ignore Rules
 
@@ -132,6 +133,26 @@ Only `declared` evidence may be used for versions, defaults, ports and commands.
 | Multiple conflicting manifests at different roots | Ask the user which package root to document; offer the precedence rule as default |
 | Scan partially fails (permission denied on a subtree) | Compose the sections that resolved, note the gap in the final report, do not emit a placeholder section |
 
+### 1.5 Content Ledger (Upgrade mode only)
+
+Before composing anything, list what the existing README already says, so nothing is lost:
+
+| Column | Content |
+|---|---|
+| Section | The heading the entry lives under |
+| Type | Section · fact · command · dependency · caveat · link · image |
+| Fate | `kept` · `relocated` · `merged` · `prompted` |
+
+Rules:
+
+1. **Every fact counts, not just sections.** A companion repository named in the old Quick
+   Start, a version constraint, a required install step — each is a ledger row.
+2. **Nothing ends as `dropped`.** An entry that cannot stay in place is relocated to an
+   auxiliary document or prompted to the user (`Upgrade Mode in Detail` → Step 5).
+3. **A fact with no scan evidence is still kept.** The scan cannot disprove a hand-written
+   fact; it only cannot vouch for it. Keep it, and never present it as scan-derived.
+4. **Report the ledger.** The final summary carries the counts per fate.
+
 ---
 
 ## Phase 2 — Compose
@@ -140,7 +161,7 @@ Only `declared` evidence may be used for versions, defaults, ports and commands.
 
 ### 2.1 Loading Order
 
-1. `SKILL.md` → the fixed section order and the include-when conditions
+1. `SKILL.md` → the section library, the ordering principle and the include-when conditions
 2. `references/project-scan.md` → which sections have data
 3. `references/sections-core.md` → identity and onboarding recipes
 4. `references/sections-reference.md` → technical recipes
@@ -272,11 +293,11 @@ Split the existing README into regions:
 
 ### Step 2 — Merge
 
-Build the new file as: `new hero` + the surviving sections in the fixed order, where each
+Build the new file as: `new hero` + the surviving sections in the reader's order, where each
 slot is either the regenerated auto region or the preserved manual region.
 
-If a preserved manual section sits outside the fixed order, leave it where it is and insert
-the auto sections around it. Never move or delete manual content to satisfy an ordering rule.
+If a preserved manual section sits outside that order, leave it where it is and insert the
+regenerated sections around it. Never move or delete manual content to satisfy an ordering rule.
 
 ### Step 3 — Diff summary
 
@@ -301,7 +322,7 @@ content — it only refuses to *generate* unverifiable content.
 ### Step 5 — Displaced Content Policy (Never Delete Silently)
 
 When an existing README contains valuable human-written content that cannot fit into the
-standard 19 sections of the regenerated README (e.g., deep background, design history,
+standard sections of the regenerated README (e.g., deep background, design history,
 migration steps, troubleshooting, bespoke testing guides), **never delete it silently**.
 
 Follow the two-tier relocation procedure:

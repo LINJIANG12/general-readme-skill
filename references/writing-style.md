@@ -12,7 +12,7 @@ Read this before Phase 2 and again before running gate G3.
 - [Sentence Rules](#sentence-rules)
 - [Section Intros](#section-intros)
 - [Feature and List Format](#feature-and-list-format)
-- [Tables](#tables)
+- [The Right Form](#the-right-form)
 - [Numbers Over Adjectives](#numbers-over-adjectives)
 - [Emoji and Punctuation](#emoji-and-punctuation)
 - [Banned Phrases](#banned-phrases)
@@ -88,7 +88,7 @@ Optional, and at most one sentence.
 
 Features are a **bullet list** — one bolded name and one clause of substance per item. A
 table is warranted only when every row carries two or more comparable values the reader
-scans across; see [Tables](#tables).
+scans across; see [The Right Form](#the-right-form).
 
 ```markdown
 - **Real-time sync** — WebSocket updates pushed to every connected client
@@ -114,35 +114,36 @@ rule.
 
 ---
 
-## Tables
+## The Right Form
 
-A table is a layout decision, not a default. Most content is a list or a paragraph, and a
-document that reaches for a table in every section reads as a specification sheet rather
-than a README.
+Form follows content. The same information can be a table, a list, a paragraph, an alert, a
+diagram or a code block — pick the form a reader absorbs fastest, and vary it. A document
+that reaches for one form in every section reads as a specification sheet, not a README.
 
-Use a table only when the content is genuinely tabular:
-
-- **Three or more comparable columns** the reader scans across — `Phase | Input | Output`.
-- **A lookup of many rows by key** — a section index, a flag reference, an endpoint list.
-- **A wide comparison** where aligning rows is the point.
-
-Everything else stays a list or prose:
-
-- A name plus one clause is a **bullet**, not a two-column table.
-- Two or three key/value pairs are a sentence or a bullet.
-- A short sequence is a numbered list.
-- Section prose is never wrapped in a table.
+| The content is… | The form is… |
+|---|---|
+| A comparison across several attributes | A table |
+| A lookup the reader scans by row (flags, endpoints, sections) | A table |
+| A name plus one clause | A bullet list |
+| A sequence of steps | A numbered list |
+| A risk, a requirement or a gotcha | A GFM alert (`> [!WARNING]`) |
+| A flow, a state machine or a hierarchy | A Mermaid diagram |
+| A command, a snippet or expected output | A fenced code block |
+| A picture of the product or a result | An image, with real alt text |
+| A capability set worth emphasising | A card row (`hero-and-html.md` → *Capability Card Row*) |
+| An explanation, a rationale or a story | Prose |
 
 ### Rules
 
 1. **Never use a table to decorate prose.** If the cells hold sentences, it is prose.
 2. **Two columns are usually a list.** Convert when `-` bullets read the same or better.
-3. **Below four rows, a table rarely pays off** unless the columns are genuinely comparable.
-4. **Prose stays prose.** Never split a paragraph section into a grid to look structured.
-5. **Every table keeps a header row**, and no header cell is empty — gate G6.
-6. **Never nest a list inside a table cell.**
-7. When in doubt, prefer the list. A document of lists reads faster than a document of
-   tables.
+3. **Below four rows a table rarely pays off**, unless the columns are genuinely comparable.
+4. **Prose stays prose.** Never split a paragraph into a grid to look structured.
+5. **Vary the forms.** If three consecutive sections are tables, at least one is the wrong form.
+6. **Every table keeps a header row**, and no header cell is empty — gate G6.
+7. **Never nest a list inside a table cell.**
+8. **Emphasis is content, not decoration.** `**bold**` names a thing; it never just makes a
+   sentence louder.
 
 ---
 
@@ -197,6 +198,9 @@ Also banned:
 - **A fabricated backdrop.** Never open with what "most tools" get wrong, an invented
   industry trend, or a bad status quo you cannot cite. State what the subject does; a
   strawman is an unsourced claim and is deleted like any other.
+- **A contrast opener.** Never begin by putting others down — no "most tools do this badly",
+  no "unlike other projects", no 踩一捧一. Say what this project is and does; the reader draws
+  the comparison. Applies to the Hero, the Overview and every section intro.
 - Unsourced comparisons (`faster than X`)
 - Unsourced compliance or security claims (`audited`, `secure`, `GDPR compliant`)
 

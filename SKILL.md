@@ -87,32 +87,31 @@ belongs in Project Structure, not here.
 | # | Section | Include when |
 |---|---|---|
 | 1 | **Overview** | There is a story to tell about what the project is and why it exists |
-| 2 | **Features** | At least one user-visible, high-impact differentiator |
-| 3 | **Demo / Preview** | Image, video or example output exists in the repo |
-| 4 | **Quick Start** | A runnable entry point exists |
-| 5 | **How It Works** | A flow, workflow or architecture can be derived from the source |
-| 6 | **Usage** | A public API, interface or exported surface exists |
-| 7 | **Requirements** | Runtime, platform or dependency requirements exist |
-| 8 | **Configuration** | Config files detected (`.env.example`, `*.config.*`, `*.yaml`, `*.toml`) |
-| 9 | **Project Structure** | More than one top-level source directory |
-| 10 | **API** | Routes, schemas or exported service definitions detected |
-| 11 | **Commands** | A CLI entrypoint exists (`bin`, `cmd/`, `[[bin]]`, `[project.scripts]`) |
-| 12 | **Tech Stack** | Dependencies declared in a manifest |
-| 13 | **Deployment** | Dockerfile, compose file, CI config or platform manifests detected |
-| 14 | **Roadmap** | A roadmap file, milestone config or documented plan exists |
-| 15 | **FAQ** | An FAQ document exists, or recurring questions are documented |
-| 16 | **Contributing & Community** | `CONTRIBUTING.md`, issue templates, or community links exist |
-| 17 | **Sponsors & Adopters** | A funding config or documented adopters exist |
-| 18 | **Security** | `SECURITY.md` exists, or the project handles auth, network or user data |
-| 19 | **Citation** | `CITATION.cff` exists, or the project has a published paper |
-| 20 | **License** | A licence file exists |
+| 2 | **Demo / Preview** | Always included — displays real usage effects (screenshots/recordings/links); placeholder emitted when assets absent |
+| 3 | **Quick Start** | A runnable entry point exists |
+| 4 | **How It Works** | A flow, workflow or architecture can be derived from the source |
+| 5 | **Usage** | A public API, interface or exported surface exists |
+| 6 | **Requirements** | Runtime, platform or dependency requirements exist |
+| 7 | **Configuration** | Config files detected (`.env.example`, `*.config.*`, `*.yaml`, `*.toml`) |
+| 8 | **Project Structure** | More than one top-level source directory |
+| 9 | **API** | Routes, schemas or exported service definitions detected |
+| 10 | **Commands** | A CLI entrypoint exists (`bin`, `cmd/`, `[[bin]]`, `[project.scripts]`) |
+| 11 | **Tech Stack** | Dependencies declared in a manifest |
+| 12 | **Deployment** | Dockerfile, compose file, CI config or platform manifests detected |
+| 13 | **Roadmap** | A roadmap file, milestone config or documented plan exists |
+| 14 | **FAQ** | An FAQ document exists, or recurring questions are documented |
+| 15 | **Contributing & Community** | `CONTRIBUTING.md`, issue templates, or community links exist |
+| 16 | **Sponsors & Adopters** | A funding config or documented adopters exist |
+| 17 | **Security** | `SECURITY.md` exists, or the project handles auth, network or user data |
+| 18 | **Citation** | `CITATION.cff` exists, or the project has a published paper |
+| 19 | **License** | A licence file exists |
 
 Final section otherwise:
 
-> If no licence file exists, omit section 20 and close with one line instead:
+> If no licence file exists, omit section 19 and close with one line instead:
 > `No LICENSE file detected. Add a LICENSE to clarify project licensing.`
 
-A typical project produces 10–14 of the 20 sections. Producing 20 is not the goal;
+A typical project produces 9–13 of the 19 sections. Producing 19 is not the goal;
 producing the right ones in the right order is.
 
 Section recipes: `references/sections-core.md`, `sections-reference.md`, `sections-growth.md`.
@@ -127,7 +126,7 @@ Read a reference only when the current task needs it.
 |---|---|
 | Full phase procedures, Upgrade-mode diffing | `references/workflow.md` |
 | Detection rules, evidence-map format | `references/project-scan.md` |
-| Overview / Hero / Features / Demo / Quick Start / Usage / Config / Deployment recipes | `references/sections-core.md` |
+| Overview / Hero / Demo / Quick Start / Usage / Config / Deployment recipes | `references/sections-core.md` |
 | How It Works / API / Commands / Structure / Stack / Requirements recipes | `references/sections-reference.md` |
 | Contributing / Community / Sponsors / Roadmap / FAQ / Security / License recipes | `references/sections-growth.md` |
 | Hero template, HTML recipes, alerts, link pool, collapsing | `references/hero-and-html.md` |
@@ -253,7 +252,7 @@ If the scan produced no usable data, stop and reply exactly:
 |---|---|
 | `workflow.md` | Phase procedures and Upgrade-mode diffing |
 | `project-scan.md` | Detection rules, evidence-map format |
-| `sections-core.md` | Overview, Hero, Features, Demo, Quick Start, Usage, Configuration, Deployment, Limitations |
+| `sections-core.md` | Overview, Hero, Demo, Quick Start, Usage, Configuration, Deployment, Limitations |
 | `sections-reference.md` | How It Works, API, Commands, Structure, Stack, Requirements, SDKs, Packages |
 | `sections-growth.md` | Contributing, Community, Roadmap, FAQ, Security, Sponsors, Citation, License |
 | `hero-and-html.md` | Hero template and HTML recipe library |

@@ -11,7 +11,6 @@ Templates for HTML regions are **not** reproduced here. Copy them verbatim from
 
 - [Overview](#overview)
 - [Hero](#hero)
-- [Features](#features)
 - [Demo / Preview](#demo--preview)
 - [Quick Start](#quick-start)
 - [Usage](#usage)
@@ -103,91 +102,21 @@ not `logo` or `banner`.
 
 ---
 
-## Features
-
-**Purpose:** the differentiators, in a form a reader can skim in ten seconds.
-
-### Shape
-
-```
-- **Real-time sync** — WebSocket updates pushed to every connected client
-- **Role-based access** — Permissions resolved per workspace membership
-- **Typed errors** — Failures carry a status code and the parsed response body
-```
-
-### Rules
-
-1. Maximum 6 items. With 20 features, pick the 6 a buyer would notice.
-2. Never pad. Two real features beats six padded ones. A list is the default; a table is
-   warranted only when every row carries two or more comparable values — see
-   `writing-style.md` → *Tables*.
-3. Each entry leads with the outcome, not the mechanism.
-   - Good: `Streams 10k events/sec` — Bad: `Uses a lock-free ring buffer`
-4. **A feature must be user-visible and high-impact.** Internal machinery — a build
-   pipeline, a quality gate, a layer count, a repository layout, a test total — is not a
-   feature. State the outcome it produces for the user instead.
-5. No feature that the scan did not evidence.
-6. Do not restate the description from the Hero.
-7. Group only when there are 6+ and natural clusters exist (e.g. Security / Performance /
-   Developer experience), otherwise a flat list.
-
-### What counts as a feature
-
-A feature answers "what does this do for me". An implementation detail answers "how is it
-built" and belongs in How It Works or Contributing.
-
-| Verdict | Feature | Why |
-|---|---|---|
-| Good | `Resumes interrupted uploads` | A visible outcome |
-| Good | `A wrong command never reaches the README` | States what the user gets |
-| Good | `Zero install dependencies` | Removes friction the user would feel |
-| Bad | `Seven quality gates` | Internal mechanism — state what it prevents |
-| Bad | `A fixed 20-section order` | A design detail — state the reader benefit |
-| Bad | `Supports 8 languages` | A count, not a benefit, unless the reader uses those languages |
-| Bad | `Monorepo with 6 packages` | Repository layout, not a user outcome |
-
-### Do not
-
-- List every dependency as a feature
-- Write "and much more"
-- Include a feature the project plans but has not implemented
-- Use a phrase from the banned list in `writing-style.md`
-- Describe a mechanism when the outcome is what the reader cares about
-
-### Sourcing
-
-Every row must trace to a scan row grounded in actual business implementation code or explicit contracts.
-If a capability is real in intent but no code evidences its business execution,
-delete the row rather than softening it — gate G1. Do not use dependency manifests as proof of user features;
-a dependency only proves a library is installed, not what the application actually does with it.
-
----
-
 ## Demo / Preview
 
-**Purpose:** prove the product works before the reader installs anything.
+**Purpose:** showcase the real-world usage, UI appearance, or interactive results of the project before installation.
 
-**Include when:** image or video assets exist in the repository.
-
-### Asset shapes
-
-| Asset | Form |
-|---|---|
-| Screenshot | Centered `<img>` with width constraint |
-| Animated demo | `<img>` or `<video>` — GIF/WebP under ~5 MB |
-| Multiple scenarios | Three-column card row (`hero-and-html.md` → *Demo Card Row*) |
-| Live playground | Centered CTA badge linking to the playground |
-
-### Rules
-
-1. Never invent a screenshot URL. Only link assets that exist in the repository or an
-   official domain the scan evidenced.
-2. Alt text describes the content of the image, not its role. `alt="Agent builder showing a
-   tool-selection panel"` — not `alt="screenshot"`.
-3. For a three-column row, all three cells must have equal width and real content. Two
-   real plus one filler fails gate G4.
-4. Prefer linking an interactive playground over a static image when one exists — the
-   reader can verify behaviour themselves.
+**Rules:**
+1. **Real effects only:** Display actual screenshots, animated recordings (GIF/WebP), terminal casts, or live demo/playground links, paired with concise explanatory text.
+2. **Human-provided assets:** Visual and demo materials typically require manual provision by the developer/maintainer.
+3. **Placeholder when absent:** If the author has not yet provided real media assets or demo links, output a clear, actionable placeholder instead of silently omitting or fabricating an imaginary comparison table:
+   ```markdown
+   > [!TIP]
+   > <!-- DEMO_PLACEHOLDER -->
+   > **演示素材待补充**：请在此补充项目的实际运行截图、动图演示或在线 Playground 链接。
+   ```
+4. Never fabricate screenshot URLs or imaginary before-after comparisons. Only link verified assets that exist in the repository or an evidenced domain.
+5. All images must include meaningful alt text describing what is shown.
 
 ---
 

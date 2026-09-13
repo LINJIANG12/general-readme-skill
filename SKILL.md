@@ -1,7 +1,7 @@
 ---
 name: general-readme-skill
 description: Use when generating, rewriting, upgrading or reviewing a README.md for any project. Triggers on /readme, "generate readme", "write readme", "update readme", "帮我写 README", "更新README", "生成项目文档". Produces evidence-bound, accessible README files in one consistent house style, with optional multi-language output.
-version: 3.0
+version: 3.1
 tags: documentation, readme, auto-generate, project-docs, i18n, accessibility
 ---
 

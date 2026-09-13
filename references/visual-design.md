@@ -108,15 +108,18 @@ ratio = (L_lighter + 0.05) / (L_darker + 0.05)
 The reader's eye needs variety to navigate. A document where every section has one shape is
 unreadable however correct each section is.
 
-1. **Adjacent sections must not open with the same form.** If the previous section opens with
-   a table, this one opens with prose, a list, a code block, an image or a diagram.
+1. **Adjacent sections must not be built on the same block type.** Two neighbouring sections
+   cannot both turn on a table, or both on a diagram, a code block or an image. Prose is never
+   the "built on" type — it is the connective tissue, so two prose-led sections are fine.
+   A section built on a table is followed by one built on prose, a list, code, an image or a
+   diagram.
 2. **At most one table per section**, except in reference sections (`API`, `Commands`,
    `Configuration`, `Tech Stack`) where a table is the content.
 3. **A table or list gets a lead-in line** when its columns are not self-evident. One
    sentence, then the block.
-4. **Reserve `---` for a deliberate pause**, not as a default separator. Whitespace already
-   separates sections on GitHub; a rule between every section is noise. Prefer none, or one
-   per stage change in the ordering principle.
+4. **Default to no horizontal rule.** Whitespace already separates sections on GitHub; a rule
+   between every section is noise. At most one `---`, placed where the document changes
+   register — for example before the licence.
 5. **Vary block length.** Three short sections and one long one reads better than four equal
    ones.
 6. **Do not repeat a footer device.** A "back to top" link on every section is noise; one at

@@ -246,13 +246,16 @@ Collect every URL at the end of the file. The body then references keys.
 
 ### Rules
 
-1. **Every badge and image URL goes in the pool.** Prose links may stay inline when they
-   appear once.
-2. **Key naming**: `badge-<name>` for images, `link-<name>` for destinations.
-3. **Place the pool at the file end**, after the license.
-4. **Benefits**: the body stays scannable; swapping a URL or a locale is a single edit;
+1. **Pool a URL when it appears more than once, or when it changes per locale.** A URL used
+   once in prose may stay inline.
+2. **Badges authored inside the Hero HTML stay inline.** The Hero is written as HTML, so the
+   indirection buys nothing and does not render reliably. Never duplicate a Hero badge in
+   the pool.
+3. **Key naming**: `badge-<name>` for images, `link-<name>` for destinations.
+4. **Place the pool at the file end**, after the license.
+5. **Benefits**: the body stays scannable; swapping a URL or a locale is a single edit;
    diffs stay small.
-5. In multi-language output, the pool is the **only** block that differs between language
+6. In multi-language output, the pool is the **only** block that differs between language
    files (besides prose) — localization edits happen here.
 
 ---
@@ -453,7 +456,7 @@ For documents longer than roughly 200 lines.
 ```html
 <a name="readme-top"></a>
 ```
-placed in the Hero, and at the end of each major section:
+placed in the Hero, and once at the end of the document:
 
 ```html
 <div align="right">
@@ -466,14 +469,18 @@ placed in the Hero, and at the end of each major section:
 with the pool definition:
 
 ```html
-[badge-top]: https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square
+[badge-top]: https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat
 ```
 
 ### Rules
 
-1. Place after **every major (`##`) section** in long documents, not after subsections.
-2. Omit for short documents — the anchor adds noise without benefit.
-3. The anchor target must exist exactly once (in the Hero).
+1. **Once, at the end of the document** — after the last section, not after each one.
+   Repeating the link in every section is a footer device the reader stops seeing
+   (`visual-design.md` → *Rhythm*).
+2. **Its style matches the document style.** A `flat-square` badge in a `flat` document is a
+   second style parameter and fails gate G4.
+3. Omit for short documents — the anchor adds noise without benefit.
+4. The anchor target must exist exactly once (in the Hero).
 
 ---
 

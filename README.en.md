@@ -1,137 +1,120 @@
-<a id="readme-top"></a>
+<div align="center">
 
-# General README Skill
+<a name="readme-top"></a>
 
-<p align="center">
-  <b>Evidence-bound, accessible, standardized README generator for AI coding assistants</b>
+<h1>General README Skill</h1>
+
+<p>
+  <strong>Let your AI read the repository, then write a README where every claim has a source</strong>
+  <br />
+  <em>Plain Markdown · Evidence-bound · Zero dependencies · CodeBuddy / Claude Code / Copilot / Cursor</em>
 </p>
 
-<p align="center">
+<p>
+  <a href="#quick-start"><img src="https://img.shields.io/badge/Quick_Start-2E7D32?style=for-the-badge" alt="Quick Start" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-2E7D32?style=for-the-badge" alt="License: MIT" /></a>
+</p>
+
+<p>
   <a href="https://github.com/LINJIANG12/general-readme-skill"><img src="https://img.shields.io/badge/version-3.1-3178C6?style=flat" alt="Version 3.1" /></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-yellow?style=flat" alt="License: MIT" /></a>
-  <a href="https://github.com/KieranGao/general-readme-skill"><img src="https://img.shields.io/badge/derived_from-KieranGao%2Fgeneral--readme--skill-8A2BE2?style=flat" alt="Derived from KieranGao/general-readme-skill" /></a>
+  <a href="https://github.com/KieranGao/general-readme-skill"><img src="https://img.shields.io/badge/adapted_from-KieranGao-7C3AED?style=flat" alt="Adapted from KieranGao/general-readme-skill" /></a>
 </p>
 
-<p align="center">
-  <a href="install/codebuddy.md"><img src="https://img.shields.io/badge/CodeBuddy-supported-blue?style=flat" alt="CodeBuddy Supported" /></a>
-  <a href="install/claude-code.md"><img src="https://img.shields.io/badge/Claude_Code-supported-D97706?style=flat" alt="Claude Code Supported" /></a>
-  <a href="install/copilot.md"><img src="https://img.shields.io/badge/GitHub_Copilot-supported-black?style=flat" alt="GitHub Copilot Supported" /></a>
-  <a href="install/cursor.md"><img src="https://img.shields.io/badge/Cursor-supported-gray?style=flat" alt="Cursor Supported" /></a>
+<p>
+  <a href="README.md">简体中文</a> ·
+  <strong>English</strong>
 </p>
 
-<p align="center">
-  <a href="README.md">简体中文</a> &nbsp;|&nbsp; English
-</p>
+</div>
 
-<p align="center">
-  <a href="#overview">Overview</a> &bull;
-  <a href="#demo">Demo</a> &bull;
-  <a href="#quick-start">Quick Start</a> &bull;
-  <a href="#workflow">Workflow</a> &bull;
-  <a href="#usage">Usage</a> &bull;
-  <a href="#requirements">Requirements</a> &bull;
-  <a href="#contributing--community">Contributing</a> &bull;
-  <a href="#license">License</a>
-</p>
+## Table of Contents
 
----
+- [Overview](#overview)
+- [Demo](#demo)
+- [Quick Start](#quick-start)
+- [How It Works](#how-it-works)
+- [Usage](#usage)
+- [Requirements](#requirements)
+- [Project Structure](#project-structure)
+- [Contributing & Community](#contributing--community)
+- [License](#license)
 
 ## Overview
 
-This is a specialized skill for AI coding assistants: it guides your assistant to thoroughly inspect a repository and write an open-source-grade `README.md` without human intervention.
+General README Skill is a skill package for AI coding assistants: it reads a repository first, then writes a `README.md` that is ready to ship.
 
-The foundational principle is **turning "every claim must have evidence" into an automated verification pipeline**. Before drafting any copy, the AI executes a three-pass discovery scan to build an Evidence Map tracking `declared` facts (explicitly asserted in code) and `inferred` mechanisms. Claims lacking evidence are strictly blocked or deleted.
+It exists to remove the usual failure mode of AI-written documentation — **fabrication**. Invented commands, version numbers that do not exist, configuration keys that were never declared. The trouble with that content is how hard it is to catch by hand. The skill moves the risk into the process: before any prose is written, a three-pass discovery scan builds a `claim → source` evidence map, and every source is graded `declared` (stated outright in a manifest or in the code) or `inferred` (derived from directory structure). A claim without a source is deleted from the draft rather than softened.
 
-Sections are not forced into a fixed list: they are ordered by what the reader asks next (identity → proof → onboarding → mechanics → reference → operations → community), chosen and dropped to fit the project, and a section with no data is omitted rather than padded with a placeholder. The draft is audited by seven quality gates (Evidence, Structure, Tone, Visuals, Links, Accessibility, and i18n). The primary language occupies `README.md`, while secondary languages are linked via a bidirectional switcher.
-
-You only need one command: `/readme`. The assistant autonomously scans, maps, composes, audits, and outputs the documentation in seconds.
-
-<p align="right"><a href="#readme-top">Back to top &uarr;</a></p>
-
----
+Sections follow no fixed checklist. They are chosen in the order a reader asks questions — identity, proof, onboarding, mechanics, reference, community — and any section the scan finds no data for is dropped whole, with no "N/A" and no placeholder left behind. The finished draft then passes seven gates (evidence, structure, voice, visual, links, accessibility, i18n), where a failing item is repaired in place or removed. Your part is one command in the project you are documenting.
 
 ## Demo
 
-The skill emphasizes **demonstrating real-world effects**. In your host assistant, typing `/readme` triggers the automated assembly:
+Once a command activates the skill inside a host assistant, it scans the current repository and assembles the document:
 
 <div align="center">
-  <img src="assets/intro.png" alt="General README Skill Live Demo" width="85%" />
+  <img src="assets/intro.png" alt="Entering /readme in CodeBuddy, after which the skill scans the repository and writes the README" width="85%" />
 </div>
 
-<br />
-
-### Real Production Examples
-
-Three real-world generated artifacts are included in the repository for inspection:
-
-- **Library & SDK Example**: [`examples/library-readme.md`](examples/library-readme.md) — For npm packages and TypeScript utilities; demonstrates concise Quick Start, API signatures, and zero runtime dependencies.
-- **CLI Tool Example**: [`examples/app-readme.md`](examples/app-readme.md) — For binaries and CLI utilities; demonstrates subcommand signatures, argument verification, and platform requirements.
-- **Microservices Example**: [`examples/oxyteamtasks-readme.md`](examples/oxyteamtasks-readme.md) — For multi-service distributed systems; demonstrates topology diagrams, gRPC/REST endpoints, and multi-environment configs.
-
 > [!TIP]
-> **Asset Recommendation**: When generating documentation for your own project, provide real screenshots, animated recordings (GIF/WebP), or a live Playground link here. If no assets are provided, the skill leaves an actionable placeholder guiding maintainers to add them.
+> When documenting a real project, the skill pulls in existing screenshots, recordings or live demo links in this section. When it finds no asset, it leaves an actionable placeholder for the maintainer instead of inventing a screenshot.
 
-<p align="right"><a href="#readme-top">Back to top &uarr;</a></p>
+### Example output
 
----
+The repository ships three complete outputs, one per project shape, for comparison:
+
+- **Library / SDK** — [`examples/library-readme.md`](examples/library-readme.md): installation, interface calls and the zero-dependency story for a small package
+- **CLI tool** — [`examples/app-readme.md`](examples/app-readme.md): subcommand usage, flag validation and cross-platform requirements
+- **Microservices / backend** — [`examples/oxyteamtasks-readme.md`](examples/oxyteamtasks-readme.md): service topology, gRPC/REST interfaces and multi-environment configuration
 
 ## Quick Start
 
-Choose your editor or AI assistant and execute the corresponding installation snippet:
+Installation is the only preparation step. The skill is plain Markdown and HTML, with no build tool and no runtime dependency.
 
-<details open>
-<summary><b>1. CodeBuddy (Recommended)</b></summary>
+### Install for CodeBuddy
 
 ```bash
 mkdir -p "$HOME/.codebuddy/skills/general-readme-skill"
 cp SKILL.md README.md README.en.md LICENSE "$HOME/.codebuddy/skills/general-readme-skill/"
 cp -r references/ install/ examples/ assets/ "$HOME/.codebuddy/skills/general-readme-skill/"
 ```
-</details>
 
-<details>
-<summary><b>2. Claude Code</b></summary>
+### Install for Claude Code
 
 ```bash
 mkdir -p .claude/skills/general-readme-skill
 cp SKILL.md .claude/skills/general-readme-skill/
 cp -r references/ .claude/skills/general-readme-skill/
 ```
-</details>
 
-<details>
-<summary><b>3. GitHub Copilot</b></summary>
+### Install for GitHub Copilot
 
 ```bash
 mkdir -p .github
 cp SKILL.md .github/copilot-instructions.md
 cp -r references/ .github/references/
 ```
-</details>
 
-<details>
-<summary><b>4. Cursor</b></summary>
+### Install for Cursor
 
 ```bash
 mkdir -p .cursor/rules
 cp SKILL.md .cursor/rules/general-readme.mdc
 cp -r references/ .cursor/rules/references/
 ```
-</details>
 
-Open your repository and prompt your assistant:
+### Invoke
+
+In any project, send the assistant:
+
 ```text
 /readme
 ```
-The skill automatically activates, runs the scan, extracts evidence, and composes the verified documentation.
 
-<p align="right"><a href="#readme-top">Back to top &uarr;</a></p>
+The skill then runs the scan, extracts evidence, assembles sections and verifies the gates. Per-host differences are documented in [`install/`](install).
 
----
+## How It Works
 
-## Workflow
-
-Documentation generation executes across five sequential phases, finalized by seven automated quality gates:
+The skill runs five phases in a line, and every output has to pass seven gates before it ships:
 
 ```mermaid
 flowchart LR
@@ -146,91 +129,109 @@ flowchart LR
     class P4 focal
 ```
 
-### Phase Details
+### Phase output
 
-- **0 Configure** — Resolves primary language (default Simplified Chinese), secondary languages, and entry mode (Create or Upgrade).
-- **1 Scan** — Runs three-pass discovery (hierarchical file map &rarr; core business logic reading &rarr; on-demand sampling) to construct the Evidence Map. Secrets and private hostnames are masked automatically.
-- **2 Compose** — Selects the sections the project needs and orders them for the reader. Empty sections are omitted without placeholders.
-- **3 Verify** — Executes gates G1~G7 to automatically fix formatting issues or eliminate unsourced claims.
-- **4 Output** — Emits standard, accessible `README.md` alongside mirror language files.
+- **0 Configure** — resolves the primary language (Simplified Chinese by default), secondary languages and the entry mode, and confirms the reference files it needs exist and are readable.
+- **1 Scan** — the three-pass discovery scan: map the file tree with its hierarchy, read manifests, entry points and core implementation in full, then sample detail on demand. Produces the `claim → source` evidence map, masking secrets and private hostnames as it reads.
+- **2 Compose** — picks and orders the sections a reader needs, choosing the form that reads best for each; the Hero and other HTML regions are authored as HTML directly.
+- **3 Verify** — runs gates G1 to G7, repairs what can be repaired in place, deletes a claim that cannot be repaired, and iterates any single gate at most three times.
+- **4 Output** — writes the primary file and one mirrored file per secondary language, normalizing line endings, encoding and whitespace.
 
 <details>
-<summary><b>Click to expand: Section library and selection rules</b></summary>
+<summary><b>Expand: section library and include conditions</b></summary>
+
 <br />
 
-Pick what fits — there is no requirement to use them all. Project-specific sections may be added, named for their content. The list below follows the reader's order.
+Sections are picked as needed, not written in full; a project-specific section may be added and is named for its content rather than its position. The table follows the order a reader asks questions.
 
-| # | Section | Included When |
+| # | Section | Include when |
 |---|---|---|
-| 1 | **Overview** | A clear problem statement, positioning, or core background exists |
-| 2 | **Demo / Preview** | Always included — displays real usage effects (screenshots/recordings/links); placeholder emitted when assets absent |
-| 3 | **Quick Start** | A runnable entry point, launch command, or installation script exists |
-| 4 | **How It Works** | System topology, data flow, or architecture can be derived |
-| 5 | **Usage** | Public APIs, exported SDK interfaces, or primary functions exist |
-| 6 | **Requirements** | Explicit runtime versions, platforms, or system requirements are declared |
-| 7 | **Configuration** | Config files or env templates detected (`*.config.*`, `.env.example`, `*.toml`) |
-| 8 | **Project Structure** | More than one top-level source directory with valuable layout structure |
-| 9 | **API** | Routes, schemas, or service definitions detected |
-| 10 | **Commands** | CLI entrypoint detected (`bin/`, `cmd/`, `[[bin]]`) |
-| 11 | **Tech Stack** | Concrete dependencies declared in package manifests |
-| 12 | **Deployment** | Dockerfiles, compose files, CI workflows, or cloud manifests detected |
-| 13 | **Roadmap** | Milestones, roadmaps, or planned tasks documented |
-| 14 | **FAQ** | Documented troubleshooting guides or recurring questions |
-| 15 | **Contributing & Community** | `CONTRIBUTING.md`, issue templates, or community channels exist |
-| 16 | **Sponsors & Adopters** | Funding configs or enterprise adopter lists detected |
-| 17 | **Security** | `SECURITY.md` exists, or the project handles sensitive auth/network data |
-| 18 | **Citation** | `CITATION.cff` exists, or academic papers are cited |
-| 19 | **License** | A software licence file exists |
+| 1 | **Overview** | The project has a stated purpose, background or problem to solve |
+| 2 | **Demo** | Real effects must be shown; with no asset, emit a placeholder rather than an invented image |
+| 3 | **Quick Start** | A runnable entry point, start command or install script is detected |
+| 4 | **How It Works** | A flow, architecture or component relationship can be derived from the source |
+| 5 | **Usage** | A public API, exported interface or core call pattern exists |
+| 6 | **Requirements** | A runtime version, host platform or underlying dependency is declared |
+| 7 | **Configuration** | Config files or environment templates are detected (`*.config.*`, `.env.example`, `*.toml`) |
+| 8 | **Project Structure** | More than one top-level source directory, with a structure worth documenting |
+| 9 | **API** | Route tables, schemas or exported service definitions are detected |
+| 10 | **Commands** | A CLI entry point exists, such as `bin/`, `cmd/`, `[[bin]]` |
+| 11 | **Tech Stack** | Core dependencies are declared in a manifest |
+| 12 | **Deployment** | A Dockerfile, compose file, CI config or platform manifest is detected |
+| 13 | **Roadmap** | Milestones, a written plan or a list of unfinished work exists |
+| 14 | **FAQ** | An FAQ document exists, or recurring questions are recorded |
+| 15 | **Contributing & Community** | A contributing guide, issue templates or community links exist |
+| 16 | **Sponsors & Adopters** | A funding config or a documented adopter list is detected |
+| 17 | **Security** | `SECURITY.md` exists, or the project handles auth, network or user data |
+| 18 | **Citation** | `CITATION.cff` exists, or the project has a published paper |
+| 19 | **License** | A licence file exists |
 
 </details>
 
-<p align="right"><a href="#readme-top">Back to top &uarr;</a></p>
-
----
-
 ## Usage
 
-### Trigger Commands
+Send the command in a host assistant's chat box to start:
 
-Type directly into your assistant's chat window:
 ```text
 /readme
 ```
-Natural variations like `generate readme`, `write readme`, and `更新README` are also supported.
 
-### Modes
+These phrases also trigger the skill: `generate readme`, `write readme`, `更新README`, `生成项目文档`.
 
-- **Create Mode**: Automatically activated when a project lacks a `README.md` or when explicitly instructed to rewrite. Scans and assembles from scratch.
-- **Upgrade Mode**: Activated when an existing README is present. Preserves bespoke prose while surgically updating outdated facts. If the source README contains bespoke content that cannot fit the standard sections, it is never deleted silently — it is relocated to auxiliary docs (`CONTRIBUTING.md`, `docs/`) with a link or prompted to the user for confirmation.
+### Entry modes
 
-<p align="right"><a href="#readme-top">Back to top &uarr;</a></p>
+The skill detects the mode from repository state; there is nothing to switch manually.
 
----
+**Create mode** applies when the project has no `README.md`, or when you explicitly ask for a regeneration. Every section is written from the evidence map.
+
+**Upgrade mode** applies when a README already exists. The skill first builds a content ledger of the existing sections and facts, then merges: human-maintained prose and untagged sections survive in place, while auto-generated regions are rewritten. Content that does not fit a standard section is never deleted in silence — it is relocated to `CONTRIBUTING.md`, `MIGRATION.md`, `docs/` or similar with a link back, or raised with you for a decision.
 
 ## Requirements
 
-- **Supported Hosts**: CodeBuddy, Claude Code, GitHub Copilot, Cursor.
-- **Runtime Dependencies**: Zero. Pure Markdown and standard HTML; requires no compilers or CLI runtimes.
-- **Rendering**: Standard GitHub Flavored Markdown (GFM) and native Mermaid diagram support.
+- **Host** — CodeBuddy, Claude Code, GitHub Copilot or Cursor.
+- **Runtime** — none. The skill is plain Markdown and standard HTML, with no build tool or CLI binary.
+- **Rendering** — GitHub Flavored Markdown is required; diagrams rely on the host rendering Mermaid.
+- **Load format** — `SKILL.md` acts as the entry manifest, with rules and templates loaded from `references/` on demand.
 
-<p align="right"><a href="#readme-top">Back to top &uarr;</a></p>
+## Project Structure
 
----
+```text
+general-readme-skill/
+├── SKILL.md          # Entry: design principles, section library, gates and reference routing
+├── references/       # 16 reference files: section recipes, templates and rules, loaded on demand
+├── install/          # Per-host installation notes for the four hosts
+├── examples/         # Complete example output for three project shapes
+├── assets/           # Image assets for the documentation
+└── LICENSE
+```
+
+`SKILL.md` only routes. The templates and rules live under `references/` and are loaded by the
+task at hand, so no single run has to carry the whole rule set in context.
 
 ## Contributing & Community
 
-Contributions to multi-language translation and section recipes are welcome! Before submitting a pull request:
-- Comply strictly with [`references/writing-style.md`](references/writing-style.md) (no hype adjectives or unsourced comparisons).
-- When modifying section recipes, update `references/sections-core.md`, `SKILL.md`, and language switcher tables in parallel.
+Contributions to the multilingual vocabulary, the rules and the examples are welcome.
 
-<p align="right"><a href="#readme-top">Back to top &uarr;</a></p>
-
----
+- Follow the banned-phrase list in [`references/writing-style.md`](references/writing-style.md) when writing prose, avoiding inflated adjectives and unsourced comparisons.
+- Keep section recipes in sync: `references/sections-core.md`, `references/sections-reference.md` and the library in `SKILL.md` must agree.
+- Take diagram fill, border and ink colours from the paired palette in [`references/diagram-templates.md`](references/diagram-templates.md).
+- When adding a secondary language, keep the switcher bidirectional in every file.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+Released under the [MIT License](LICENSE).
 
-Copyright (c) 2026 OxyTheCrack / LINJIANG12. Derived from [KieranGao/general-readme-skill](https://github.com/KieranGao/general-readme-skill).
+Copyright (c) 2026 OxyTheCrack
+Copyright (c) 2026 LINJIANG12
 
-<p align="right"><a href="#readme-top">Back to top &uarr;</a></p>
+Adapted from [KieranGao/general-readme-skill](https://github.com/KieranGao/general-readme-skill).
+
+<div align="right">
+
+[![Back to top][badge-top]](#readme-top)
+
+</div>
+
+<!-- LINKS & IMAGES -->
+
+[badge-top]: https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat

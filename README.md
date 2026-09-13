@@ -1,350 +1,292 @@
+<a id="readme-top"></a>
+
+<!-- HERO -->
 <div align="center">
+  <h1>general-readme-skill</h1>
+  <p><strong>以证据图为约束、单一结构、严格门禁的开源级 README 生成技能</strong></p>
 
-<a name="readme-top"></a>
+  <p>
+    <a href="https://github.com/LINJIANG12/general-readme-skill"><img src="https://img.shields.io/badge/版本-3.1-3178C6?style=flat" alt="版本 3.1" /></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/许可证-MIT-yellow?style=flat" alt="许可证：MIT" /></a>
+    <a href="https://github.com/KieranGao/general-readme-skill"><img src="https://img.shields.io/badge/改编自-KieranGao%2Fgeneral--readme--skill-8A2BE2?style=flat" alt="改编自 KieranGao/general-readme-skill" /></a>
+  </p>
+  <p>
+    <img src="https://img.shields.io/badge/支持平台-CodeBuddy-blue?style=flat" alt="平台：CodeBuddy" />
+    <img src="https://img.shields.io/badge/支持平台-Claude_Code-d97706?style=flat" alt="平台：Claude Code" />
+    <img src="https://img.shields.io/badge/支持平台-GitHub_Copilot-1f2937?style=flat" alt="平台：GitHub Copilot" />
+    <img src="https://img.shields.io/badge/支持平台-Cursor-6366f1?style=flat" alt="平台：Cursor" />
+  </p>
 
-<h1>General README Skill</h1>
-
-<p>
-  <strong>扫描你的项目并生成 README，每一条断言都能追溯到仓库里的真实文件</strong>
-  <br />
-  <em>证据绑定 · 固定结构 · 单一语气 · 无障碍 · 零依赖 · 多语言</em>
-</p>
-
-<p>
-  <a href="#快速开始"><img src="https://img.shields.io/badge/快速开始-4CAF50?style=for-the-badge" alt="快速开始" /></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/许可证-MIT-yellow?style=for-the-badge" alt="许可证：MIT" /></a>
-</p>
-
-<p>
-  <a href="https://github.com/LINJIANG12/general-readme-skill"><img src="https://img.shields.io/badge/版本-3.0-3178C6?style=flat" alt="版本 3.0" /></a>
-  <a href="https://github.com/KieranGao/general-readme-skill"><img src="https://img.shields.io/badge/改编自-KieranGao%2Fgeneral--readme--skill-8A2BE2?style=flat" alt="改编自 KieranGao/general-readme-skill" /></a>
-</p>
-
-<p>
-  <strong>简体中文</strong> ·
-  <a href="README.en.md">English</a>
-</p>
-
-<p>
-  <img src="assets/intro.png" alt="General README Skill 生成证据绑定的 README 文件" width="800" />
-</p>
-
+  <p>
+    简体中文 &middot; <a href="README.en.md">English</a>
+  </p>
 </div>
 
-在任意仓库里输入 `/readme`，它会扫描项目、按固定章节顺序写出 README，或在你已有的文件上增量更新并保留手写内容。
+<!-- NAVIGATION BAR -->
+<div align="center">
+  <p>
+    <a href="#概览">概览</a> &bull;
+    <a href="#功能特性">核心特性</a> &bull;
+    <a href="#效果对比与演示">对比与演示</a> &bull;
+    <a href="#快速开始">快速体验</a> &bull;
+    <a href="#基本工作流程">工作流程</a> &bull;
+    <a href="#使用方法">使用方法</a> &bull;
+    <a href="#运行环境与依赖">运行环境</a> &bull;
+    <a href="#贡献与社区">贡献</a> &bull;
+    <a href="#许可证">许可证</a>
+  </p>
+</div>
 
-## 目录
-
-- [概览](#概览)
-- [功能特性](#功能特性)
-- [演示](#演示)
-- [快速开始](#快速开始)
-- [基本工作流程](#基本工作流程)
-- [使用方法](#使用方法)
-- [运行环境与依赖](#运行环境与依赖)
-- [贡献与社区](#贡献与社区)
-- [许可证](#许可证)
+---
 
 ## 概览
 
-这是一个给 AI 编程助手用的技能：扫描项目，并按固定结构写出一份 README。
+这是一个面向主流 AI 编程助手（CodeBuddy、Claude Code、GitHub Copilot、Cursor）的标准化工作流技能，专为解决代码仓库说明文档的规范化产出而设计。
 
-它把「每条断言都能说到出处」做成了一道可校验的工序——扫描产出证据图，成稿前逐条核对，无来源的断言直接删除，而不是改说得含糊一点。规则写在 [`quality-gates.md`](references/quality-gates.md)，格式写在 [`project-scan.md`](references/project-scan.md)。
-
-章节顺序在 [`SKILL.md`](SKILL.md) 中固定为 20 项，扫描无数据的整节跳过，典型项目命中 10–14 节。成稿没有占位符、没有失效链接，图片都带 alt 文本；主要语言占 `README.md`，其余语言各占一个文件，切换栏双向可达。
-
-你需要做的只有一件事：在项目目录里输入 `/readme`。已经写过 README 的项目会进入升级模式，保留你手写的部分。
-
-<div align="right">
+它不依赖大模型的无约束联想，而是将文档撰写重塑为可工程化复现的五阶段流水线：从静态代码目录树建立断言证据图，穿透依赖清单直达服务实现代码，按照固定顺序装配章节，并在交付前施加七道机械化质量门禁。最终交付的文档无虚构占位符、无失效相对链接，中英双语结构镜像，达到顶尖开源项目的交付水准。
 
 [![返回顶部][badge-top]](#readme-top)
 
-</div>
+---
 
 ## 功能特性
 
-- **没有依据的内容进不了文档** — 无来源的断言由证据门禁 G1 删除，而不是弱化
-- **重跑不覆盖手写** — 升级模式只重写自动区域，手写章节原位保留
-- **产出结构稳定** — 章节顺序固定为 20 项，无数据的整节跳过，典型命中 10–14 节
-- **交付即可提交** — Web 链接门禁拒绝占位符与失效链接，无障碍门禁要求每张图有 alt、每张表有表头
-- **多语言结构镜像** — 主次语言章节一一对应、代码块逐字节一致，切换栏双向可达
-- **零运行时** — 不装 CLI、不构建，把 `SKILL.md` 与 `references/` 复制进技能目录即可
-
-<div align="right">
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h4> 真实代码深度绑定</h4>
+      <p>Pass 2 精读核心业务逻辑（命令处理器、服务层、主力类与算法）。每项功能断言必须在代码中溯源，禁止把简单依赖包当业务特性。</p>
+    </td>
+    <td width="50%" valign="top">
+      <h4> 统一标准结构体系</h4>
+      <p>严格按照 20 个标准章节顺序组合成文。未扫描到证据的章节整节跳过，绝不保留 <code>N/A</code>、占位符或暂未实现的假象。</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h4> 七道机械化质量门禁</h4>
+      <p>成稿后逐项执行证据（G1）、结构（G2）、风格（G3）、视觉（G4）、链接（G5）、无障碍（G6）、多语言（G7）终审，未达标直接拦截修复。</p>
+    </td>
+    <td width="50%" valign="top">
+      <h4> 双语镜像一键直出</h4>
+      <p>主要语言（默认简体中文）占位 <code>README.md</code>，其他语言文件（如 <code>README.en.md</code>）逐节镜像对照，顶部导航双向锚定直达。</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h4> 零环境与运行时依赖</h4>
+      <p>全套工作流由 Markdown 规范与标准 HTML 构成，原生运行在宿主 AI 助手的上下文环境内，不引入多余运行时或二进制脚本。</p>
+    </td>
+    <td width="50%" valign="top">
+      <h4> 一键触发与增量安全</h4>
+      <p>输入 <code>/readme</code> 即可运行。支持全量新建与增量升级双模式，二次执行时精确保留人工撰写的定制内容与安全字段。</p>
+    </td>
+  </tr>
+</table>
 
 [![返回顶部][badge-top]](#readme-top)
 
-</div>
+---
 
-## 演示
+## 效果对比与演示
 
-`examples/` 里是三份完整产出，可以逐节核对：
+### 方案对比
 
-- [`app-readme.md`](examples/app-readme.md) — 全栈应用：架构图、配置、API 与部署
-- [`library-readme.md`](examples/library-readme.md) — 已发布库：以收益为导向的特性与最小用法
-- [`oxyteamtasks-readme.md`](examples/oxyteamtasks-readme.md) — 真实双语项目，带 `<!-- AUTO-GENERATED -->` 标记
+| 评估维度 | 传统无约束 AI 生成的 README ❌ | General README Skill 规范产物  |
+|---|---|---|
+| **内容真实性** | 易产生幻觉，臆造参数、不存在的命令与未实现功能 | **证据图驱动**：每条特性严格锚定业务源码实现与导出接口 |
+| **文风与语气** | 充斥 `powerful`、`blazingly fast` 等浮夸营销词 | **严谨工程文风**：事实陈述，客观克制，零禁用修饰词 |
+| **版面与结构** | 章节随缘组织，常见大段空洞文字与占位符 | **标准化装配**：20 章节按需开启，多余内容整节隐去 |
+| **交付即用度** | 缺少 alt 属性、链接易 404、中英文难以对应 | **七道门禁拦截**：无障碍友好，锚点闭环，双语逐节对齐 |
 
-摘自 [`library-readme.md`](examples/library-readme.md)：
+### 实际生成范例预览
 
-```typescript
-import { createClient, type InferResponse } from 'typed-fetch'
+技能自带针对三种典型软件形态的离线参考实现：
 
-const api = createClient({ baseUrl: 'https://api.example.com' })
+- **基础库与 SDK**：[`examples/library-readme.md`](examples/library-readme.md) — 展示 TypeScript 原生 Fetch 包装库的精简 API 声明与分发说明。
+- **命令行工具 CLI**：[`examples/app-readme.md`](examples/app-readme.md) — 展示具有子命令与参数验证的 CLI 工具文档。
+- **微服务与后端**：[`examples/oxyteamtasks-readme.md`](examples/oxyteamtasks-readme.md) — 展示多微服务协同、gRPC 接口与容器编排的标准工程落地。
 
-type UserResponse = { id: string; name: string; email: string }
-const user = await api.get<UserResponse>('/users/123')
+<details>
+<summary><b>点击展开查看：生成的真实库文档片段（截取自 library-readme.md）</b></summary>
+
+```markdown
+## Features
+
+- **Zero overhead** — Built on native `fetch`, with no extra runtime dependencies
+- **Type-safe responses** — Full TypeScript inference from endpoint to response schema
+- **Automatic parsing** — JSON, text and blob bodies handled transparently by `Content-Type`
+- **Typed errors** — Errors carry the HTTP status code and the parsed response body
+- **Interceptors** — Request and response middleware pipeline for auth, logging and retries
+- **Tree-shakeable** — ESM-first export surface ensuring minimal bundle footprint
 ```
-
-<div align="right">
+</details>
 
 [![返回顶部][badge-top]](#readme-top)
 
-</div>
+---
 
 ## 快速开始
 
-把技能安装到 AI 编程助手即可，没有构建步骤。选择一个平台执行对应命令。
+在任一支持的 AI 助手中载入技能后，在目标项目根目录下直接发送：
 
-### CodeBuddy
-
-```bash
-mkdir -p ~/.codebuddy/skills/general-readme-skill
-cp SKILL.md ~/.codebuddy/skills/general-readme-skill/
-cp -r references/ ~/.codebuddy/skills/general-readme-skill/
+```text
+/readme
 ```
 
-### Claude Code
+### 常用平台一键体验
+
+<details open>
+<summary><b>CodeBuddy</b></summary>
+
+把技能目录放置在用户配置目录下并重载窗口：
+
+```powershell
+Copy-Item -Path "general-readme-skill" -Destination "$env:USERPROFILE\.codebuddy\skills\general-readme-skill" -Recurse -Force
+```
+</details>
+
+<details>
+<summary><b>Claude Code</b></summary>
+
+复制技能文件到全局规则库：
 
 ```bash
-mkdir -p .claude/skills/general-readme
-cp SKILL.md .claude/skills/general-readme/
-cp -r references/ .claude/skills/general-readme/
+mkdir -p ~/.claude/skills && cp SKILL.md ~/.claude/skills/general-readme.md
 ```
+</details>
 
-### GitHub Copilot
+<details>
+<summary><b>GitHub Copilot</b></summary>
+
+配置工作区指令与参考集：
 
 ```bash
-mkdir -p .github
-cp SKILL.md .github/copilot-instructions.md
-cp -r references/ .github/references/
+mkdir -p .github && cp SKILL.md .github/copilot-instructions.md && cp -r references/ .github/references/
 ```
+</details>
 
-### Cursor
+<details>
+<summary><b>Cursor</b></summary>
+
+放置在工作区规则目录：
 
 ```bash
-mkdir -p .cursor/rules
-cp SKILL.md .cursor/rules/general-readme.mdc
-cp -r references/ .cursor/rules/references/
+mkdir -p .cursor/rules && cp SKILL.md .cursor/rules/general-readme.mdc && cp -r references/ .cursor/rules/references/
 ```
-
-在项目目录里输入 `/readme`。技能应当先列出文件树、再输出证据图，然后才开始撰写。若没有反应，检查助手是否加载了技能目录。各平台的验证步骤：[CodeBuddy](install/codebuddy.md) · [Claude Code](install/claude-code.md) · [Copilot](install/copilot.md) · [Cursor](install/cursor.md)。
-
-<div align="right">
+</details>
 
 [![返回顶部][badge-top]](#readme-top)
 
-</div>
+---
 
 ## 基本工作流程
 
-技能分五个阶段完成一次生成（0 配置 → 1 扫描 → 2 组合 → 3 校验 → 4 输出），交付前再执行七道门禁。
+技能在内部调度五阶段状态机，并在最终产物输出前执行全链路门禁审计：
 
 ```mermaid
-flowchart LR
-    A[阶段 0<br/>配置] --> B[阶段 1<br/>扫描]
-    B --> C[阶段 2<br/>组合]
-    C --> D[阶段 3<br/>校验]
-    D --> E[阶段 4<br/>输出]
+flowchart TD
+    classDef step fill:#EEF2FF,stroke:#4F46E5,stroke-width:1.5px,color:#1E1B4B;
+    classDef gate fill:#ECFDF5,stroke:#059669,stroke-width:1.5px,color:#064E3B;
 
-    A -.-> A1[语言<br/>入口模式]
-    B -.-> B1[证据图]
-    C -.-> C1[固定章节序]
-    D -.-> D1[七道门禁]
+    P0["0 配置<br/>解析语言与入口模式"]:::step
+    P1["1 扫描<br/>三步发现 & 核心业务代码精读"]:::step
+    P2["2 组合<br/>固定章节填充 & 无证据整节跳过"]:::step
+    P3["3 校验<br/>G1~G7 自动化机械质量门禁"]:::gate
+    P4["4 输出<br/>写入 README.md 及副语言镜像"]:::step
 
-    classDef phase fill:#3B82F6,stroke:#2563EB,color:#fff,stroke-width:2px
-    classDef artifact fill:#8B5CF6,stroke:#7C3AED,color:#fff,stroke-width:2px
-
-    class A,B,C,D,E phase
-    class A1,B1,C1,D1 artifact
+    P0 --> P1 --> P2 --> P3 --> P4
 ```
 
-- **0 配置** — 只解析两件事：主要语言（默认简体中文）与入口模式（新建 / 升级）。没有结构可选，也没有语气可选
-- **1 扫描** — 只读静态文件：不执行代码、不运行 `git`。先列出带层级的完整文件树，再精读清单、入口、核心业务逻辑实现（服务层/命令处理器/核心类）与主要配置，其余按需样读或跳过。写作时把密钥、令牌与内网主机名替换为占位符
-- **2 组合** — 按固定章节顺序填入有数据的章节。一次生成通常落在 10–14 个章节之间，没有数据的整节跳过
-- **3 校验** — 逐项执行七道门禁，不过关的修复或删除
-- **4 输出** — 写入 `README.md` 与各语言文件，并统一编码、换行与空行
+### 五阶段执行细节
 
-证据图长这样（格式取自 [`project-scan.md`](references/project-scan.md)）：
-
-```text
-EVIDENCE MAP — taskboard
-───────────────────────────────────────────────────────
-claim                          level      source
-───────────────────────────────────────────────────────
-Language = TypeScript          declared   package.json → devDependencies.typescript
-Framework = Express            declared   package.json → dependencies.express
-Default port = 3000            declared   src/config.ts:14
-Architecture = layered         inferred   src/{api,services,models}/ present
-───────────────────────────────────────────────────────
-```
-
-`declared` 可以直接写成事实，`inferred` 必须加限定词，`absent` 则整节略过。
+- **0 配置（Configure）** — 自动解析主要语言（默认简体中文）、次要语言，并判定入口模式（Create 新建 / Upgrade 增量升级）。
+- **1 扫描（Scan）** — 执行只读三步扫描：Pass 1 获取完整目录树；Pass 2 精读清单、入口与关键业务逻辑（服务层、指令处理器）；Pass 3 按需样读代表性实现。产出「断言 → 来源」证据图。
+- **2 组合（Compose）** — 严格按固定 20 个章节顺序装配。仅填充证据图中标记为 `declared` 或 `inferred` 的章节，无数据章节整节隐去。
+- **3 校验（Verify）** — 逐条运行七道质量门禁。发现无来源声明或失效链接直接删除或重构，严禁弱化敷衍。
+- **4 输出（Output）** — 写入 `README.md` 与各语言副文件，确保标点规范、编码统一、换行整洁。
 
 <details>
-<summary>完整章节表、门禁动作与数量上限</summary>
+<summary><b>点击展开查看：20 个固定章节标准体系及触发条件</b></summary>
 
-每个章节只在扫描有数据时出现，中英对照如下。
-
-| # | 章节 | 何时包含 |
+| 序号 | 章节名称 | 包含判定条件 |
 |---|---|---|
-| 1 | **概览 / Overview** | 项目有值得讲清的作用与由来 |
-| 2 | **功能特性 / Features** | 至少一条对用户可见、影响大的差异化能力 |
-| 3 | **演示 / Demo / Preview** | 仓库中存在图片、视频或产物示例 |
-| 4 | **快速开始 / Quick Start** | 存在可运行的入口 |
-| 5 | **工作流程 / How It Works** | 可从源码推导出流程或架构 |
-| 6 | **使用方法 / Usage** | 存在公开 API、接口或导出面 |
-| 7 | **运行环境与依赖 / Requirements** | 声明了运行时、平台或依赖要求 |
-| 8 | **配置 / Configuration** | 检测到配置文件 |
-| 9 | **项目结构 / Project Structure** | 存在一个以上的顶层源码目录 |
-| 10 | **API** | 检测到路由、schema 或导出的服务定义 |
-| 11 | **命令 / Commands** | 存在 CLI 入口 |
-| 12 | **技术栈 / Tech Stack** | 清单文件中声明了依赖 |
-| 13 | **部署 / Deployment** | 检测到 Dockerfile、compose、CI 或平台清单 |
-| 14 | **路线图 / Roadmap** | 存在路线图文件或成文计划 |
-| 15 | **常见问题 / FAQ** | 存在 FAQ 文档或反复出现的问题 |
-| 16 | **贡献与社区 / Contributing & Community** | 存在贡献指南、Issue 模板或社区链接 |
-| 17 | **赞助与采纳者 / Sponsors & Adopters** | 存在资助配置或成文采纳者名单 |
-| 18 | **安全 / Security** | 存在 `SECURITY.md`，或涉及鉴权、网络与用户数据 |
-| 19 | **引用 / Citation** | 存在 `CITATION.cff` 或已发表论文 |
-| 20 | **许可证 / License** | 存在许可证文件 |
-
-七道门禁在交付前逐项执行，每道都带着不过关时的动作。
-
-| 门禁 | 检查 | 不过关时 |
-|---|---|---|
-| **G1 证据** | 每条断言都能追溯到来源 | 删除该断言；若整节依赖它，整节删除 |
-| **G2 结构** | 幸存章节保持固定顺序 | 重排；不为凑顺序改名 |
-| **G3 语气** | 无禁用词，统一文风 | 改写句子 |
-| **G4 视觉** | Hero 合规、徽章分组正确 | 按模板重新渲染 |
-| **G5 链接** | 无占位符、相对路径可达、锚点存在 | 换成真实链接或删除 |
-| **G6 无障碍** | 每张图有 alt、每张表有表头 | 补 alt 文本或表头 |
-| **G7 国际化** | 切换栏双向可达、链接已本地化 | 修正切换栏，必要时加译文滞后提示 |
-
-另有一些数量上限是写死的：
-
-- 特性最多 6 条（[`sections-core.md`](references/sections-core.md)）
-- 徽章合计最多 16 个（[`badge-styles.md`](references/badge-styles.md)）
-- API 表最多约 15 行（[`sections-reference.md`](references/sections-reference.md)）
-- 目录树不超过 3 层、约 20 项（[`sections-reference.md`](references/sections-reference.md)）
-- 架构图不超过 8 个节点（[`diagram-templates.md`](references/diagram-templates.md)）
-- 快速开始不超过 4 条命令（[`onboarding.md`](references/onboarding.md)）
-- 证据置信度只有 `declared`、`inferred`、`absent` 三档（[`project-scan.md`](references/project-scan.md)）
+| 1 | **Hero** | 始终包含（标题、副标、徽章矩阵、语言切换栏） |
+| 2 | **Overview（概览）** | 项目具有明确的设计背景、作用与核心价值 |
+| 3 | **Features（功能特性）** | 具有至少一条从业务实现代码中提炼出的用户可见能力 |
+| 4 | **Demo / Preview（演示）** | 仓库中存在图片、架构图、操作素材或明确的使用范例 |
+| 5 | **Quick Start（快速开始）** | 存在可直接运行的入口或一条龙初始化命令 |
+| 6 | **How It Works（基本工作流程）** | 可从源码推导出流程状态机或核心执行流 |
+| 7 | **Usage（使用方法）** | 存在公开的 API、CLI 选项或导出调用面 |
+| 8 | **Configuration（配置）** | 检测到 `.env.example`、配置文件或环境变量声明 |
+| 9 | **Commands（命令清单）** | 存在明确的 CLI 子命令定义或 scripts 脚本 |
+| 10 | **Project Structure（项目结构）** | 存在多个关键源码模块或需要说明的顶层目录 |
+| 11 | **Tech Stack（技术栈）** | 依赖清单中有明确的核心技术选型 |
+| 12 | **Requirements（运行环境与依赖）** | 声明了 Node/Python/Go/Rust 版本或平台要求 |
+| 13 | **Deployment（部署指南）** | 检测到 Dockerfile、CI 配置或云平台清单 |
+| 14 | **Roadmap（路线图）** | 仓库中有成文的计划清单或里程碑配置 |
+| 15 | **FAQ（常见问题）** | 存在反复说明的排错指引或使用答疑 |
+| 16 | **Contributing & Community（贡献指南）** | 存在 CONTRIBUTING 文档或社区交流渠道 |
+| 17 | **Sponsors & Adopters（赞助与采纳）** | 存在资助通道或已成文的企业/组织采纳者名单 |
+| 18 | **Security（安全策略）** | 存在 SECURITY.md 或涉及敏感数据操作规范 |
+| 19 | **Citation（学术引用）** | 存在 CITATION.cff 或相关学术论文声明 |
+| 20 | **License（许可证）** | 存在 LICENSE 文件（包含双版权及协议条目） |
 
 </details>
 
-<div align="right">
-
 [![返回顶部][badge-top]](#readme-top)
 
-</div>
+---
 
 ## 使用方法
 
 ### 触发指令
 
-- `/readme` — 触发生成
-- `update readme` / `更新README` — 进入升级模式，保留人工内容
-- `帮我写 README` — 触发生成
-- `优化README` / `review my README` — 对既有文件执行七道门禁检查
+支持自然语言及显式指令触发：
 
-完整触发规则见 [`SKILL.md`](SKILL.md)。
+- 自然语言触发：`"生成 README"`、`"更新项目文档"`、`"帮我写个自述文件"`
+- 显式快捷指令：`/readme`
 
-### 两种入口模式
+### 模式切换
 
-- **新建 Create** — 不存在 `README.md` 或要求全量重写时，依据证据图从零撰写每个章节
-- **升级 Upgrade** — 已存在 `README.md` 时，保留人工内容，只重生成自动区域并输出变更摘要
-
-升级模式依据标记识别保护范围：`<!-- MANUAL-START -->` 与 `<!-- MANUAL-END -->` 之间的内容、以及没有任何标记的顶层章节，都视为手写并原位保留（协议见 [`workflow.md`](references/workflow.md)）。
-
-### 一次典型会话
-
-以下为一次运行的示意输出：
-
-```text
-User: /readme
-
-AI:   默认产出简体中文，入口模式自动识别。
-
-      按默认配置继续。开始扫描……
-
-      扫描完成 —— 24 条证据，命中 11 个章节。
-
-      正在组合 11 个章节……
-
-      质量门禁
-        G1 证据      通过（24 条，0 条无来源）
-        G2 结构      通过
-        G3 语气      通过
-        G4 视觉      通过
-        G5 链接      通过
-        G6 无障碍    已修复（补全 2 处 alt 文本）
-        G7 国际化    不适用（单语言）
-
-      已写入 README.md。
-```
-
-<div align="right">
+- **新建模式（Create）**：目标仓库无 `README.md` 或用户明确要求重写时启用，执行全量五阶段生成。
+- **升级模式（Upgrade）**：当已存在既有文档时自动识别，完整保留人工撰写的非标准自定义章节、专属徽章与个性化段落，仅对不合规或缺失内容做差量修补。
 
 [![返回顶部][badge-top]](#readme-top)
 
-</div>
+---
 
 ## 运行环境与依赖
 
-- **宿主平台** — CodeBuddy、Claude Code、GitHub Copilot、Cursor
-- **运行时** — 无，技能本身不执行代码
-- **渲染环境** — GitHub、GitLab 或任意支持 GFM 的编辑器
-- **图表渲染** — 需要支持 Mermaid 的渲染端
-- **技能格式** — 入口 `SKILL.md`，加 15 个参考文件 `references/*.md`
-
-> [!NOTE]
-> GitHub 原生渲染 Mermaid。部分终端 Markdown 阅读器会把图表显示为代码块，不影响其余内容。
-
-<div align="right">
+- **支持平台**：CodeBuddy、Claude Code、GitHub Copilot、Cursor
+- **宿主运行时**：无需安装 Python、Node.js 等任何外部独立解释器，基于宿主 AI 的指令执行上下文运行
+- **图表兼容性**：Mermaid 流程图已注入通用高对比度主题样式类（`classDef`），在 GitHub、VS Code 与各类主流渲染器下均可自适应深浅色模式显示
 
 [![返回顶部][badge-top]](#readme-top)
 
-</div>
+---
 
 ## 贡献与社区
 
-问题与 Pull Request 均通过仓库提交。
+欢迎通过 Pull Request 或 Issue 贡献改进：
 
-1. Fork 本仓库
-2. 创建分支（`git checkout -b feat/thing`）
-3. 提交改动（`git commit -m 'feat: add thing'`）
-4. 推送并提交 Pull Request
-
-改动章节配方、模板或写作风格之前，请先读 [`SKILL.md`](SKILL.md) 的固定结构与 [`writing-style.md`](references/writing-style.md) 的禁用词清单（`powerful`、`robust`、`seamlessly`、`blazingly fast` 一类词一律不用）。模板只允许存在于一个文件中，结构顺序不可随意调整。欢迎补充翻译，新增语言文件时请同步所有文件中的切换栏。
-
-<div align="right">
+- 提交章节配方或写作规范前，请确保完全符合 [`references/writing-style.md`](references/writing-style.md) 的禁用词限制。
+- 严禁随意变动 20 章节的预定装配顺序。
+- 增加新的多语言参考时，需同步为 [`references/language-guide.md`](references/language-guide.md) 提供对应的标准翻译。
 
 [![返回顶部][badge-top]](#readme-top)
 
-</div>
+---
 
 ## 许可证
 
-[MIT](LICENSE)
+本项目基于 [MIT 许可证](LICENSE) 分发。
 
-本项目是衍生作品，改编自 OxyTheCrack 的 [KieranGao/general-readme-skill](https://github.com/KieranGao/general-readme-skill)，并作为 3.0 版本进行了实质性重写与扩展。原作品版权归 OxyTheCrack 所有（2026），修改与重写版权归 LINJIANG12 所有（2026）。按照许可证要求，原始 MIT 版权声明保留在 [`LICENSE`](LICENSE) 中。
-
-<div align="right">
+- Copyright (c) 2026 OxyTheCrack
+- Copyright (c) 2026 LINJIANG12
+- 改编自 [KieranGao/general-readme-skill](https://github.com/KieranGao/general-readme-skill)
 
 [![返回顶部][badge-top]](#readme-top)
 
-</div>
-
 <!-- LINKS & IMAGES -->
-
-[badge-top]: https://img.shields.io/badge/-返回顶部-151515?style=flat-square
+[badge-top]: https://img.shields.io/badge/%E2%86%91-%E8%BF%94%E5%9B%9E%E9%A1%B6%E9%83%A8-gray?style=flat
